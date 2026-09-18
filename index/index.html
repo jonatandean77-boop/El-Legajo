@@ -1,0 +1,2896 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>El Legajo — Presupuestos DNRPA</title>
+<meta name="description" content="Calculadora de presupuestos para Mandatarios del Automotor: aranceles DNRPA, sellos, formularios y honorarios.">
+<meta name="theme-color" content="#1B2430">
+<meta name="color-scheme" content="light dark">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%20%22El%20Legajo%20%5Cu2014%20Presupuestos%20DNRPA%22%2C%20%22short_name%22%3A%20%22El%20Legajo%22%2C%20%22description%22%3A%20%22Calculadora%20de%20presupuestos%20para%20Mandatarios%20del%20Automotor%3A%20aranceles%20DNRPA%2C%20sellos%2C%20formularios%20y%20honorarios.%22%2C%20%22start_url%22%3A%20%22./index.html%22%2C%20%22scope%22%3A%20%22./%22%2C%20%22display%22%3A%20%22standalone%22%2C%20%22orientation%22%3A%20%22portrait-primary%22%2C%20%22background_color%22%3A%20%22%23F3EFE4%22%2C%20%22theme_color%22%3A%20%22%231B2430%22%2C%20%22lang%22%3A%20%22es-AR%22%2C%20%22icons%22%3A%20%5B%7B%22src%22%3A%20%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAJ3klEQVR4nO2dv24dRRTGv1zlBRBIbty6i4gcyRUueJHQOEVoKYPQlRUpJXUKUqC8AQ0thdMkAsuBAsmtm/sShiIaZ3119%2B78OefMmZnvVyHAu7Oz32/m7N6dXYAQQgghhBBCCBmEB7Ub0DO/fPP1fxLbefbuI8%2BTEuzYQqRCngvlKIOdl0DtsMdCKeJhR%2B2hlcAvQSHmYcds0Uvo56AM92FnoP/Qz0EZBhZg1NDPMaoMwx00g7%2Bf0UQY5mBrBH%2B9WYls5/zgVmQ7KYwiQvcHqR18qZDnoi1H7yJ0e3Bawa8d%2BCW0hOhVhO4OSjr43gO/hLQQvYnQzcFIBr/10M8hKUMvIjR/EFLB7zX0c0jJ0LoITTdeIvyjBX8bCRFalqDJhpcGf/TQz1EqQ4siNNfgkvAz%2BHGUiNCaBE01Njf8DH4euSK0JEETDW05%2BCFEZxdXe/%2B/N6ePd/57T8eQSgsiuG9gC%2BGPCchSe3JC5u0Yd%2BFdAteNywm/RShSwlDann372p5VDo%2BOi/YVQ44IniVw2TCPwb%2B5vrz75%2B1yxUOZAtxvo7YMvYjgrkGewm8ZKGluri/vRNXqnx4kcNUYD%2BE/P7i9Ky1aC/2UuXBq9FcqniRw05DU8GueSC8ljRS7QlpbBC8SuGhEzfBbhMML2sfaogTVG1Ar/Nsnq9fQz6F1/K1JUHXnKeFn8HWY9sfZxZXYdU%2BKCDUlqLZj6/Az%2BPs5P7jFerO6u/MlIUILElTZac3wM/hx3FxfDiGB%2BQ4twx9GM%2B374b0iNRt4lsB0Z9bhb/k%2Bvick%2BtKrBGZDIsPfLodHx8WLZVLOqeU7nNzVBCXhv7m%2BZPgVOT%2B4LRLBYwlqMtXEGl0afgZfF6mbCbESWZRC6juwCH/oUI8jTG/0JoHqxhn%2BfpHodw8SVE8Nw98moc9bvyZQa4Hmlfz0YsxDJ47KVALNl/RqZkklPZqlD3/V9cX0HGiua9aSQDxBDP94tCxBlRSVhpfh90c4J0uvf1n6e2tE96pd9wMMv2fWmxUOj47vraWWRjpjYmmyKH0Y/jbIlaBGKWSaqJwA31xfYr1ZMfyNoS2BFCJ7izEyN/x8vKFdNCWQmgXcDqsMfx9oXxOUUiyA1uhP%2BmHuxb/7sJoFXCaTo39/1PjWcQxFAmiM/gx/f%2BQ%2BN2QxCzws%2BeMlUsN/fnBrFv63r1/h5Mkjk32V8N33P%2BL9n3/XboYY4e0Tsaw3K9XZI3sG0PrRy%2BtUScrQvA4syaJaq3JG/5y/I%2B2gWQrlkrVl6dGfo/54SJ/z3EyqqJVrLEf//vGWjeStao3%2BDP84SKwm20VONsVTxyATLTSylbTYWPq%2Bfwuj/7enJ3j980%2Bi2/zw1z94%2BvyF6DZbJOf8x8waKYvo/SaPDEHuAhopRAXobfQnuuQsoJHOS/TWLN/XSEgJKVkV04mjP8ml5iyg%2BizQHJKf4iGkhCiVJMsfPu1JdiG9cCY2syJzCUsZYo1U5phcMjSLArD8IVa8OX0s%2BnhETHaLZwCWP6QWEtljesnQmAnA8ocsofWU6D72CiBZ/0vXd4TEsJThohmA9T%2BpTWkGTRLMRx9ILNZlEBNJhoYCkKGZFWDp4oHlDPHCUhb3ZVk9xaz/SSqW1wFMJRkaCkDcYrFemAIQl1iVzBSADA0FIEOzUwDJW6BnF1e8A0TUyb0VqppMPgFKSrD4wB6HZjI0FIAMDQUgQ0MBiFvOD26zvjGcAgUgQ0MByNBQADI0qgJwITzxDmcAMjQUgAwNBSBDQwHI0FAAMjQUgAwNBSBDoypAjbf9kj6wep3Ozq0vfWqegSbeWMrkXKZZApGhoQBkaEwE4KJ44hX1ZFq83Yv0x3qz4pvhCNFGXQCLV1uQ/rB6pc6sALwVSloh9xYowBKIDA4FIENjIgCvA0gKlq/UfFjyx%2BcHt7zH3yBfffkFLn7/dfa/P//hJf64%2BGDYonxKr0X3pnfpQjgFLpAnMUi/DGspw2bDN58MJUvU%2BKAi6xcyNMUCcEQntZDI3qIAktcBLIPIHBrlT0x2WQKRoRERIGdE5yxAAjXzEyWARhlEyDbW5Q/AEogMjpgAKVMSL4ZJIOfiVzI30XuVLIMI0SQlq6IlUM4sQMal9ugPFD4MV8rZxRXWA35I%2B%2BTJI/z7/rfazajOerPCzfVl1QwkCfDs3ccHc5%2BczyE8Jl3ja/JvX7/CyZNH5vsln9E496mlungdwgtbooVGtpIFkL4Y5mKZMfEw%2BgNKvwNwFiDSaGUqSwDOAqQEL6M/oPhLcKqxlGAMcsKvWVFkC6Dxw1hYNskSqj80z2tJFlV/B0hdNL/erMzC//T5C5P9kPt4Gv2BwhIoxrzUA%2BBzQv2Ru9glJgOllYjL5xEoQT/UWOieQnGrNGYBqb8lddE%2B7xLXoT61hN8Rg6Tj%2BVyKtExrFmAp1C4lpY/V6A8YzwCUYAy0wy%2BJmACxRlKCvrEIv%2BRvUKIzgOaqMUrgH4s7PtIZq3J1UhJizxdUo1NybmoNbCojduyimZwOq7WAhiyTe25qlD4BtZJFWwIg/Wd1okPJ%2BagZfkCxBNK8Hjg8OubTo04Io77mYKSZpeoFdUntRwnqUlqOerihoSqA5q3RQJCAj1HbEPrYKvza76MyedmV5vVAYNqhvFOkg1Qfewk/YFQCWcwE0xPCmUCeHsMPGM0AQPwsAJSP4JwN5JDsy5SByUoAs3SkHFDpCM7ZQIbeww8YzgCBWjOBxPZGQbrfvIYfqCAAYCsBwJIoBem%2B8hx%2BoJIAQF0JpLbZExr94z38QEUBAHsJgE8n5eziio9RbCH9JGcL4QcqCwCkSQDInSA%2BT/QJ6X5IvelQ%2B8Mr1QUA6kkAjCuCxnG3Fn7AiQBAXQmAz4F4c/pYbR%2B1mJY3WsK3GH7AkQBAugSAfEjnTmRrMlgdR87vLF7CDzgTAPAhQaA1Gazb23r4AYcCAL4kCOw72bWEqNmmHsIPOBUg4FEEwMdvCrsCWOPYY/AY/IDbhgVyP8pnGcp9i3IOj46zn0eaXrTObduK3GPwHH6gAQGANiSY4%2Bb68t6dpRS8/GDXa/iBRgQItCxCi/Qc/EAzDQ2UfKeYIsRR8gh5S%2BEHGhQAKJMAoAhzlK6daC38QKMCBCS%2BWj%2B6DBILhloMfqDZhgckJADGE0FqpVzL4Qc6ECAgJQLQrwySy0NbD36gi4OYIikC0L4M0muiewl%2BoKuDmSItQsC7EB6/xeuZLg9qipYIgdpCaL/1otfgB7o%2BuCnaIuyixvJCKXoPfmCIg5xSQ4SWGCX4gaEOdgpFuM9owQ8MedDbjCrDqKGfMnwHbNO7DAz9fdgZe%2BhFBoZ%2BHnZMAq0IwcDHw44qpLYUDHsZ7DxFpORgyAkhhBBCCCGEEFLM/66OTCfn/UKhAAAAAElFTkSuQmCC%22%2C%20%22sizes%22%3A%20%22192x192%22%2C%20%22type%22%3A%20%22image/png%22%2C%20%22purpose%22%3A%20%22any%22%7D%2C%20%7B%22src%22%3A%20%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAdOUlEQVR4nO3dPY8lyXUm4GBjDEkg7XLabZeDNmhxLLrrCwJkzgBrC7uOgBUK5ewaAqQfoBlj5YiQKWGdNQQsdmjJKAzdcsvpP1GU0brs%2Brgfee/NjDgnzvMABIghMZU3MzLeNyKzbrUGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACc8LPRBwBc5/tf//IPI37ud7/7vfkDEnMDQzCjAn1rCgPE4oaEzmYN%2BGspCNCXGw42IujXoRjANtxYsAJh35dSANdzE8GZhH1MSgGcxw0DRwj73JQCOMzNAc8I/LkpBPCFm4HyhH5NygDVuQEoR%2BCzj0JANQY8JQh9zqEMUIFBzrSEPmtQBpiVgc00BD49KATMwkAmPcHPCIoA2RnApCT0iUQZICODljSEPhkoA2RhoBKa0CczZYDIDE5CEvzMRBEgIoOSUAQ/M1MEiMRgZDihT0XKAKMZgAwj%2BEERYBwDj%2B4EP7ylCNCbAUcXQh%2BWUwbowSBjU4J/e7ef3g35uXc3T0N%2BbiWKAFsyuNiE4L/OqFDfirJwHUWALRhUrErwLzdbyF9KOVhOEWBNBhOrEPyHCfrLKAaHKQKswSDiKoL/JWG/LaXgJUWAaxg8XETwC/solAJFgMsYNJytavgL/ByqFgIlgHMZMCxWLfgF/hyqFQJFgKUMFE6qFPxCf26VyoAiwCkGCAdVCH6BX1uFQqAIcIiBwV4zh7/QZ5%2BZy4ASwD4GBS/MGvxCn3PMWgYUAZ4zGGitzRn8Qp81zFgGFAFaUwBoc4W/0GdLM5UBJQADoDDBD5dRBJiBC1/QLMEv9IlgljKgCNTjghczQ/gLfiKaoQgoAbW42EVkD36hTybZy4AiUIOLXEDm8Bf8ZJa5CCgB83OBJyb4IQZFgIhc2EllDX/Bz8yyFgElYE4u6oSyhb/Qp6JsZUAJmI8LOhHBD/koAoziQk4iU/gL/vU9Ptyv%2Bu/74Zuvj/7vruH6MhUBJWAOLuIEsoS/0DjfsVD49sef/vjf33/42O3nnsM1P1%2BWIqAE5OcCJpYl%2BFsTBMdcOuFveU57hJAxcViWEtCaIpCZC5dUlvA3yX%2Bx9qSevQAcYsx8kaUIKAE5uWgJZQj/6pN4r4l7q/McKXi%2B/fGn1R9xZBPpehyiBOTjgiUi%2BOMaNUFXKAC3n969ecmxaiGIdF0OUQTycKGSiB7%2B1YI/ykQ86ryP3uGoXgiijL9DlIAcXKQEhH8Mu9A59Stya8p%2Bbq8NqqWf/3khqFIGlACu5QIFFzn8s4fTKYdWmZle5otsyXm85NxU2x2IXASUgNhcnKAE/xhLV5IRf3VvBq/P6xrnq8rugCLAuVyUgIR/X5cExFarV7Y1exlQAjiHCxJM1PCfLcyuDYJ9E%2B1s52hmW%2Bw0RBK1CCgBsbgYgQj/bc2%2B%2BmO5YwE5y3hXAjjFhQgiYvjPMhHugl/os1PpEU7EIqAExOAiBCD813d38/THP5Yj%2BHnukkCc4X6IRgkYzwUYSPCvb/Znu1zvmjDMPp4UAZ5z4gcR/us6NLFl/kxsp9cXFEWkBLDjpA8QLfyzTmZLJ7Ksn48%2BqpaBaEVACejPCe9M%2BF/v3Ikr42dkjGqPB5SA2pzsjoT/dXz7Hr1UKgJKQF1OdCeRwr/KBJXtcxJTlfEXqQgoAX04yR0I/8tUmXjJocJ4VAJqcYI3JvzPV2GiJa/Zx6cSUIeTu6Eo4T/zxJPlszGnmcdslCKgBGzHid2I8D%2BPN/vJbNbxqwTMzUndgPBfbtaJk5qWjudMX1OtBMzLCV2Z8F9G8DOzU%2BN7N56z/KEqJWBOTuaKIoR/9KAU/FSyb7zvG9OKwHJKwHqcyJUI/9POmTyifxY4x/Oxf2xsPz7cKwELKAHrcBJXIPyPs%2BqHz/fBkrGdYTdACZiDE3gl4X/Y48N9%2B%2BGbrxf//6N%2BDhghehFQAvJz8q4g/A97vpW59IUo4K3IjwWUgNycuAuNDv%2BooXlo1bL0ZSjgLbsBxykBl3HSLiD89zu2Unk9QUT9DBCZ3YDDlIDzOWFnEv5vLV2dLH0JCjgs8m6AEpCL2TiRiOG5W5EsmYwiHj9ks7vfdkUgEvd4Lq7WGUau/iPeWJG3I2F2SsBbo3dos7FdspDw/yLyFiRUs/t122jzxMjHAR4FLOMkLSD8v7Dqh1iWfsvgCEpAbLFGS0DC/wvhD7G8DtjRL%2BG95nFAbBrSEcL/M1v%2BENOxwI80h9gJiMmJOUD4f2bVDzEtCdVIc4kSEE%2Bc0UFrLdYNK/whriVzRaRHApHmNj7TivYYtfqPcoPc3Ty1b3/8SfhDAktDPtL8MoJdgLdijIhAhP/nm1P4Qw5L544ouwGj5jovBb6lET0j/H1fP2SW6b0AOwHjxRgJAQj/tzdjlBUDsEym9wLsBIwXI32Kihz%2BS/43IB4lgKVshbQxjTDCwM%2B0XQicL8s9PqKQeBRgB0D4HxHhOIHLZdkNGDHXeBRQvABUHQDCH%2BrIUgJGqJoBO2b5zkYHq/CHejKUAPNOf2XPeMWtf%2BEPdSkB%2B1XeBSg52wv//UYfI7AtJWC/qiWg3FuQwv%2Bt0ccH9Bd9XvCbAdsz828s%2Bk00%2BviAMU7d%2BxV3AqopdYarbfMIf%2BCY6CWgt2oZUSYBqm39C39gicglwPsA2yqRAsL/JeEPPKcEvFSlBEiCDQh/IBsloJ7pz2rvJif8gaxOzRGPD/edjuSt3vNXhV2AqROhwgXcEf7AGvbNFbef3rXbT%2B/a%2Bw8fh5aA3mbPEKmwolEhK/yBNT2fM17PHyNLgLlsXdN%2B6UGVrX/hD4zw%2BHDf3n/4OORn934fYdYvCJoyHYT/Z8If2EqlnYBZHwVIiKSEPzBatXcCZjNdSlRY/Qt/IIpRJcAuwPUkxRUiBm3EYwLYgvnuOlOdvZ4NbdTAe3y4P/iz3QzACFXeB5htF2CaxJjtwuzz/K1bYQ9EUuV9gJmyRopcYET47vuVm2O/qwvQW5X3AWYxxe82zr71P/L3bQHONWrO6vn9ADN8N4DaFJzwB7Kp8jggu/QFYPbVPwDLeCHwPKkTbfbwt/oHsqrwPkD2EpC6AMxM%2BAPZeRQQW9oCMPPqX/gDsxhRAuwCLJO2APTiuT9APubu01KeocyN6xSrf2A2P3zzdfc/4dtT1kxKWQB6sfUPcJ3nwd%2B7BNgFOC7dFxn0alrCH%2BByx8K%2B9/zaq3hk%2B3KgVPUo6zYLAPPLllGpCkAvVv8A1zk2j3oUEEOas5KtWS0l/IFZRSoBvWTKqjQFoJeeTVH4A5X1LAF2Ad5K8cKCF/9q%2Bfd/%2B237xc//bPRhcKF//O2/tv/5d/8w%2BjAIxAuBMalEg9zdPAl/oISKjwIyCF8AZlz97wb83c2TwQ%2BUEKUE9JrrM7wLEL4AVKAEANBb6AIw8%2Bp/6T8HmIVdgFhCF4DZRHoRBmCEKCWAwAVgxtU/ADHYBQhcAGZj9Q/wmV2AGEImT6XVf4RjAOgtwtxXfRdg/BUYJMKLfwC8NeMLgRHV/eSd2PoH2M%2BjgLHCJVCPrRLBC8BOj0yI%2BBhAEm7I6h/gOLsA44RKoSqr/wjHABBFhDmx4i7A%2BLM%2BKc0V4Hrm0u2EKQBW/wB1RZgbq%2B0CjD/jE9JYAdZjTt2GArAyL/4BXMYLgX19NfoAWquz/c8yv/rNX3T9eff/75/bn/7pn3T9mT39r7//vv3vf/qX0YcBKdx%2Berd52fj%2B17/8w3e/%2B/3PNv0hC0jFFVn9A1zHLkA/w1Opwup/9M8HyGT0nFnlZUDJtBLNFGB75tr1DC0AVv8A7LNv7rz99K59%2B%2BNPw37%2B2kbvAoR4CTA7jRRgO8/D%2BP2Hj%2B3x4b69//Bx4BHNYerl6ejV9%2BifD5DZ7ad3Q%2BfR2efwYZ9u9NbHWqz%2BAfra7QLMYGQWzl1vBpq9OQKQ27Qp1SOArf4Bxui1CzDzYm7IJ5tl%2B/%2BQmQcMAOsalYlTJpXVP8D87AJcZ85PNdCsAwWAuXRPq1m2/3t9GQUA8xuRjdMtV3uswHdfQjH6d1QBqvMY4HJdvwlwltX/azMODAD66v1ngqdKrp6rfwBisAtwmbk%2BDQCwiAJwBqt/gJhm%2BnrgXroVgK2f/8%2B2NQNAPFtnTc935aQmABSkACxk%2Bx8gNo8BztOlANj%2BB2AWszwGkJwLWP0D5GAXYDkFAAAK2rwA2P4HoKcfvvl6858xw2OArl8FnJHtf4D4Xv%2BJ9rubJwvEE5wdAFJ7Hf4sk7oAaHcAjJI9gzY9%2Bux//c/2P0Be2XcGts7Q3PUFgPKyr8RHcdYAoKDNCkD2X/%2Bz/Q%2BQ39aPATL/OqAdAADS8xjgfM4YABSUsgBs3fTubp66fJMUANvL/hhgK5scdfZf/9u5u3l68R8A4soaxKdslalzni0A4CgFAAAKSlcAejz/H/FzAbjeobnaewBv5TtiAOBqqxeAWV4ABIAotshWOwDPeNMfYF7m%2BJdSFYBRz1gyPtsBqEpWLJPraAGAVSgAAFDQqgUg8wuAng0BzC/zXL92xtoBOCHbMx0AzN1LpDlDLiYA0WXKqjxHCgCsRgFouZ8JAXAec/5nqxWAzC8AHpJpKweAl2acw9fM2vnODgBwUooCMGOLA2BOWTIrx1ECAKsqXwC8DAJQj7lfATgoyxYOAIeZyw9b5czM%2BBsAABDRWpmrGgFQyu2nd%2B3bH38afRjDfTX6AE6xfQPANUbkyO2nd%2BHfM5CuAFBQ6QJwqJ3ZdQCY2/sPH9vjw/3owxhK0gFAQQoAABSkAABAQVcXAN8BAAB9rZG9oXcAvIwHQFbRMyz20QEAmyhbAB4f7ve2s%2BiNDYB1VP9VwPDfBLg1gQ9ARdIPAApSAACgIAUAAApSAACgIAUAAApSAACgIAUAAAq6qgBs%2BXcA/H4%2BANltmWXXZnDJlH18uG/vP3wcfRgADFb52wBLFgAAqE4BAICCFAAAKKj8HwMCoI67m6c3/%2ByHb75uFdfD9T4xAKAAAEBFCgAAFKQAAEBBCgAAFKQAAEBBCgAAFKQAAEBBCgAAFFTymwB/%2BObrdnfz9p/7E8QAVCHxAKAgBQAAClIAAKAgBQAAClIAAKAgBQAAClIAAKAgBQAAClIAAKAgBQAAClIAAKAgBQAAClIAAKCgkgXg0F/9u7t56nwkAPRyaI6v%2Bpdgr/rU3/3u9z9b60BeE8YAZLdlll2bwTVrDwAUpwAAQEEKAAAUpAAAQEEKAAAUpAAAQEEKAAAUpAAAQEFlC4BvAwSow7cAvlX3kwNAYaELgNU4AFlFz7CrC8CWfw8AAHhrjewNvQMAAGxDAQCAghQAACiodAHwq4AA8/MrgPvV/vQAUNRXow/glLubpy4trXoTBJjV8/m91w5vhp3k8AVga9/%2B%2BFN7/%2BHj6MMAoINdGXh8uG%2B3xef%2BVZa9vgsAAPpYK3PtewNAQeULwPsPH9vjw/3owwCgk8eHe49%2BmwIAACWlKAAZ3qYEgNbyZFaKAgAArGu1AuA3AQBgW2tmrR2A5kVAgCq8APiFAgAABaUpAFleqgCgrkxZlaYAAADrWbUAZH4R0HsAAHPL/vx/7Yy1AwAABSkAAFBQqgKQ6eUKAGrJllGpCsDWvAcAMKfsz/%2B3sHoByPwiIABEtEW22gEAgILSFYCtn7F4DAAwlx7b/9me/7fW2lejDwAgo7/88//S/ua//9fV/n3/7X/8bfs///f/r/bvg1PS7QCMkrHdAVRjrl5ukx2A7373%2B599/%2Btf/mGLf3cv%2BwbR3c1Tu/2kMwFEtJu3n8/fM8zZW71cn/LM9HgPAID87m6ePP8/IGUBAACuowCcKWvTA5iZufl8mxWArb8QaOuLPcNzI4Dqtp7Lt86iLbNUygFAQQrABWw1AcRhTr7MpgUg%2B98F8BgAIK/sc/jWGZr67Gh9AIySPYNSF4CRsl94gBmYiy%2BnAJyQfQsJoCJz92mbn6Hsvw4IAK9l/vW/HRXpCsoHwDjm4OsoAAvYSgLIw5y9TJezNPNjAA0UoL%2BZ5/1ev0KvJi2kUQLEZ65ezpkCgIK6FQCPAQBYw8zzfc9v0LUDcAZbSwBxmaPP42ytxC4AwPbMteuZqgD0GBgaJkA8Pebm2cpH1zTL/tcBT5ltcABEMvsc2zsjp1vO2gUAqMXq/zLdk2z2XQAAONeIbLSUXdmMLRFgNHPr%2BqYsAB4DANRg%2B/9yQ1Js9scAsw4WgBFmn1NHZeK0y1i7AABzs/q/jgTbyMyDBqAXc%2Bl2hhWAWR4D2AUA6G%2BWuXdkFs5xBg8Y2RxnGZwAVc2%2B%2ByClVvA67IU/wDpuP70zx25k6FnssfXRs8HtG6gAXK/3/NojO0Y/Cv9q5A%2Bfye2nd%2B3x4b69//Bx9KHAC3/9V9%2B1v/6r70YfBlzNHLuu4cvV2XYBAMitwuq/NTsAq3r/4aOGuoJ//7fftl/8/M9GHwYQiLl1fcN3AFqzCwBADFVW/60FKQAz2e0CALAOq/9tKAAbUAIA1iH8txOmAHgMAMBIlbb/WwtUAGZjFwDgOlb/2wpVAOwCADBCtdV/a8EKwGzsAgBcxup/e%2BEKgF0AAHqquPpvLWABmI1dAIDzWP33UbYA9NwFUAIAlukd/pV3hEMWgF5bJZUvPEB1vTIg4vZ/a0ELwIzsAgAcZ%2Bu/r7AFwC4AAFupvvpvLXABmJFdAID9rP77C10AZtwF2FcC7m6e/vgfgFkdmudmffEv8uq/teAFoAKhD1RjwRND%2BAIw6y7AoRvATQHM6NB8Z/U/zlejD6Cq20/vDg7Eu5undvspfDfbzK9%2B8xejDwFY0bHQ9dx/nBQpM%2BMuwCmRjgXgUpHmMqv/l1IUgJ56DtbKq3yAnnNgpCISRZoEytKoznXsBjBggcyOzWGzLoAyZdWcV%2BBKvYNXCQBmEyn8zaP7pSoAmZrVmgxeIJOqc1a2jEpVAFqb94XAWbfDAJ6bdfWfLfxbS1gAeopUAqo2aiAXW/95pCwAGZvWUkoAkFWk8O8paybNe0VWEi10ox0PQGvx5qZoxxNR2gLQs3FFehQAkM3MW/9ZV/%2BtJS4As/MoAMii6tZ/dqmvzMy7AK0pAUB80cLf6n%2B51AWgtflLwDHRjgeoJdocJPzPk74AzO5Ug452AwI1nJp7bP3HN8UVmn0XQAkAIokY/lb/55uiAPSmBABVVQ//mUxTAGZpZMfYUgMiqzBHzZQ1U12t2R8FtOY3A4Bxor3x35qt/2tMVQB6ixi4EY8JyC/i3BLxmDKZrgD0bmjeBwBm57n/fKv/1iYsAFUoAUAPEcOfdUx55SrsArSmBADbihr%2BVv/rmLIAtKYEnPrfAK4h/POTECuKVAKEP3CtQ/NIlfCf3dQpMXNze%2B35DSn8gbXcfnpXdn6ZPUOm/nA73//6l3/o%2BfNG3iCPD/ft/YePw34%2BMKfRc4ut//XVqXIdjdymev/hY3t8uB/284H5VAv/KkoUgBFNTgkAZlAx/Cus/lsrUgBaUwIAziX851amALRW68K2pgQAlxsd/iNUy4hSBWCE0c%2BulADgXBHCf/TcWUG5AlDtUUBrSgCwXNXwr7b6b61gAWhNCQDYR/jXUrIAtKYEADwn/OspWwBGUQKAaKqGf3WlC0DV5qcEADsRwn%2BUqhmwU/rD7/T%2BquDWYnyf9q4EVL35obJI97%2Bt/zHKn4CdqiWgteMrgN2NGeVYgdNO3beRVv3Cfxyz%2BkBRnnkdeiTw/PiiHCtw3Kn7tnr484UC8J9GNcIoN8DrErDvuKIcK7DfqXtU%2BFv9P%2BdEvDLiUUBrcbbYHx/u2w/ffH3y/xfleIHTYXr76Z3wb8L/NSdjj%2BolYOnNGeV4obJs96vwj8MJOaB6CWht2Y0a6Xihmmz3qPCPJc7IoLUW6zn7konj7uYp1DFDBUvvO%2BHPMXFGRzAjG2OkG2XpBBLpmGFm2bb8Wxs7P1j9H%2BbEnDDqUUBrsW7g1vJtN8JsMt6Dwj8uJ2cBJeCLjKsPyC7rfSf8Y4s1WoLyOOALjwSgL%2BF/PuG/jJN0BjsBL2WdmCCDzPeX8M8h3sgJzE7AS3YDYBvC/zLC/zzxRg8HRQzSc0pAxOOHSM65T4Q/19KWLjDyUUBrMW/81s67%2BaN%2BBhhhhntndPhb/Z8v5kgKbvRAG32jHXLOxBT1M0Bvwv96o%2BfkrJy0K4zeCWhtjgkh6meALc1wj4wO/taE/zWcuCspAYedOzlE/RywplnuC%2BGfn5O3AiXguFkmPLjGTPeB8J%2BDE7gSJeC0jF9jCmua4R4Q/vOIPdISiTAgI9yYx5ya2KJPfLC16PdAhDkmwlw7CydyZRF2AlrLOZFEP2ZYQ8axHyH4WxP%2Ba3MyN6AELLebWDIcK6zheZhmGPfCf15O6EaUgPM8Pty39x8%2Bjj4M2FymsS785%2BakbkgJOM/jw31rraWZHOEc2ca38J%2BfE7uxKCWgNUUARsg2nqMEf2vCf2tObgdKwGWyTZzwXMbxK/xrcYI7UQIul3Eipa6s41X41%2BMkdxSpBLRWowj4LQMucXfzdPaYEfzrEP79ONGdKQHXO2eifT25Zfy89HPJeMka/K0J/%2Bqc7AGUgHXsJt7WDk%2B%2Bxya4rJ%2BbdV0yRpaMveiEP074INFKQGu5A3HfKmyGP7fKNpaOjdfjIvNqfyda8Lcm/Edx0gdSAtb3fIK%2BdKLLfg7Y75rxMEPwtyb8ecmJD0ARWN9aE13281DdGuPg2x9/EvwbEPzjuQBBKAHbUQZqcb1fEv4c4iIEErEEtGYiPGSW85Kd67pfxOBvTfhH4kIEowT0scXkONs5isq1O034s4SLEVDUEtDafBNla9tNljOeqxFcn%2BWiBn9rwj8iFyQoJWAMq8s4XIvzCH/O5aIEpwiM42WysZz/ZQQ/l3JxEohcAlqbf4LduWSirXJutuB7HI6LHPytCf8MXKAklIBYLv0mua2Ooff57/GzfZPjYcKfNbhIiUQvAa3Vm4h3Dk3IvQrASCM%2Bo3EWl/DPw4VKSBGIbzdRf/vjT3/8Z2t/m1yUMFj7Wj//Qzs/fPP1Jj8jmyjX%2BhjBn48LllSGEtCaifu558H23CXFIFIgXHqN1zwfs4p0nY8R/jm5aIllKQGtKQLHHArC1i77M8e9Hbu2l3w2Yl3fU4R/Xi7cBLIUASXgfIcCdLc1HsHzxxyvCfnzZQl/wZ%2BfCziJLCWgNUVgC71DwzVcX5bgb034z8JFnEimEtCaEIHWcgV/a8J/Ji7khBQBiE/wM5oLOqlsJWBHGWBm2UJ/R/jPyUWdWNYS0JoiwFyyBn9rwn9mLmwBigCMIfiJzAUuInMJaE0RIJfMwd%2Ba8K/CRS4mexFoTRkgpuyh35rgr8bFLmiGEtCaIkAMMwR/a8K/Ihe8sFmKQGvKAH3NEvqtCf7KXHgUAVhI8DMTA4DW2lwlYEcZYA0zhf6O8Kc1BYBXZiwCrSkDnGfG0G9N8POSwcBesxaB1pQB9ps19FsT/OxnUHDQzCVgRxmobebQ3xH%2BHGJgcFKFIrCjEMytQuDvCH5OMUBYrFIRaE0ZmEWl0G9N8LOcgcLZqhWBHYUgh2qBvyP4OZcBw0WqloDnFIIYqgb%2Bc8KfSxg0XEUReEkp2Jawf0nwcw2Dh1UoAocpBZcR9ocJftZgELEqRWA5xeAzQb%2Bc4GdNBhObUASuM1s5EPLXEfxswaBiU4rA9kaVBaG%2BPcHPlgwuulAEYDnBTw8GGd0pA/CW0Kc3A45hFAEQ/Ixj4DGcIkBFgp/RDEBCUQaYmdAnEoORkBQBZiL4icigJDRFgMwEP5EZnKShDJCB0CcLA5WUlAEiEfpkZNCSnjLACEKf7AxgpqEI0IPgZxYGMtNSCFiDwGdWBjYlKAOcQ%2BhTgUFOOcoA%2Bwh9qjHgKU8hqEngU50bAJ5RBuYm9OELNwMcoRDkJvDhMDcHnEkpiEnYw3ncMLACpaAvYQ/XcxPBRpSCdQh72IYbCzpTDPYT9NCXGw6CmbUgCHiIxQ0JyY0qDAIdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAyf0HBs3uh4I%2BUYAAAAAASUVORK5CYII%3D%22%2C%20%22sizes%22%3A%20%22512x512%22%2C%20%22type%22%3A%20%22image/png%22%2C%20%22purpose%22%3A%20%22any%22%7D%2C%20%7B%22src%22%3A%20%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAXmklEQVR4nO3dQW4kR3YG4FCjj2CIlsSluG5x4YWBXnkOoEP03IMgfAbvpsdnGMPrgRe98obonQFuORZah6C8kKuHLFaxMisjM%2BLF%2Bz5AwKg1TWZlRLz3Z2RW1Tc//PjTbwUASOVN6wMAALYnAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACQkAABAQgIAACT0tvUBAHXcXjxu8ntuvrhugBF888OPP/3W%2BiCA47Zq7LUJCtA3AQA6EbXRzyUYQB8EANhYlkY/l2AA2xIAYGUa/nkEAliXAACVafjrEAigLgEAFtLw2xAIYBkBAM6g6fdFGID5BACYQMOPRSCA0wQAOELTH4MwAIcJALBH4x%2BTIADPCQBQNP1shAEQAEhM06cUYYC8BADS0fg5RBAgGwGANDR%2BphAEyEIAYGiaPksIA4xMAGBIGj81CQKMSABgKBo/axIEGIkAwBA0frYkCDACAYDQNH5aEgSITAAgJI2fnggCRCQAEIrGT88EASIxWwlD86d35iiR2AGge4rqdGtfgRqL6ewG0DsBgG5pNs9FaSjG7bko40Y%2BAgDdyd5ARm0YxnXMcSUuAYCuZGsS2ZuC8YZ2BAC6kKERKP7TmAuwDQGA5kYu%2BAr9MuYGrEcAoJkRi7uivi5zBuoRAGhipEKugLdhDsEyAgCbGqVoK9h9Ma9gPgGAzUQv0opzDOYZTCMAsInIRTlSQX64v1v09z%2B%2Bf/fqf490Lsw5eJ0AwKqiFuFeC/Cp87n0uJeOV9Tz1qtezydjEABYTcSi20vBPffctQ4Ax0Q/ry31cu4YjwDAKiIV2tYFtua56jUAPPXh0%2BdSSimXV9er/67XmKNk97b1ATAWRfW0SOdoDbvGv/%2B8wtaBYDf%2BEcZjd4yCADUJAFQToZCWsn0R3TW6Uw/YZbPf8FsFgmhBQAigFrcAqCJC8dyycD5tZrtGtsU5Wvs11ngNU4/x0DncgrlMFgIAi/VeMLcqlqca1pbNs5Upr/Gc19AiDJjXjE4A4GwK5PzGNPWcjVbca97DfnoOtzhP5jmjEgA4S%2BaiuORq9NB5U8DnOTb31jyPmec74xIAmK3nYrh2E/jw6XPzt69lttYthpq/vxUhgLkEAGbptQCuVfz2X68i29bc%2BbfVvOiF%2BckcAgCTZSp6LbaZed2S%2BbflHGnNHGUqAYBJeix2rYq6AttOj99VkGVtMB4BgJN6K3Cti7ji2gc7Aq8zTzlFAOBVoxe1Vl%2B6Q129jOPo64WxCAAc1VMx66VQK6h962VcR147jEMA4KBRC9g5r0sBjan1WI%2B6hhiHAMALIxau1s2AduaMfe2vKh5xLTEOAYBneilYLa/EFMoxzXmHx8P9XdUPfBpxXRGfAMBXoxUpjZ9Dpn7Gw%2B4jn0fbDTDP2REAKKWMVZw0fqaY%2BqVCNYPASOuM%2BAQAuihKtQrSw/1d%2Bfj%2B3aa/k9huLx4nzYWatwVGWnPEJQAkN0oh2r9Ke%2B11KXyca7TdAGshN6Of2CgFaHdlNqUoK3gssZtnT78S%2Blw9zMUeagDt2AFIqoeFv7QAnroam3qPF85RazdghLVITAJAQq0LTs2rfmit1lwcYV0SixFPZoQio/nTk8ur6yrrqnUDbl0b2J4dgERaL/C1t/yhhf11tXSeR1%2BnxGGk2USN5j/1QT/YyqFmvbSBa8BsxUxLouVVRa3mD1FEDgGtdyDYjgCQQNTmf3vxqPnTrVPr6vbicdHaEwJYmwAwuMjNvxT3%2B%2BnX1PktBNArDwEOLHrzr/GzYAtzvmlwrZ%2B/FutvXEaW6moXOlci9G7KnI%2B6E8C4zKpBtWqaa13lCAH0btQQYO2Nyy2AAY3W/Jf%2BbNjamvM54vqmTwLAYKIVh7XvnUIra87taOucPhlNFtP84aU1bwlYF9RgFg2kxVWB5g/HjRYCPA8wFhV2EJo/9EkIoFeq7AA0f%2BibEECPVFpmW6v533x5o/kzrCnzO1IIID6zJrgoSdzb/OB3p%2Bb67muvexel9nCcqhtYlK1/zR%2BeOzbnb768KZdX12eFALcCmEvlZTLNH%2BrZn/tP/z1SCCAusyWorZP3GoVFsSK73RqouRa2Xld2AeLySYABRWn%2Brx2n5g%2BnPdzfnf2V2FHqBO0YMVah%2BcNy594KgClU4mAipHoFC%2BqJ8jyAWwHxCACBRGn%2Bl1fXrz7lDMwjBLAG1ZiDljT/Yz9D84fzRQkBxOEhwCB6v/pf8rASMN05a633%2BkEbRokXLF4YizXNIWZFAFum9xpb/8B6ItwK8CxADAIAX2n%2BEEOEEED/zIbO9ZykNX9o5%2BP7d13Xh56Pjd8JAB3rfesfaGNJbXArgB1VH1v/EMh%2BUz2nyQr8lCIAdKvn5Kz5QxvH6kLP9aLnY8tOAEjO%2B/1hDHMbrV0AzIAOSczAIVGbtprWJ58E2KGtFsvcYnJ78Ri2AO3761/%2BVL7/7tvWhxHaH37%2BY/nbL7%2B2PoyUan7bZq/1hvUZkc70uhh3xyXJQ3uvrd9ebwWoHf0RAJjt9uLRYgYITgDoSO9X/1P/HFifXQCWEgB4Vc17jUBdNUMA%2Bajgnej16h/IwS5APrpBIjWfDhYkoA8RbwXQB6PdgWiJWJGAvkRbk9Fq3qhizRrO1ut7g4F12QXgGCPNC7b%2BIR4PBDKXat7YFgtT0wbm2KJmCCXt6Qw84%2Bof4rILwBwqekORrv41f4gh0poXStp62/oA6EemxfgvP/%2Bx6s/793/71/LP//Su6s%2Bs6X9/%2BbX6ayaekb7Qi%2BXMhEZc/QNribT2M1149EZlp5RiEUIWD/d3rQ%2BBTggAg4p0BQDUt792b768OWs9qwHjMrIN9Ha13dvxAPXsN/7Lq%2BvudgHUoDYEAI6S/CE2a5jXmB0DmrPoJW/IZ%2B4ugCAxJqO6sSgN14IHthSlNo5ElR%2BMq39gCrsAGNEN9dZwP3z6fPDPLXSghd5q5Oh8EmBSD/d35fLqujzNgBYf5LLbBfi9FpCNS72BLL1yP/d9wkAO6sNYjOZGXF0DnKZWbkcAGMScZG7LD9jxMGBeRhIAEhIAknH1D%2Bzr8eOBWZ8AsIG172nZkgO2tHbN8RzANnQOAEhIAEjE9j9wyO3FY/n4/p0r72QEgJXZ/gd6dHvx%2BPWfc7gNEJ/uAQAJCQBJ2P4HpnDlnYcAEJjtf%2BBcNeqHGhSb0VuRJA1wPjV0XQJAArb/gTk03hwEgAR2b%2B%2BxqIGnbOHnZvSDOnfhLn3rD8BTQkRcRm4lvTTYXo4DiKWX2tHLcYxIAEhKagdKUQsyM/IBWbBAT9SkmIwaACQkAKygl3tWx45DWgeeOlYTeq9lLKMTAEBCAgAAJCQABGP7HuiR2hSPERuU%2B//AHL0/B0B9ugEAJCQAVCYtA9SnttYnAABAQgJAIO7fAz1To2IxWgPyACBwDg8C5qIjAEBCb1sfAAB92d8JeLi/KzdX142OhrXYAajINhkQXc%2B3CtXYuvodaQBgNQJAED2ncoAdtSoOIzUY7wAAaru8ui4P93etD4PKdAUASEgAAICEvA1wMB8%2BfS6Xe2/X8eQsAPvsACTg/j8A%2B3QGAEhIAACAhASAStxnB1ifWluPABDA1Hv4D/d3Lx4ABKhhzmcBeO4oBqMEAAkJAACQkAAAAAkJAACQkE8CBOCFQ0/bf3z/rrhuHIeRBICEBAAASEgAAICEBAAASEgAAICEBAAASMjbAAfy8f27cnvx8s99LjcA%2B3QGAEhIAACAhAQAAEhIAACAhAQAAEhIAACAhAQAAEhIAACAhAQAAEhIAACAhAQAAEhIAAjg9uJx0v/v2Gf%2BT/37AKUcrxlTv1dEzYlBAKjEF%2B4ArE%2BtrceZBICEBAAASEgAAICEBAAASEgAAICEBAAASEgAGIzPAgCWWPoZAMRhRIPQwIEI1Ko4BAAASEgAqMgWGcB61Ni63rY%2BAOr78Olzuby6bn0YQECHmuzD/V25UVOGI04BQEICwIAur67Lw/1d68MABvBwf2dHcVACQCCergV6pkbFIgAAQEICQGWeUgWoT22tzxkFgIQEgEF5EBBYygOAYxMAgvGQDdAjtSkeAQAAEhIAACAhAWAFvTyt6jkA4Fw93f/vpaaOxlkFgIQEgIA8bAP0RE2KSQAAgIR8HfBKbr686SIV754D6OVeHmzpH7/9h/Jf//nns/7uH37%2BY/nbL79WPqIYeqoZ7v%2BvRwAI6vbicfbC2A8kFhawtC70cKHDeXSABD6%2Bf3dwkVq4kNuxuvDx/bsGR8PWBIAEXOkDc6gZORjlFVlEAOdTQ9fl7AZWYwvfbQDISf1AAEhCkgamUCvyMNIAkJAAsLK107RtPGCuCHXDTsT6nOFELCjgNWpELkYbABISADbgNgDQiwj1wk7ENpzlZCws4BC1IR8jzld2AWBs1jhPCQCDmLOwJX3gqTk1QYgYh06wEU0X4DS1cjvO9EAiPNwDtKE%2BsE8ASErKBkpRCzIz8huKstCkfBhLlDUdpUaOwtkejIcBgak8/JebDrCxKE3XYocxRFnLUWrjSJzxAdkFAE5x9Y/qz1EWPcRmDfMaAaCB3q66Dx3PzZc33R0nMM%2Bxddzb2u7teLJw1gd1bvLX%2BGE8S9a1XYRxvW19APTh5sub8nB/V26urlsfCiv4/rtvy//893%2B0Pgwa%2B/Dpc7m0xvl/AkAjN1/erJ6sby8eXc0f8de//Kl8/923rQ8DurbF1b8a1Y4zz1eXV9fl4f6u9WEAK3i4v3P1zzMCQENbJF/374BzuPofn7PPM3YBYDyu/jlEAGjMLgDQG1f/ORgBXrALAONw9c8xAkAScxO9EADxndP87RjmIQB0wFYYkIma1wejkIhdAMjD1T%2BnCACd2CoRW%2BDAIVvVBlf//TASvMouAMTjwT%2BmEAA60usuwKEQcHvx%2BPUfYHvH1mDPW/%2Bu/vtiNJhF04f%2BWJOc45sffvzpt9YHwXO9pvHXjkuyh%2B3UXIu91hvWZ0QSm7vwX1vArkBgGxGbP30SADoUNSkrJrCuqGssak0bnVFJruYuANCOq3/mUs071XOjdSsAthf1GZyejy07I8NZTVsIgO3Ubv7WKKUIAF3bMjnXLggKDNQReW26%2Bu%2Bb0elczwuo52ODDHpegz0fG78zQnzlVgD0xdY/axIAAuj9VoAQAPVFbv6u/mMwSrwQ%2BZ4jjMAaZAsCQBC9J%2BpTx6cAwTSn1kr0WkA/jBQH1b4VcO7PhEzWaP7WHccIAIFsnayFANjOCM3f1X8sRiuYEUIAMI/mzxqMGKvwzgCYLurH/BKbmRVQhF2AUhQumGKN5u/qnymMWlBRQsAhigX8Xe31oPkzlZFjshrPAygW8NKhdRHhvj%2BxqcaBtWimS0KA5g/HPV0fUZq/NR2b0QsuygK8%2BfKmPNzftT4M6NqHT59DrWliM4LMdu6VxuXVtRAARzzc35XLq%2Buz/q6tf84hAAwgyq2AUoQAOCRa83f1PwajOAghAGLS/GnFSA5ECIBYNH9aMpostjQECAJks5v3kZo/4/nmhx9/%2Bq31QVBXq%2BKw5OpgSTGESJbO9Yjrmz4Z0QG1WqhLCtOpWwK3F4%2BueujeqXmq%2BdMTozqokULA058pBNCrU3NT86c3RpbqaoaAQz9LCKA3%2B3Ny/9%2BjNn/G5hmAwbUsHEufCfj4/t2qvwOWOrW%2Bdp%2BAGbX5W19jM7qDa7mAl%2B4ErP07YIkpc%2B/24lHzp1t2AJKIXEimHLtixZa2mJOR1ywxCACJRC4oU49d4WJNW83DyGuVOIw0m1ha0KYWJbcEWEuG5k8udgCSaV1calxd2A1gS1vOtxHWJ3EY7WRaL/AaBc5uAFvR/BmZHYCkWhebUrbdKlXcmGPLuTXCWiQmASCxUQqPIEAtW8%2BlUdYgMRn5xHpY%2BFveEqj1%2BxiT5k82dgAYqhDZDWCuFnNmpDVHXAIApZQ%2BClIp211ZKX7sZHrQb8f8pxQBgCdGK07HXo/ix77X5v5IV/2lmP/8nQDAMyMWqf3XpAByyJrzZMR1RXwCAC/0UqxKqX/1pQByzNN5P9pVfynmPi8JABw0auF6uL8rpUz/tkFyWGNejLqGGIcAwFEjFzBBgFLWmwcjrx3GIQDwqp4KWSl9BIHbi0dFtTNzxyRD4y9F8%2Bd1AgAnZShqUxvCoXOhyLZxzkN7a%2B78ZFgnjEUAYJLeilspbYLAqfOg6K7r3POfqfGXYh4yjQDAZD0WulK2CwJzX78iXMeST%2BrL1vhLMe%2BYTgBglmxFb9dASinl4/t3Z/8cRXmeJfPsw6fPX//3Wg95ZlsHjEkAYLZei18p6xbAWq9bkT4swvnNOvcZkwDAWXouhKXEagJZC3ek85h5vjMuAYCzKYqxmlhra8yXiGNc28hzhnUJACymQP6uxnkYvZhHOkfmNaMTAKii92JZyrYF89zzMXpRj3BezGWyEACoJkLhLGX74rnV981vcf63PMZex6k1zZ9a3rY%2BAMZx8%2BVNiCK69TcD7v%2BeCOeohVaNLdJ4aP7UJABQ1a5ARSiqrb4i%2BFggePqZA6N9SdHutT39LIXWzSzCHN1pfa4Yk1sArCZSgd3ppdA%2BDQNPvRYMergFcM5xb8mchL8TAFhVxIJbSr9F91iDLWXZJxVO9fRT9g7ppdHvMw/hJQGATUQtwKXEKsJrn2fnYhuRzjNxCQBsJnJBLkVRjsI8g2kEADYVvTjvKNJ9Ma9gPgGAJkYp2KUo2q2YQ7CMAEAzIxXwHYV8XeYM1CMA0NyIRX1HcV/G3ID1CAB0YeRCv6PgT2MuwDYEALqSofg/lb0RGG9oRwCgO9mawr5Rm4RxHXNciUsAoFvZG8a%2BKA3EuD0XZdzIRwCgexrKdGs3G2MxncZP7wQAwtB8iEDjJwozlTAUVnpnjhKJHQBCshtATzR%2BIhIACE0QoCWNn8gEAIYgCLAljZ8RCAAMRRBgTRo/IxEAGJIgQE0aPyMSABiaIMASGj8jEwBIQxhgCk2fLAQA0hEEOETjJxsBgLQEAUrR%2BMlLAIAiDGSj6YMAAC8IA2PS9OE5AQCOEATGoPHDYQIATCAMxKLpw2kCAJxBIOiLhg/zCQCwkDDQhqYPywgAUJlAsA4NH%2BoSAGBlAsF5NHxYlwAAGxMIDtPwYVsCAHQiSzDQ6KEPAgB0Lmow0OihbwIADGKroKCxwxgEAABISJQHgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIQEAABISAAAgIT%2BD13zJK0aZHJjAAAAAElFTkSuQmCC%22%2C%20%22sizes%22%3A%20%22512x512%22%2C%20%22type%22%3A%20%22image/png%22%2C%20%22purpose%22%3A%20%22maskable%22%7D%5D%7D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='47' fill='%231B2430' stroke='%239C3B2E' stroke-width='5'/%3E%3Ccircle cx='50' cy='50' r='38' fill='none' stroke='%239C3B2E' stroke-width='1.5' stroke-dasharray='4 3'/%3E%3Ctext x='50' y='69' font-size='50' font-weight='700' text-anchor='middle' fill='%23F3EEE2' font-family='Georgia,serif'%3EL%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAIAUlEQVR4nO2du24lRRCGy0c8AILAwTpYrdYSmdcJCY4REUIEJCCkxRKCCDLCI2c8wWZ+ADYgIFjxAI5ILGdIKyGEHHACVjyBl+DQ6+PxXPref1X/X+jLTE3V13V6Znrm7D14/OS1EGKEVesACMkJhSamoNDEFBSamIJCE1NQaGIKCk1MQaGJKSg0MQWFJqag0MQUFJqYgkITU1BoYgoKTUxBoYkpKDQxBYUmpqDQxBQUmpiCQhNTUGhiCgpNTPFW6wCscLZ/k/T/6w17Sw72+KKZMFLFDYWih0GhF6gt8BIUfB4KPQKaxFNQ7vtQ6P/RIvEUlHtL90JrF3lI72J3K7Q1kYf0KnZ3QlsXeUhvYncjdGmRU8VBj08L5oUuIUotOTTH3gqzQueUAUUCi8eUG5NC5yg8esF7OMYYzAndck3F7r5PL67u/f785KjoPmOwJrUZoVMKG1pUn32NbdM3RjcYDg6Ps8c1hRWxTQgdW8iQIl6/vJzssDHb22UYv9vO9cvLNz8LkbtGPlBRL3RM8XwLNyaU21/t4u8OKN99l8wNKqqFLlWws/0bOb24Cv7IL8nYsfoeSyiapVYpdIkixQrTgphYexFbndC5C6NJ5CGhsfcgtSqhQwsS2rW0Fc8xvFy4NFXKnUck1AidswhWRJ7CnczOiW1VahVR5kz+7pWL9WalplAhHBwey8Hh8Z1jHVLi2jsCpp769hF527XsSTyGk/r85Gg0N+5nWmT1AX7K4ZvsJZmRLsHVZDd/OU4Y0T/RoKPLkeSz/ZtuZRa5m5u5fJa8WVMT2A6dKrNvZ+oJn5xo79SQUVHmMvh0a+2dWm21KXMcOaVGBC7ylJFPmf3wnVcvgdiloaqeMtWgzGG4HK03q9Hr1VqnHjAnhZS5LVOXNrWdJGJE4clU0twTHihJtYS2nEJEm/Kx5TqLtsSjsXSrfAmUqYcaC8aE7fkOYAmmpNbULJrPoWMfOKXM+Vk6F4mtVU30DD1SnNYy5qBph059HUCOAjx6eCAvnj9L3k4MP/38q6x/bLPvOebyi96loYdkaZnJOHPLStHz3iw6lLNikp+WtYUdbuzObdHapZtEFjOC2dHboalekI9gzXWA3N3hjz+v5b33P578/ffffiHfPP0satv/vPpXPvjoy9jQmrPerGZX5CE2meodWtNoJ7cPEsfcRWxRN9zJ0AjIczeCAZwhlFYPiLWqGlHMR9D1y0uz78/QROzipdrTDihLKK0+0GqGFc0ALkDCInWJaQ2qCc0rFfo5279Z/BaDqf+rBUyHRvvoIv4g1Q4nkgGx3YCUQ8O78GCFJiSGKkIjj2hSh1oOQHTo4RyMAwAf1JfGY0QxAUqSyC3oNcGOjpBAKDQxBYUmwaw3qzdvq0KjuNBLJ3joczLiT4kv/wwFziY+N6gD1HUdcI9goX3HNtEF2yAxBYUmpqDQJArUxWMUmpiCQhNTwAl9fnLExUkkGjihCUmBQhNTUGhiCgpNTEGhiSkoNDEFnNAaHpXvHeQVkcUjQlgjS+qAsPYdb4jJdgkp4ugnW7p+YoWQmlBoYgoKTUwBIfTwZAL1eTWyZey93Sgn91WE5gkeqeUAtGkoo57cgl4TuKe+HQeHx3K2v00gO/w4P3z3lTz9/JM7P/vr+m/58NOvi+zPyYz8VD6MKegjn0yDVLtqQrPL9kvN2kNbxnUdOCCv39gFKjqKqw+0mlUVOmZ0s0u3J6U71+7oUB1ahOJqArFWcELPgZhA62jLefXr0OvNKjhJ682KX5PciJTctziBhLyxUvNmyqOHB/Li+bMi2373nbfl999+KbLt1qB27iZTjhhZuWCpDZq6swjwHHqsA1DqukzJjNqdRRoKjX6BnsTTsrbQVs11aeQuoZ2z/RuV3VlEZO/B4yevWwbgk6CxEa/lVqw25vIaW6uaqLcBvWNowkIumwvtM6LHEt26E1hGa3cWARDalzmpLXSW1qRONVCAEDplZFPqdHKcjyB0ZxEQoX1ZkpZSh2MtpzBC+45wzqfzsZvLlKkGUv6bX7YbkpJELmAKJ/V6M5LMIkAd2pGSIN4aDyO1AaDJLAIotC9THYRS+zEns7Z58y5wUw5H6keek5pTkLss5UXrVMMBK7RInuQunfj0gG8OtMssAj7lSLnyMbYNzR+lsfQkswi40CKUOoXeZBYBn3I4Yp5B9NmWhgLFkFtkn22hoEJokXJSL/2tJkKOy6LMIoqEFslfBGtvNvVdk2FVZhFlQovEzYHnCmLl8p7PceTOHSLqhBYpU5jdmzHbd1Pjdm8X2zDmpf8JBfX451AptKNUkRAXQA1jOr248vpU6UVkh2qhRcoWzPdSYAly7Ls3mUUMCC0Sf205pHi1uvbUsaTG6oN2mUWMCC2SdsMktJBuX8OvB3ZTgNAbFbtz4fOTo+S4YrAgs4ghoR2pdwJTCuvE3JVyDjcgUq6wtDxeRMwJLZLn9jZ6oXs4xhhMCi2Sd80GSuEtHlNuzArtKLEYqZYMmmNvhXmhHaVX2aWKgh6fFroR2tHT8lGRfkR2dCe0w7rYvYns6FZohzWxexXZ0b3QDu1i9y6yg0KPoEVuSnwfCr0AmtyUeB4KHUhtwSlwGBQ6E1xTgQGFJqZgWyCmoNDEFBSamIJCE1NQaGIKCk1MQaGJKSg0MQWFJqag0MQUFJqYgkITU1BoYgoKTUxBoYkpKDQxBYUmpqDQxBQUmpiCQhNTUGhiCgpNTEGhiSn+Az5e6armXPyTAAAAAElFTkSuQmCC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light;
+  --paper:#F3EFE4;
+  --paper-dim:#EAE4D5;
+  --panel:#FDFBF5;
+  --input-bg:#FFFFFF;
+  --ink:#1B2430;
+  --ink-soft:#54606F;
+  --ink-faint:#8891A0;
+  --rule:#CFC6AE;
+  --rule-strong:#B7AC8C;
+  --stamp:#9C3B2E;
+  --stamp-dim:#C9877C;
+  --gold:#8A6A2C;
+  --green:#2E6B4E;
+  --green-dim:#DCEAE1;
+  --surface-ink:#1B2430;
+  --surface-ink-text:#F3EEE2;
+  --shadow: 0 1px 0 rgba(27,36,48,.06);
+  --radius: 3px;
+  --serif: "Source Serif 4", Georgia, serif;
+  --sans: "Public Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: "Space Mono", ui-monospace, monospace;
+}
+html[data-theme="dark"]{
+  color-scheme: dark;
+  --paper:#171B21;
+  --paper-dim:#1E232B;
+  --panel:#20262F;
+  --input-bg:#262D37;
+  --ink:#E9E4D6;
+  --ink-soft:#B7BFCB;
+  --ink-faint:#7C8695;
+  --rule:#333B46;
+  --rule-strong:#454F5C;
+  --stamp:#E28A78;
+  --stamp-dim:#8B4A3E;
+  --gold:#D6B24A;
+  --green:#6FBE93;
+  --green-dim:#1E332A;
+  --surface-ink:#0F1319;
+  --surface-ink-text:#EDE7D8;
+  --shadow: 0 1px 0 rgba(0,0,0,.4);
+}
+@media (prefers-color-scheme: dark){
+  html:not([data-theme="light"]){
+    color-scheme: dark;
+    --paper:#171B21;
+    --paper-dim:#1E232B;
+    --panel:#20262F;
+    --input-bg:#262D37;
+    --ink:#E9E4D6;
+    --ink-soft:#B7BFCB;
+    --ink-faint:#7C8695;
+    --rule:#333B46;
+    --rule-strong:#454F5C;
+    --stamp:#E28A78;
+    --stamp-dim:#8B4A3E;
+    --gold:#D6B24A;
+    --green:#6FBE93;
+    --green-dim:#1E332A;
+    --surface-ink:#0F1319;
+    --surface-ink-text:#EDE7D8;
+    --shadow: 0 1px 0 rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box; min-width:0;}
+html,body{margin:0;padding:0; max-width:100%; overflow-x:hidden;}
+body{
+  background:var(--paper);
+  background-image:
+    linear-gradient(var(--rule) 1px, transparent 1px);
+  background-size: 100% 2.1em;
+  background-position: 0 7.4em;
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  width:100%;
+}
+h1,h2,h3{font-family:var(--serif); font-weight:600; margin:0; color:var(--ink);}
+.num{font-variant-numeric: tabular-nums; font-feature-settings:"tnum" 1;}
+button{font-family:var(--sans); cursor:pointer;}
+input,select{font-family:var(--sans); font-size:14px;}
+
+/* ---------- HEADER ---------- */
+header.top{
+  background:var(--surface-ink);
+  color:var(--surface-ink-text);
+  padding:14px 20px;
+  display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  position:sticky; top:0; z-index:40;
+  border-bottom:3px solid var(--stamp);
+  max-width:100%;
+}
+header.top .brand{display:flex; align-items:center; gap:10px;}
+header.top .brand-mark{width:34px; height:34px; flex-shrink:0;}
+header.top .brand .mark{
+  font-family:var(--serif); font-weight:700; font-size:22px; letter-spacing:.01em;
+}
+header.top .brand .sub{font-size:12px; color:var(--stamp-dim); font-family:var(--mono);}
+.uva-box{
+  display:flex; align-items:center; gap:8px; margin-left:auto;
+  background:rgba(255,255,255,.06); padding:6px 10px; border-radius:var(--radius);
+  border:1px solid rgba(255,255,255,.12);
+}
+.uva-box label{font-size:11px; color:rgba(243,238,226,.55); text-transform:uppercase; letter-spacing:.06em;}
+.uva-box input{
+  width:100px; background:var(--surface-ink); border:none; border-bottom:1px solid var(--stamp-dim);
+  color:var(--surface-ink-text) !important; -webkit-text-fill-color:var(--surface-ink-text);
+  font-family:var(--mono); font-size:15px; padding:2px 4px; color-scheme:light;
+}
+#uvaInput, #uvaInput:focus, #uvaInput:active{
+  background-color:#1B2430 !important; color:#F3EEE2 !important; -webkit-text-fill-color:#F3EEE2 !important;
+}
+#uvaInput:-webkit-autofill, #uvaInput:-webkit-autofill:hover, #uvaInput:-webkit-autofill:focus{
+  -webkit-text-fill-color:#F3EEE2 !important;
+  -webkit-box-shadow:0 0 0 1000px #1B2430 inset !important;
+  box-shadow:0 0 0 1000px #1B2430 inset !important;
+  caret-color:#F3EEE2;
+}
+.uva-box input:focus{outline:none; border-color:var(--stamp);}
+.uva-box .mrpa-out{font-family:var(--mono); font-size:12px; color:rgba(243,238,226,.75);}
+.hdr-btn{
+  background:transparent; border:1px solid rgba(255,255,255,.25); color:var(--surface-ink-text);
+  padding:7px 12px; font-size:13px; border-radius:var(--radius); flex-shrink:0; white-space:nowrap;
+}
+.hdr-btn:hover{border-color:var(--stamp-dim); color:var(--stamp-dim);}
+.theme-toggle{
+  background:transparent; border:1px solid rgba(255,255,255,.25); color:var(--surface-ink-text);
+  padding:7px 10px; font-size:13px; border-radius:var(--radius); flex-shrink:0;
+}
+.theme-toggle:hover{border-color:var(--stamp-dim); color:var(--stamp-dim);}
+
+/* ---------- LAYOUT ---------- */
+.app{
+  display:grid;
+  grid-template-columns: minmax(0,300px) minmax(0,1fr) minmax(0,300px);
+  gap:0;
+  align-items:start;
+  max-width:1400px; margin:0 auto;
+  width:100%;
+}
+.sidebar{padding:22px 16px; position:sticky; top:73px; align-self:start; min-width:0;}
+.main{padding:22px 20px 120px; min-width:0;}
+.summary{padding:22px 16px; position:sticky; top:73px; align-self:start; min-width:0;}
+.sheet-close{display:none;}
+
+/* ---------- BARRA FIJA MOBILE + HOJA DESLIZANTE ---------- */
+.mobile-bar{display:none;}
+.sheet-backdrop{display:none;}
+
+@media (max-width: 1080px){
+  .app{grid-template-columns: minmax(0,1fr);}
+  .sidebar{position:static;}
+
+  /* El panel de resumen se convierte en una hoja deslizante desde abajo */
+  .summary{
+    position:fixed !important; left:0 !important; right:0 !important; bottom:0 !important; z-index:80;
+    min-height:0; max-height:88vh; max-height:88dvh; overflow-y:auto;
+    background:var(--panel);
+    border-top-left-radius:20px; border-top-right-radius:20px;
+    box-shadow:0 -10px 34px rgba(0,0,0,.4);
+    transform:translateY(105%) !important;
+    transition:transform .32s cubic-bezier(.22,.9,.35,1);
+    padding:8px 16px calc(24px + env(safe-area-inset-bottom));
+    border:1px solid var(--rule);
+    border-bottom:none;
+  }
+  .summary.open{transform:translateY(0) !important; min-height:62vh; min-height:62dvh;}
+  .sheet-grip{
+    width:44px; height:5px; border-radius:3px; background:var(--rule-strong);
+    margin:4px auto 12px;
+  }
+  .sheet-close{
+    display:block; margin:0 auto 10px; padding:6px 14px;
+    border:1px solid var(--rule-strong); border-radius:20px; background:var(--paper-dim);
+    color:var(--ink-soft); font-size:12.5px;
+  }
+  .sheet-backdrop{
+    display:block; position:fixed; inset:0; background:rgba(8,10,14,.6);
+    z-index:75; opacity:0; pointer-events:none; transition:opacity .3s ease;
+  }
+  .sheet-backdrop.open{opacity:1; pointer-events:auto;}
+
+  .mobile-bar{
+    display:flex; align-items:center; gap:10px;
+    position:fixed; left:0; right:0; bottom:0; z-index:60;
+    background:var(--surface-ink); color:var(--surface-ink-text);
+    padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    border-top:2px solid var(--stamp);
+    box-shadow:0 -4px 16px rgba(0,0,0,.3);
+  }
+  .mobile-bar-total{display:flex; flex-direction:column; line-height:1.15; flex-shrink:0;}
+  .mobile-bar-label{font-size:10px; text-transform:uppercase; letter-spacing:.06em; opacity:.65;}
+  .mobile-bar-amt{font-family:var(--mono); font-size:17px; font-weight:700; color:#E7B7AC;}
+  .mobile-bar-btn{
+    flex:1; background:var(--stamp); color:#fff; border:none; border-radius:var(--radius);
+    padding:12px 10px; font-size:13px; font-weight:600; min-height:48px;
+  }
+  .main{padding-bottom:96px;} /* deja lugar para que la barra fija no tape contenido */
+}
+
+body.sheet-open{overflow:hidden;}
+
+/* Respaldo: mismas reglas disparadas por JS (clase en <html>) por si el navegador
+   no aplica bien el @media de arriba. Es intencionalmente redundante. */
+html.es-mobile .app{grid-template-columns: minmax(0,1fr);}
+html.es-mobile .sidebar{position:static;}
+html.es-mobile .summary{
+  position:fixed !important; left:0 !important; right:0 !important; bottom:0 !important; z-index:80;
+  min-height:0; max-height:88vh; max-height:88dvh; overflow-y:auto;
+  background:var(--panel);
+  border-top-left-radius:20px; border-top-right-radius:20px;
+  box-shadow:0 -10px 34px rgba(0,0,0,.4);
+  transform:translateY(105%) !important;
+  transition:transform .32s cubic-bezier(.22,.9,.35,1);
+  padding:8px 16px calc(24px + env(safe-area-inset-bottom));
+  border:1px solid var(--rule);
+  border-bottom:none;
+}
+html.es-mobile .summary.open{transform:translateY(0) !important; min-height:62vh; min-height:62dvh;}
+html.es-mobile .sheet-grip{
+  width:44px; height:5px; border-radius:3px; background:var(--rule-strong);
+  margin:4px auto 12px;
+}
+html.es-mobile .sheet-close{
+  display:block; margin:0 auto 10px; padding:6px 14px;
+  border:1px solid var(--rule-strong); border-radius:20px; background:var(--paper-dim);
+  color:var(--ink-soft); font-size:12.5px;
+}
+html.es-mobile .sheet-backdrop{
+  display:block !important; position:fixed; inset:0; background:rgba(10,13,17,.55);
+  z-index:75; opacity:0; pointer-events:none; transition:opacity .25s ease;
+}
+html.es-mobile .sheet-backdrop.open{opacity:1 !important; pointer-events:auto;}
+html.es-mobile .mobile-bar{
+  display:flex !important; align-items:center; gap:10px;
+  position:fixed; left:0; right:0; bottom:0; z-index:60;
+  background:var(--surface-ink); color:var(--surface-ink-text);
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  border-top:2px solid var(--stamp);
+  box-shadow:0 -4px 16px rgba(0,0,0,.3);
+}
+html.es-mobile .mobile-bar-total{display:flex; flex-direction:column; line-height:1.15; flex-shrink:0;}
+html.es-mobile .mobile-bar-label{font-size:10px; text-transform:uppercase; letter-spacing:.06em; opacity:.65;}
+html.es-mobile .mobile-bar-amt{font-family:var(--mono); font-size:17px; font-weight:700; color:#E7B7AC;}
+html.es-mobile .mobile-bar-btn{
+  flex:1; background:var(--stamp); color:#fff; border:none; border-radius:var(--radius);
+  padding:12px 10px; font-size:13px; font-weight:600; min-height:48px;
+}
+html.es-mobile .main{padding-bottom:96px;}
+
+@media (max-width: 560px){
+  .row2{grid-template-columns: 1fr !important;}
+  header.top{padding:12px;}
+  .main{padding:16px 12px 110px;}
+  .sidebar,.summary{padding:16px 12px;}
+
+  /* Objetivos táctiles más grandes en celular */
+  button, .pill, .addrow-btn, .act-btn, .hdr-btn, .theme-toggle{min-height:44px;}
+  .field input[type=text], .field input[type=number], .field select,
+  .check-item .price input{min-height:44px; font-size:16px;}
+  .check-item input[type=checkbox]{width:20px; height:20px;}
+  .del-x{font-size:20px; padding:4px 8px;}
+}
+
+/* ---------- CARDS ---------- */
+.card{
+  background:var(--panel);
+  border:1px solid var(--rule);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  margin-bottom:16px;
+}
+.card > .card-head{
+  padding:12px 16px; border-bottom:1px solid var(--rule);
+  display:flex; align-items:center; gap:10px;
+}
+.card > .card-body{padding:16px;}
+.field{margin-bottom:12px;}
+.field label{display:block; font-size:12px; color:var(--ink-soft); margin-bottom:4px; text-transform:uppercase; letter-spacing:.04em;}
+.field input[type=text], .field input[type=number], .field select{
+  width:100%; max-width:100%; padding:8px 9px; border:1px solid var(--rule-strong); border-radius:var(--radius);
+  background:var(--input-bg); color:var(--ink);
+}
+.field input:focus, .field select:focus{outline:2px solid var(--gold); outline-offset:1px; border-color:var(--gold);}
+.row2{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+.pill-group{display:flex; gap:6px; flex-wrap:wrap;}
+.pill{
+  border:1px solid var(--rule-strong); background:var(--input-bg); padding:6px 11px; border-radius:20px;
+  font-size:13px; color:var(--ink-soft);
+}
+.pill.active{background:var(--surface-ink); color:var(--surface-ink-text); border-color:var(--surface-ink);}
+small.hint, p.hint{display:block; color:var(--ink-faint); font-size:10.5px; line-height:1.35; margin-top:3px;}
+
+/* ---------- BLOCK NUMBERING (ledger annexes) ---------- */
+.block{position:relative; margin-bottom:22px;}
+.block-numeral{
+  font-family:var(--serif); font-weight:700; font-size:13px; color:var(--stamp);
+  border:1px solid var(--stamp); border-radius:50%; width:26px; height:26px;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.block-title{display:flex; align-items:center; gap:10px;}
+.block-title h2{font-size:18px;}
+.block-title .toggle{margin-left:auto;}
+.block-subtotal{font-family:var(--mono); font-size:15px; color:var(--ink);}
+.opt-row{
+  display:flex; gap:10px; align-items:flex-start; padding:9px 0; border-bottom:1px dashed var(--rule);
+  flex-wrap:wrap;
+}
+.opt-row:last-child{border-bottom:none;}
+.opt-row .radio{margin-top:3px; flex-shrink:0;}
+.opt-row .opt-txt{flex:1 1 180px; min-width:0;}
+.opt-row .opt-label{font-size:13.5px; color:var(--ink);}
+.opt-row .opt-detail{font-size:11.5px; color:var(--ink-faint); margin-top:2px;}
+.opt-row .opt-val{font-family:var(--mono); font-size:13px; color:var(--ink-soft); white-space:nowrap; flex-shrink:0;}
+
+.line{
+  display:flex; justify-content:space-between; gap:10px; padding:6px 0;
+  font-size:13.5px; border-bottom:1px solid var(--paper-dim); flex-wrap:wrap;
+}
+.line span:first-child{flex:1 1 140px; min-width:0;}
+.line .amt{font-family:var(--mono); white-space:nowrap; flex-shrink:0;}
+.line.total{font-weight:700; border-bottom:none; padding-top:10px;}
+.checklist{margin:8px 0;}
+.check-item{display:flex; align-items:center; gap:8px; padding:5px 0; flex-wrap:wrap;}
+.check-item input[type=checkbox]{width:16px; height:16px; flex-shrink:0;}
+.check-item .lbl{flex:1 1 130px; min-width:0; font-size:13px; max-width:100%;}
+.check-item .price{width:110px; flex-shrink:0;}
+.check-item .price input{padding:5px 7px; font-size:12.5px; width:100%; background:var(--input-bg); color:var(--ink); border:1px solid var(--rule-strong); border-radius:var(--radius);}
+.addrow-btn{
+  border:1px dashed var(--rule-strong); background:transparent; color:var(--ink-soft);
+  padding:6px 10px; border-radius:var(--radius); font-size:12.5px; margin-top:6px;
+}
+.addrow-btn:hover{border-color:var(--gold); color:var(--gold);}
+.del-x{border:none; background:none; color:var(--stamp); font-size:16px; padding:0 4px; line-height:1;}
+.tramite-row{
+  display:flex; justify-content:space-between; align-items:flex-start; gap:8px;
+  padding:8px 10px; border:1px solid var(--rule-strong); border-radius:var(--radius);
+  background:var(--paper-dim); margin-bottom:6px; flex-wrap:wrap;
+}
+.tramite-row .tr-txt{flex:1 1 160px; min-width:0;}
+.tramite-row .tr-nombre{font-size:13px; color:var(--ink);}
+.tramite-row .tr-detalle{font-size:11px; color:var(--ink-faint); margin-top:2px;}
+.tramite-row .tr-right{display:flex; align-items:center; gap:8px; flex-shrink:0;}
+.tramite-row .tr-monto{font-family:var(--mono); font-size:13px; color:var(--ink); white-space:nowrap;}
+
+/* ---------- SUMMARY / RECEIPT ---------- */
+.receipt{
+  background:var(--surface-ink); color:var(--surface-ink-text); border-radius:var(--radius);
+  padding:18px 16px; font-family:var(--mono); max-width:100%;
+}
+.receipt h3{color:var(--surface-ink-text); font-family:var(--serif); font-size:15px; margin-bottom:10px; word-break:break-word;}
+.receipt .rline{display:flex; justify-content:space-between; gap:8px; font-size:12.5px; padding:5px 0; border-bottom:1px dotted rgba(255,255,255,.18); flex-wrap:wrap;}
+.receipt .rline span:first-child{flex:1 1 100px; min-width:0;}
+.receipt .rline.grand{font-size:19px; border-bottom:none; padding-top:12px; font-weight:700;}
+.receipt .stamp-total{color:#E7B7AC;}
+.view-toggle{display:flex; gap:0; margin-bottom:14px; border:1px solid var(--rule-strong); border-radius:var(--radius); overflow:hidden;}
+.view-toggle button{flex:1; border:none; background:var(--panel); padding:8px; font-size:12.5px; color:var(--ink-soft);}
+.view-toggle button.active{background:var(--surface-ink); color:var(--surface-ink-text);}
+.act-btn{
+  width:100%; padding:10px; margin-top:8px; border-radius:var(--radius); font-size:13px;
+  border:1px solid var(--rule-strong); background:var(--panel); color:var(--ink);
+}
+.act-btn.primary{background:var(--stamp); border-color:var(--stamp); color:#fff;}
+.act-btn:hover{opacity:.85;}
+.saved-list{max-height:260px; overflow:auto; margin-top:6px;}
+.saved-item{display:flex; justify-content:space-between; gap:8px; padding:7px 0; border-bottom:1px solid var(--paper-dim); font-size:12.5px;}
+.saved-item .sname{font-weight:600;}
+.saved-item .sacts button{border:none; background:none; font-size:11px; color:var(--ink-soft); text-decoration:underline; margin-left:6px;}
+
+/* ---------- MODAL ---------- */
+.modal-bg{position:fixed; inset:0; background:rgba(10,13,17,.6); display:none; align-items:center; justify-content:center; z-index:60; padding:20px;}
+.modal-bg.open{display:flex;}
+.modal{background:var(--panel); color:var(--ink); border-radius:var(--radius); max-width:640px; width:100%; max-height:85vh; overflow:auto; padding:20px; border:1px solid var(--rule);}
+.modal h3{margin-bottom:10px;}
+.modal textarea{width:100%; height:260px; font-family:var(--mono); font-size:12px; padding:10px; border:1px solid var(--rule-strong); background:var(--input-bg); color:var(--ink);}
+.modal .modal-close{float:right; border:none; background:none; font-size:20px; color:var(--ink-soft);}
+
+.reference-box{
+  background:var(--green-dim); border:1px solid var(--green); border-radius:var(--radius);
+  padding:7px 10px; font-size:11.5px; line-height:1.4; color:var(--green); margin-top:8px;
+}
+.reference-box button{
+  border:1px solid var(--green); background:transparent; color:var(--green);
+  padding:3px 8px; border-radius:var(--radius); font-size:11.5px; margin-left:6px;
+}
+.reference-box button:hover{background:var(--green); color:var(--panel);}
+
+details summary::-webkit-details-marker{color:var(--gold);}
+details[open] summary{margin-bottom:6px;}
+.config-group-title{
+  font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--gold);
+  margin:12px 0 4px; border-bottom:1px solid var(--rule); padding-bottom:3px;
+}
+.config-row{display:flex; align-items:center; gap:8px; padding:4px 0;}
+.config-row .clbl{flex:1 1 180px; min-width:0; font-size:12.5px; color:var(--ink-soft);}
+.config-row .cprice{width:120px; flex-shrink:0;}
+.config-row .cprice input{
+  width:100%; padding:5px 7px; font-size:12.5px; background:var(--input-bg); color:var(--ink);
+  border:1px solid var(--rule-strong); border-radius:var(--radius);
+}
+
+footer.appfoot{text-align:center; color:var(--ink-faint); font-size:11.5px; padding:26px 20px 40px;}
+
+/* ---------- TOAST (reemplaza los alert() nativos) ---------- */
+.toast-wrap{
+  position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(20px);
+  z-index:200; display:flex; flex-direction:column; gap:8px; align-items:center;
+  pointer-events:none; width:min(92vw, 420px);
+}
+html.es-mobile .toast-wrap{ bottom:calc(78px + env(safe-area-inset-bottom)); }
+.toast{
+  background:var(--surface-ink); color:var(--surface-ink-text);
+  border:1px solid var(--stamp); border-radius:20px;
+  padding:10px 18px; font-size:13px; text-align:center;
+  box-shadow:0 6px 20px rgba(0,0,0,.35);
+  opacity:0; transform:translateY(8px);
+  transition:opacity .22s ease, transform .22s ease;
+  max-width:100%;
+}
+.toast.show{opacity:1; transform:translateY(0);}
+
+/* ---------- PULIDO: transiciones y hover consistentes ---------- */
+.pill, .act-btn, .addrow-btn, .hdr-btn, .theme-toggle, .del-x, .view-toggle button, .check-item, .tramite-row, .opt-row{
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease, opacity .15s ease, transform .1s ease;
+}
+.pill:hover{border-color:var(--gold); color:var(--ink);}
+.act-btn:hover{border-color:var(--gold); color:var(--gold);}
+.act-btn.primary:hover{opacity:.9; color:#fff;}
+.addrow-btn:hover{transform:translateY(-1px);}
+.del-x:hover{transform:scale(1.15);}
+.opt-row:hover, .check-item:hover{background:var(--paper-dim);}
+.tramite-row:hover{border-color:var(--gold);}
+button:active{transform:scale(.98);}
+.card{transition:box-shadow .2s ease;}
+
+/* Foco accesible consistente con la marca */
+button:focus-visible, input:focus-visible, select:focus-visible, .pill:focus-visible{
+  outline:2px solid var(--gold); outline-offset:2px;
+}
+
+/* Estados vacíos de listas */
+.empty-hint{
+  color:var(--ink-faint); font-size:11px; font-style:italic; padding:6px 2px;
+}
+
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="50" cy="50" r="47" fill="#1B2430" stroke="#9C3B2E" stroke-width="5"/>
+      <circle cx="50" cy="50" r="38" fill="none" stroke="#9C3B2E" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <text x="50" y="69" font-size="50" font-weight="700" text-anchor="middle" fill="#F3EEE2" font-family="Georgia, serif">L</text>
+    </svg>
+    <span class="mark">El&nbsp;Legajo</span>
+    <span class="sub">PRESUPUESTOS MANDATARIOS</span>
+  </div>
+  <div class="uva-box">
+    <label for="uvaInput">Valor UVA</label>
+    <input type="number" id="uvaInput" step="0.01" value="1850.00">
+    <span class="mrpa-out" id="mrpaOut">1 MRPA = $ 925,00</span>
+  </div>
+  <button class="theme-toggle" id="btnTheme" title="Cambiar tema" aria-label="Cambiar tema claro/oscuro">🌓</button>
+  <button class="hdr-btn" id="btnSavedOpen">Presupuestos guardados</button>
+</header>
+
+<div class="app">
+
+  <!-- ============ SIDEBAR: VEHICULO Y TRAMITE ============ -->
+  <aside class="sidebar">
+    <div class="card">
+      <div class="card-head"><h2 style="font-size:14px;">Datos del cliente</h2></div>
+      <div class="card-body">
+        <div class="field">
+          <label for="clienteNombre">Cliente</label>
+          <input type="text" id="clienteNombre" placeholder="Nombre y apellido">
+        </div>
+        <div class="field">
+          <label for="clienteVehiculo">Vehículo / dominio</label>
+          <input type="text" id="clienteVehiculo" placeholder="Marca, modelo, patente">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2 style="font-size:14px;">Categoría y trámite</h2></div>
+      <div class="card-body">
+        <div class="field">
+          <label>Categoría</label>
+          <div class="pill-group" id="catPills"></div>
+        </div>
+        <div class="field">
+          <label for="subcatSelect">Tipo de trámite (Anexo)</label>
+          <select id="subcatSelect"></select>
+        </div>
+        <div class="field">
+          <label class="check-item" style="cursor:pointer;">
+            <input type="checkbox" id="conPrenda">
+            <span class="lbl">Incluye trámite de Prenda simultáneo</span>
+          </label>
+        </div>
+        <div class="field">
+          <label class="check-item" style="cursor:pointer;">
+            <input type="checkbox" id="comercianteHabitualista">
+            <span class="lbl">Transmitente es Comerciante Habitualista (ST08/17, dentro de 90 días) → −10% arancel</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2 style="font-size:14px;">Valuación</h2></div>
+      <div class="card-body">
+        <div class="field">
+          <label for="valFiscal">Valuación fiscal DNRPA ($)</label>
+          <input type="number" id="valFiscal" step="1" value="0">
+        </div>
+        <div class="field">
+          <label for="valVenta">Valor de compraventa / factura ($)</label>
+          <input type="number" id="valVenta" step="1" value="0">
+        </div>
+        <div class="reference-box" id="valMayorOut">Se toma el mayor: $ 0,00</div>
+        <div class="field" id="montoContratoPrendaWrap" style="display:none; margin-top:12px;">
+          <label for="montoContratoPrenda">Monto del contrato de prenda ($)</label>
+          <input type="text" inputmode="decimal" id="montoContratoPrenda" value="0">
+          <small class="hint">Base del cálculo de Prenda y Leasing (no la valuación del vehículo).</small>
+        </div>
+        <div class="field" style="margin-top:12px;">
+          <label>Origen</label>
+          <div class="pill-group" id="origenPills">
+            <span class="pill active" data-v="nacional">Nacional</span>
+            <span class="pill" data-v="importado">Importado</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="provinciaSelect">Provincia / jurisdicción</label>
+          <select id="provinciaSelect"></select>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN: 5 BLOQUES ============ -->
+  <main class="main">
+
+    <!-- BLOQUE I — DNRPA -->
+    <section class="block" id="block-dnrpa">
+      <div class="card">
+        <div class="card-head">
+          <div class="block-title">
+            <span class="block-numeral">I</span>
+            <h2>Aranceles DNRPA</h2>
+          </div>
+          <span class="block-subtotal num" id="sub-dnrpa">$ 0,00</span>
+        </div>
+        <div class="card-body">
+          <div id="dnrpaOpciones"></div>
+
+          <h3 style="font-size:13px; margin:16px 0 4px; color:var(--ink-soft);">Trámites adicionales en este expediente</h3>
+          <p class="hint" style="margin:0 0 6px;">Sumá otros trámites al mismo expediente (valor tal cual el PDF).</p>
+          <div class="row2">
+            <div class="field" style="margin-bottom:0;">
+              <label for="tramiteAdicionalCategoria">Categoría</label>
+              <select id="tramiteAdicionalCategoria"></select>
+            </div>
+            <div class="field" style="margin-bottom:0;">
+              <label for="tramiteAdicionalSubcategoria">Categoría de trámite (Anexo)</label>
+              <select id="tramiteAdicionalSubcategoria"></select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="tramiteAdicionalTramite">Trámite (valor en MRPA)</label>
+            <select id="tramiteAdicionalTramite"></select>
+          </div>
+          <div id="tramiteAdicionalExtras"></div>
+          <button class="addrow-btn" id="addTramiteAdicional" type="button" style="margin-top:8px;">+ Agregar al expediente</button>
+          <div id="tramitesAdicionalesList" style="margin-top:8px;"></div>
+
+          <details style="margin-top:14px;" id="moraDetails">
+            <summary style="cursor:pointer; font-size:13px; color:var(--ink-soft); font-weight:600;">⏱ Calculadora de Mora Registral (presentación tardía)</summary>
+            <p class="hint" style="margin:8px 0 6px;">Recargo por presentación tardía (días hábiles). No es de los Anexos I/II/III — verificala contra el Digesto.</p>
+            <div class="row2">
+              <div class="field" style="margin-bottom:0;">
+                <label for="moraFechaFirma">Fecha de 1ª firma certificada</label>
+                <input type="date" id="moraFechaFirma">
+              </div>
+              <div class="field" style="margin-bottom:0;">
+                <label for="moraFechaPresentacion">Fecha de presentación al Registro</label>
+                <input type="date" id="moraFechaPresentacion">
+              </div>
+            </div>
+            <div class="field">
+              <label class="check-item" style="cursor:pointer;">
+                <input type="checkbox" id="moraIncluirEnPresupuesto">
+                <span class="lbl">Sumar el monto de la mora al presupuesto (Bloque I)</span>
+              </label>
+            </div>
+            <div id="moraResultado" class="reference-box" style="background:var(--paper-dim); border-color:var(--rule-strong); color:var(--ink);"></div>
+            <details style="margin-top:10px;">
+              <summary style="cursor:pointer; font-size:12px; color:var(--ink-faint);">Feriados adicionales / puentes (opcional)</summary>
+              <p class="hint" style="margin:6px 0;">Ya descuenta fines de semana y feriados nacionales. Sumá acá los que falten.</p>
+              <div class="row2">
+                <div class="field" style="margin-bottom:0;">
+                  <input type="date" id="moraFeriadoNuevo">
+                </div>
+                <button class="addrow-btn" id="addMoraFeriado" type="button">+ Agregar feriado</button>
+              </div>
+              <div id="moraFeriadosList" style="margin-top:8px;"></div>
+            </details>
+          </details>
+
+          <details style="margin-top:14px;">
+            <summary style="cursor:pointer; font-size:13px; color:var(--ink-soft); font-weight:600;">⚙ Crear un trámite / arancel nuevo (no listado)</summary>
+            <div class="field" style="margin-top:10px;">
+              <label for="nuevoTramiteNombre">Nombre del trámite</label>
+              <input type="text" id="nuevoTramiteNombre" placeholder="Ej: Asignación de RPA de motor">
+            </div>
+            <div class="field">
+              <label for="nuevoTramiteCategoria">Categoría</label>
+              <select id="nuevoTramiteCategoria">
+                <option value="todas">Todas</option>
+                <option value="automotor">Automotor</option>
+                <option value="motovehiculo">Motovehículo</option>
+                <option value="maquinaria">Maquinaria Agrícola/Vial</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Tipo de cálculo del arancel</label>
+              <div class="pill-group" id="nuevoTramiteTipoPills">
+                <span class="pill active" data-v="fijo">Fijo en MRPA</span>
+                <span class="pill" data-v="porcentaje">% con mínimo MRPA</span>
+                <span class="pill" data-v="permil">‰ sobre contrato, con mínimo MRPA</span>
+              </div>
+            </div>
+            <div class="field" id="nuevoTramiteCamposFijo">
+              <label for="nuevoTramiteMRPA">Cantidad de MRPA</label>
+              <input type="text" inputmode="decimal" id="nuevoTramiteMRPA" value="0">
+            </div>
+            <div class="row2" id="nuevoTramiteCamposPct" style="display:none;">
+              <div class="field" style="margin-bottom:0;">
+                <label for="nuevoTramitePct">Porcentaje (%)</label>
+                <input type="text" inputmode="decimal" id="nuevoTramitePct" value="0">
+              </div>
+              <div class="field" style="margin-bottom:0;">
+                <label for="nuevoTramiteMinPct">Mínimo (MRPA)</label>
+                <input type="text" inputmode="decimal" id="nuevoTramiteMinPct" value="0">
+              </div>
+            </div>
+            <div class="row2" id="nuevoTramiteCamposPermil" style="display:none;">
+              <div class="field" style="margin-bottom:0;">
+                <label for="nuevoTramitePermil">‰ (por mil, sobre monto del contrato)</label>
+                <input type="text" inputmode="decimal" id="nuevoTramitePermil" value="0">
+              </div>
+              <div class="field" style="margin-bottom:0;">
+                <label for="nuevoTramiteMinPermil">Mínimo (MRPA)</label>
+                <input type="text" inputmode="decimal" id="nuevoTramiteMinPermil" value="0">
+              </div>
+            </div>
+            <button class="act-btn" id="btnGuardarNuevoTramite" type="button">Guardar trámite nuevo</button>
+            <h3 style="font-size:12px; margin:12px 0 4px; color:var(--ink-soft);">Tus trámites creados</h3>
+            <div id="misTramitesCustomList"></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE II — PROVINCIAL / MUNICIPAL -->
+    <section class="block" id="block-provincial">
+      <div class="card">
+        <div class="card-head">
+          <div class="block-title">
+            <span class="block-numeral">II</span>
+            <h2>Provincial / Municipal</h2>
+          </div>
+          <span class="block-subtotal num" id="sub-provincial">$ 0,00</span>
+        </div>
+        <div class="card-body">
+          <div class="row2">
+            <div class="field">
+              <label for="selloAlicuota">Alícuota Impuesto a los Sellos (%)</label>
+              <input type="text" inputmode="decimal" id="selloAlicuota" value="0">
+              <small class="hint">Se autocompleta por provincia y trámite. Admite coma (ej: 1,5).</small>
+            </div>
+            <div class="field">
+              <label class="check-item" style="cursor:pointer; margin-top:22px;">
+                <input type="checkbox" id="selloExento">
+                <span class="lbl">Trámite exento de sellos</span>
+              </label>
+            </div>
+          </div>
+          <div class="field" id="selloPrendaWrap" style="display:none; background:var(--paper-dim); padding:10px; border-radius:var(--radius);">
+            <label style="margin-bottom:8px;">Sellos sobre el contrato de Prenda</label>
+            <div class="row2">
+              <div class="field" style="margin-bottom:0;">
+                <label for="selloPrendaAlicuota">Alícuota sobre monto del contrato (%)</label>
+                <input type="text" inputmode="decimal" id="selloPrendaAlicuota" value="0">
+              </div>
+              <div class="field" style="margin-bottom:0;">
+                <label class="check-item" style="cursor:pointer; margin-top:22px;">
+                  <input type="checkbox" id="selloPrendaExento">
+                  <span class="lbl">Prenda exenta de sellos</span>
+                </label>
+              </div>
+            </div>
+            <small class="hint">Autocompletado por provincia; editable.</small>
+          </div>
+
+          <div class="field" style="background:var(--paper-dim); padding:10px; border-radius:var(--radius);">
+            <label class="check-item" style="cursor:pointer;">
+              <input type="checkbox" id="selloMoraAplicar">
+              <span class="lbl">Aplicar mora sobre el Impuesto a los Sellos</span>
+            </label>
+            <small class="hint">Usa las fechas del Bloque I. Cargá reglas por provincia abajo.</small>
+            <div id="selloMoraInfo" class="reference-box" style="background:transparent; border-color:var(--rule-strong); color:var(--ink-soft); margin-top:8px;"></div>
+
+            <details style="margin-top:10px;">
+              <summary style="cursor:pointer; font-size:12px; color:var(--ink-faint);">⚙ Agregar / administrar mora de sellos por provincia</summary>
+              <div class="row2" style="margin-top:8px;">
+                <div class="field" style="margin-bottom:0;">
+                  <label for="moraSelloProvinciaInput">Provincia</label>
+                  <select id="moraSelloProvinciaInput"></select>
+                </div>
+                <div class="field" style="margin-bottom:0;">
+                  <label>Período</label>
+                  <div class="pill-group" id="moraSelloPeriodoPills">
+                    <span class="pill active" data-v="mensual">Mensual</span>
+                    <span class="pill" data-v="trimestral">Trimestral</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row2">
+                <div class="field" style="margin-bottom:0;">
+                  <label for="moraSelloPorcentajeInput">% de recargo por período</label>
+                  <input type="text" inputmode="decimal" id="moraSelloPorcentajeInput" value="0">
+                </div>
+                <div class="field" style="margin-bottom:0;">
+                  <label>Tope</label>
+                  <div class="pill-group" id="moraSelloTopeTipoPills">
+                    <span class="pill active" data-v="porcentaje">% máximo</span>
+                    <span class="pill" data-v="moras">Cant. de moras máx.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="field" id="moraSelloTopeValorWrap">
+                <label id="moraSelloTopeValorLabel">Tope (% máximo de recargo)</label>
+                <input type="text" inputmode="decimal" id="moraSelloTopeValorInput" value="0">
+              </div>
+              <button class="act-btn" id="btnGuardarMoraSello" type="button">Guardar regla de esta provincia</button>
+              <h3 style="font-size:12px; margin:12px 0 4px; color:var(--ink-soft);">Provincias con mora de sellos cargada</h3>
+              <div id="moraSellosConfigList"></div>
+            </details>
+          </div>
+
+          <h3 style="font-size:13px; margin:10px 0 4px; color:var(--ink-soft);">Formularios / gestiones municipales</h3>
+          <div class="checklist" id="municipalItems"></div>
+          <button class="addrow-btn" id="addMunicipal">+ agregar ítem municipal</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE III — FORMULARIOS Y SOLICITUDES -->
+    <section class="block" id="block-formularios">
+      <div class="card">
+        <div class="card-head">
+          <div class="block-title">
+            <span class="block-numeral">III</span>
+            <h2>Formularios y Solicitudes</h2>
+          </div>
+          <span class="block-subtotal num" id="sub-formularios">$ 0,00</span>
+        </div>
+        <div class="card-body">
+          <h3 style="font-size:13px; margin:0 0 4px; color:var(--ink-soft);">Solicitudes Tipo (ST)</h3>
+          <div class="row2">
+            <div class="field" style="margin-bottom:0;">
+              <select id="stAdicionalSelect"></select>
+            </div>
+            <button class="addrow-btn" id="addSTAdicional" type="button" style="height:38px;">+ Agregar</button>
+          </div>
+          <div id="stItems" style="margin-top:8px;"></div>
+
+          <details style="margin-top:14px;">
+            <summary style="cursor:pointer; font-size:13px; color:var(--ink-soft); font-weight:600;">⚙ Administrar catálogo de formularios / ST</summary>
+            <p class="hint" style="margin:6px 0;">Los que cargues acá quedan guardados con su precio para todos tus próximos presupuestos.</p>
+            <div class="row2">
+              <div class="field" style="margin-bottom:0;">
+                <label for="nuevoFormularioNombre">Nombre</label>
+                <input type="text" id="nuevoFormularioNombre" placeholder="Ej: ST 59">
+              </div>
+              <div class="field" style="margin-bottom:0;">
+                <label for="nuevoFormularioPrecio">Precio ($)</label>
+                <input type="text" inputmode="decimal" id="nuevoFormularioPrecio" value="0">
+              </div>
+            </div>
+            <button class="act-btn" id="btnGuardarFormulario" type="button">Guardar en el catálogo</button>
+            <h3 style="font-size:12px; margin:12px 0 4px; color:var(--ink-soft);">Tu catálogo</h3>
+            <div id="formulariosConfigList"></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE IV — HONORARIOS Y GESTION -->
+    <section class="block" id="block-honorarios">
+      <div class="card">
+        <div class="card-head">
+          <div class="block-title">
+            <span class="block-numeral">IV</span>
+            <h2>Honorarios y Gestión</h2>
+          </div>
+          <span class="block-subtotal num" id="sub-honorarios">$ 0,00</span>
+        </div>
+        <div class="card-body">
+          <div class="field">
+            <label for="honFijo">Honorario principal del trámite ($)</label>
+            <input type="text" inputmode="decimal" id="honFijo" value="0">
+            <small class="hint">Se precarga con tu config de abajo; editable.</small>
+          </div>
+
+          <h3 style="font-size:13px; margin:16px 0 4px; color:var(--ink-soft);">Honorarios adicionales (por otros trámites del expediente)</h3>
+          <p class="hint" style="margin:0 0 6px;">Sumá un honorario por cada trámite adicional del expediente.</p>
+          <div class="row2">
+            <div class="field" style="margin-bottom:0;">
+              <select id="honorarioAdicionalSelect"></select>
+            </div>
+            <button class="addrow-btn" id="addHonorarioAdicional" type="button" style="height:38px;">+ Agregar</button>
+          </div>
+          <div id="honorariosAdicionalesList" style="margin-top:8px;"></div>
+
+          <details style="margin:14px 0;">
+            <summary style="cursor:pointer; font-size:13px; color:var(--ink-soft); font-weight:600;">⚙ Configurar honorarios por tipo de trámite</summary>
+            <p class="hint" style="margin:6px 0;">Tu precio fijo por trámite (alimenta el campo de arriba y el desplegable).</p>
+            <div id="honorarioConfigPanel"></div>
+          </details>
+
+          <h3 style="font-size:13px; margin:14px 0 4px; color:var(--ink-soft);">Gastos operativos</h3>
+          <div class="checklist" id="gastosItems"></div>
+          <button class="addrow-btn" id="addGasto">+ agregar gasto operativo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOQUE V — INFORMES Y DEUDA -->
+    <section class="block" id="block-informes">
+      <div class="card">
+        <div class="card-head">
+          <div class="block-title">
+            <span class="block-numeral">V</span>
+            <h2>Informe Vehicular y Deuda</h2>
+          </div>
+          <span class="block-subtotal num" id="sub-informes">$ 0,00</span>
+        </div>
+        <div class="card-body">
+          <div id="infoDominioOficialBox" class="reference-box" style="margin-top:0;"></div>
+          <div class="checklist">
+            <div class="check-item">
+              <input type="checkbox" id="chkInformeDominio" checked>
+              <span class="lbl">Informe de Dominio / Estado de Dominio</span>
+              <span class="price"><input type="text" inputmode="decimal" id="precioInformeDominio" value="0"></span>
+            </div>
+            <div class="check-item">
+              <input type="checkbox" id="chkInformeAnotaciones">
+              <span class="lbl">Informe de Anotaciones Personales</span>
+              <span class="price"><input type="text" inputmode="decimal" id="precioInformeAnotaciones" value="0"></span>
+            </div>
+            <div class="check-item">
+              <input type="checkbox" id="chkEmbargo">
+              <span class="lbl">Verificación / levantamiento de embargos o inhibiciones</span>
+              <span class="price"><input type="text" inputmode="decimal" id="precioEmbargo" value="0"></span>
+            </div>
+            <div class="check-item">
+              <input type="checkbox" id="chkInformeMultas">
+              <span class="lbl">Servicio de informe de multas (SITECI / juzgados de faltas)</span>
+              <span class="price"><input type="text" inputmode="decimal" id="precioInformeMultas" value="0"></span>
+            </div>
+          </div>
+          <h3 style="font-size:13px; margin:14px 0 4px; color:var(--ink-soft);">Multas pendientes (monto adeudado por el titular)</h3>
+          <div class="checklist" id="multasItems"></div>
+          <button class="addrow-btn" id="addMulta">+ agregar multa</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ RESUMEN / RECIBO (hoja deslizante en mobile) ============ -->
+  <aside class="summary" id="summaryPanel">
+    <div class="sheet-grip"></div>
+    <button class="sheet-close" id="btnCloseSheet" type="button" aria-label="Cerrar">✕ Cerrar</button>
+    <div class="view-toggle">
+      <button data-v="cliente" id="vtCliente">Vista cliente</button>
+      <button data-v="mandatario" class="active" id="vtMandatario">Vista mandatario</button>
+    </div>
+    <div class="receipt" id="receiptBox"></div>
+    <button class="act-btn primary" id="btnGuardar">Guardar presupuesto</button>
+    <button class="act-btn" id="btnCopiar">Copiar resumen</button>
+    <button class="act-btn" id="btnJSON">Exportar JSON</button>
+    <button class="act-btn" id="btnNuevo" style="border-color:var(--stamp); color:var(--stamp);">🗑 Nuevo presupuesto (limpiar todo)</button>
+  </aside>
+  <div class="sheet-backdrop" id="sheetBackdrop"></div>
+
+</div>
+
+<div class="mobile-bar" id="mobileBar">
+  <div class="mobile-bar-total">
+    <span class="mobile-bar-label">Total</span>
+    <span class="mobile-bar-amt" id="mobileBarTotal">$ 0,00</span>
+  </div>
+  <button class="mobile-bar-btn" id="btnOpenSheet" type="button">Ver presupuesto completo ▲</button>
+</div>
+
+<footer class="appfoot">
+
+  El Legajo — herramienta de referencia para mandatarios. Los valores de aranceles se calculan en base a la Res. (MJ) 412/2026 (Anexos I, II y III) y el módulo MRPA vigente. Sellos, formularios y honorarios son editables y quedan bajo tu responsabilidad profesional.
+</footer>
+
+<!-- ============ MODALS ============ -->
+<div class="modal-bg" id="modalSaved">
+  <div class="modal">
+    <button class="modal-close" data-close="modalSaved">&times;</button>
+    <h3>Presupuestos guardados</h3>
+    <div class="saved-list" id="savedList"></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="modalJSON">
+  <div class="modal">
+    <button class="modal-close" data-close="modalJSON">&times;</button>
+    <h3>Presupuesto — JSON</h3>
+    <textarea id="jsonOut" readonly></textarea>
+    <button class="act-btn" id="btnDescargarJSON" style="margin-top:10px;">Descargar .json</button>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script>
+/* ==========================================================================
+   EL LEGAJO — Motor de cálculo de presupuestos DNRPA
+   Datos de aranceles: Res. (MJ) 412/2026, Anexos I (Automotor), II (Motovehículos)
+   y III (Maquinaria Agrícola/Vial/Industrial). Unidad: MRPA.
+   Los honorarios los carga el mandatario en el panel de configuración (Bloque IV).
+   ========================================================================== */
+
+(function(){
+"use strict";
+
+/* ---------------------------------------------------------------------
+   1) DATOS: TABLAS DE ARANCELES POR CATEGORÍA (en MRPA)
+   --------------------------------------------------------------------- */
+const MRPA_DATA = {
+  automotor: {
+    label: "Automotor", anexo: "Anexo I",
+    subcategorias: {
+      inscripcionInicial: { label: "Inscripción Inicial", opciones: [
+        { id:"A", label:"Nacional / importado", tipo:"porcentaje", porcentaje:1, minimoMRPA:52 },
+        { id:"B", label:"Clásicos / armados fuera de fábrica / subastados", tipo:"fijo", mrpa:90 },
+        { id:"C", label:"Transporte de pasajeros / carga", tipo:"fijo", mrpa:202 },
+      ], incluye:["2 certificaciones de firma/validación remota","Cédula de identificación","Título del Automotor","Placas metálicas","Alta impositiva radicación","Oblea plazo de gracia RTO 0km"]},
+      transferencia: { label: "Transferencia", admiteDescuentoHabitualista:true, opciones: [
+        { id:"A", label:"Transferencia de dominio", tipo:"porcentaje", porcentaje:1, minimoMRPA:32 },
+        { id:"B", label:"Transporte de pasajeros / carga", tipo:"fijo", mrpa:169 },
+        { id:"C", label:"Armados / subastados / clásicos", tipo:"fijo", mrpa:70 },
+      ], incluye:["2 certificaciones de firma/validación remota","Envío de legajo","Cédula de identificación","Título del Automotor","Alta y baja impositiva por radicación"]},
+      prendaLeasing: { label:"Prenda y Leasing", opciones:[
+        { id:"A", label:"Inscripción o reinscripción de prenda/leasing", tipo:"permil", permil:1, minimoMRPA:12 },
+        { id:"B", label:"Trámites posteriores (modificación, endoso, cancelación)", tipo:"fijo", mrpa:8 },
+      ]},
+      modificaciones: { label:"Modificaciones", opciones:[
+        { id:"A", label:"Del automotor (alta/baja/cambio de motor, carrocería, chasis, uso) o del titular (domicilio, denominación social)", tipo:"fijo", mrpa:17, envioLegajoMRPA:2 },
+        { id:"B", label:"Baja común / baja con recupero de piezas", tipo:"fijo", mrpa:5, recargoPorPiezaMRPA:0.30 },
+      ]},
+      informes: { label:"Informes, Certificados y Denuncias", opciones:[
+        { id:"A", label:"Informes de dominio, deuda, certificados, denuncia de tradición", tipo:"fijo", mrpa:4 },
+        { id:"B", label:"Denuncia de compra y posesión / comunicación de recupero", tipo:"fijo", mrpa:13 },
+        { id:"C", label:"Convocatoria obligatoria del parque automotor", tipo:"fijo", mrpa:42 },
+      ]},
+      juridicoAdministrativo: { label:"Jurídico / Administrativo", opciones:[
+        { id:"A", label:"Medidas precautorias, locación, inscripción preventiva SAS", tipo:"fijo", mrpa:4 },
+      ]},
+      especiales: { label:"Especiales", opciones:[
+        { id:"A", label:"Incumplimiento de transferir / rehabilitación / mora circulación / mora placas provisorias", tipo:"fijo", mrpa:3,
+          recargoAnual:{ tipo:"unidadesMRPA", maxAnios:3, texto:"Rehabilitación para circular: +1 arancel por año o fracción vencido, máx. 3" },
+          recargoTrimestral:{ texto:"Mora placas provisorias: +1 arancel por cada 3 meses vencido el plazo (sin tope indicado en el Anexo)" } },
+        { id:"B", label:"Mora en firmas (Digesto T.I Cap.I Secc.1ª Art.9°)", tipo:"fijo", mrpa:0,
+          recargoAnual:{ tipo:"pctSobreBase", porcentaje:20, maxAnios:5, texto:"20% del arancel del trámite, por año o fracción de mora, máx. 5" } },
+        { id:"C", label:"Inscripción para aseguradoras / certificantes de firma", tipo:"fijo", mrpa:5 },
+      ]},
+      adicionales: { label:"Adicionales", esAdicionales:true, opciones:[
+        { id:"A", label:"Certificación de firmas / placa provisoria", mrpa:3 },
+        { id:"B", label:"Expedición de Cédula de identificación", mrpa:8 },
+        { id:"C", label:"Expedición de Placas metálicas", mrpa:22 },
+        { id:"D", label:"Expedición de Título", mrpa:4 },
+        { id:"E", label:"Alta/baja/cambio de domicilio postal ante Rentas", mrpa:2 },
+        { id:"F", label:"Placas provisorias para concesionarios", mrpa:11 },
+      ]},
+    }
+  },
+  motovehiculo: {
+    label: "Motovehículo", anexo: "Anexo II",
+    subcategorias: {
+      inscripcionInicial: { label:"Inscripción Inicial", opciones:[
+        { id:"A", label:"Nacional / importado", tipo:"porcentaje", porcentaje:1, minimoMRPA:21 },
+        { id:"B", label:"Clásicos / armados fuera de fábrica o subastados", tipo:"fijo", mrpa:26 },
+      ], incluye:["2 certificaciones de firma/validación remota","Cédula de identificación","Título de Propiedad","Placas metálicas","Alta impositiva radicación","Constancia de inscripción 0km con plazo de gracia"]},
+      transferencia: { label:"Transferencia", admiteDescuentoHabitualista:true, opciones:[
+        { id:"A", label:"Transferencia de dominio", tipo:"porcentaje", porcentaje:1, minimoMRPA:15 },
+        { id:"B", label:"Armados / subastados / clásicos", tipo:"fijo", mrpa:24 },
+      ]},
+      prendaLeasing: { label:"Prenda y Leasing", opciones:[
+        { id:"A", label:"Inscripción o reinscripción de prenda/leasing", tipo:"permil", permil:1, minimoMRPA:5 },
+        { id:"B", label:"Trámites posteriores", tipo:"fijo", mrpa:5 },
+      ]},
+      modificaciones: { label:"Modificaciones", opciones:[
+        { id:"A", label:"Del bien (motor, carrocería, cuadro, uso) o del titular (domicilio, denominación social)", tipo:"fijo", mrpa:9, envioLegajoMRPA:1.40 },
+        { id:"B", label:"Baja común / baja con recupero de piezas", tipo:"fijo", mrpa:3, recargoPorPiezaMRPA:0.30 },
+      ]},
+      informes: { label:"Informes, Certificados y Denuncias", opciones:[
+        { id:"A", label:"Informes de dominio, deuda, certificados, denuncia de tradición", tipo:"fijo", mrpa:3 },
+        { id:"B", label:"Denuncia de compra y posesión / comunicación de recupero", tipo:"fijo", mrpa:7 },
+      ]},
+      juridicoAdministrativo: { label:"Jurídico / Administrativo", opciones:[
+        { id:"A", label:"Medidas precautorias, locación, inscripción preventiva SAS", tipo:"fijo", mrpa:3 },
+      ]},
+      especiales: { label:"Especiales", opciones:[
+        { id:"A", label:"Incumplimiento de transferir / rehabilitación / mora circulación", tipo:"fijo", mrpa:2,
+          recargoAnual:{ tipo:"unidadesMRPA", maxAnios:3, texto:"Rehabilitación para circular: +1 arancel por año o fracción vencido, máx. 3" },
+          recargoTrimestral:{ texto:"Mora permiso de circulación vencido al momento de la inscripción inicial: +1 arancel por cada 3 meses vencido (sin tope indicado en el Anexo)" } },
+        { id:"B", label:"Mora en firmas (Digesto T.I Cap.I Secc.1ª Art.9°)", tipo:"fijo", mrpa:0,
+          recargoAnual:{ tipo:"pctSobreBase", porcentaje:20, maxAnios:5, texto:"20% del arancel del trámite, por año o fracción de mora, máx. 5" } },
+        { id:"C", label:"Inscripción para aseguradoras / certificantes de firma", tipo:"fijo", mrpa:4 },
+      ]},
+      adicionales: { label:"Adicionales", esAdicionales:true, opciones:[
+        { id:"A", label:"Certificación de firmas", mrpa:2 },
+        { id:"B", label:"Expedición de Cédula de identificación y de Título", mrpa:3 },
+        { id:"C", label:"Expedición de Placas metálicas", mrpa:10 },
+        { id:"D", label:"Alta/baja/cambio de domicilio postal ante Rentas", mrpa:1 },
+      ]},
+    }
+  },
+  maquinaria: {
+    label: "Maquinaria Agrícola / Vial / Industrial", anexo: "Anexo III",
+    subcategorias: {
+      inscripcionInicial: { label:"Inscripción Inicial", opciones:[
+        { id:"A", label:"Nacional / importado", tipo:"porcentaje", porcentaje:0.25, minimoMRPA:128 },
+        { id:"B", label:"Usadas, fabricadas/ingresadas antes del 01/12/1997", tipo:"fijo", mrpa:67 },
+        { id:"C", label:"Armada fuera de fábrica / subastada", tipo:"fijo", mrpa:175 },
+      ], incluye:["2 certificaciones de firma/validación remota","Cédula de identificación","Título de Propiedad","Placas metálicas","Alta impositiva radicación","Constancia de inscripción 0km con plazo de gracia"]},
+      transferencia: { label:"Transferencia", admiteDescuentoHabitualista:true, opciones:[
+        { id:"A", label:"Transferencia de dominio", tipo:"porcentaje", porcentaje:0.25, minimoMRPA:52 },
+        { id:"B", label:"Transferencia de MAVI AFF / Subastada", tipo:"fijo", mrpa:52 },
+      ]},
+      prendaLeasing: { label:"Prenda y Leasing", opciones:[
+        { id:"A", label:"Inscripción, reinscripción/renovación o aumento del contrato", tipo:"permil", permil:1.5, minimoMRPA:9 },
+        { id:"B", label:"Trámites posteriores / revocación de estipulación a favor de terceros", tipo:"fijo", mrpa:9 },
+      ]},
+      modificaciones: { label:"Modificaciones", opciones:[
+        { id:"A", label:"Del bien (motor, carrocería, chasis, uso) o del titular (domicilio, denominación social)", tipo:"fijo", mrpa:17, envioLegajoMRPA:2 },
+        { id:"B", label:"Baja del bien", tipo:"fijo", mrpa:5 },
+      ]},
+      informes: { label:"Informes, Certificados y Denuncias", opciones:[
+        { id:"A", label:"Informes de dominio, deuda, certificados, denuncia de tradición", tipo:"fijo", mrpa:4 },
+        { id:"B", label:"Denuncia de compra y posesión / comunicación de recupero", tipo:"fijo", mrpa:13 },
+      ]},
+      juridicoAdministrativo: { label:"Jurídico / Administrativo", opciones:[
+        { id:"A", label:"Medidas precautorias, locación, inscripción preventiva SAS", tipo:"fijo", mrpa:4 },
+      ]},
+      especiales: { label:"Especiales", opciones:[
+        { id:"A", label:"Incumplimiento de transferir / rehabilitación / mora placas", tipo:"fijo", mrpa:3,
+          recargoAnual:{ tipo:"unidadesMRPA", maxAnios:3, texto:"Rehabilitación para circular: +1 arancel por año o fracción vencido, máx. 3" } },
+        { id:"B", label:"Mora en firmas (Digesto T.I Cap.I Secc.1ª Art.9°)", tipo:"fijo", mrpa:0,
+          recargoAnual:{ tipo:"pctSobreBase", porcentaje:20, maxAnios:2, texto:"20% del arancel del trámite, por año o fracción de mora, máx. 2" } },
+        { id:"C", label:"Inscripción para aseguradoras / certificantes de firma", tipo:"fijo", mrpa:5,
+          nota:"Maquinaria importada con placa provisoria vencida (30 días): recargo del 20% del arancel por cada 3 meses de mora, máx. 4 aranceles adicionales (calculalo aparte si aplica)." },
+      ]},
+      adicionales: { label:"Adicionales", esAdicionales:true, opciones:[
+        { id:"A", label:"Certificación de firmas / placa de identificación provisoria", mrpa:3 },
+        { id:"B", label:"Expedición de Cédula de identificación", mrpa:8 },
+        { id:"C", label:"Expedición de Placas metálicas", mrpa:22 },
+        { id:"D", label:"Expedición de Título", mrpa:4 },
+        { id:"E", label:"Alta/baja/cambio de domicilio postal ante Rentas", mrpa:3 },
+        { id:"F", label:"Placas provisorias para concesionarios", mrpa:11 },
+      ]},
+    }
+  }
+};
+
+const SUBCAT_ORDER = ["inscripcionInicial","transferencia","prendaLeasing","modificaciones","informes","juridicoAdministrativo","especiales","adicionales"];
+const SUBCAT_PARA_CONFIG = SUBCAT_ORDER.filter(k=>k!=="adicionales");
+
+const PROVINCIAS = ["CABA","Buenos Aires","Catamarca","Chaco","Chubut","Córdoba","Corrientes","Entre Ríos",
+  "Formosa","Jujuy","La Pampa","La Rioja","Mendoza","Misiones","Neuquén","Río Negro","Salta","San Juan",
+  "San Luis","Santa Cruz","Santa Fe","Santiago del Estero","Tierra del Fuego","Tucumán"];
+
+// Alícuotas de Impuesto a los Sellos por provincia (aportadas por el mandatario).
+// Sólo el %; los montos fijos de Legalización Común/Urgente quedan fuera a pedido explícito.
+const SELLOS_PROVINCIAS = {
+  "Buenos Aires":         { inscripcionInicial:2.5,  transferencia:3,    prenda:1.2 },
+  "CABA":                 { inscripcionInicial:3,    transferencia:3,    prenda:1 },
+  "Catamarca":            { inscripcionInicial:1,    transferencia:1.5,  prenda:1 },
+  "Chaco":                { inscripcionInicial:1,    transferencia:1.5,  prenda:1 },
+  "Chubut":               { inscripcionInicial:2,    transferencia:2,    prenda:1.2 },
+  "Córdoba":              { inscripcionInicial:1.5,  transferencia:1.5,  prenda:1.2 },
+  "Corrientes":           { inscripcionInicial:1,    transferencia:1,    prenda:1 },
+  "Entre Ríos":           { inscripcionInicial:2.5,  transferencia:1,    prenda:1 },
+  "Formosa":              { inscripcionInicial:1.5,  transferencia:1.5,  prenda:1 },
+  "Jujuy":                { inscripcionInicial:2,    transferencia:2,    prenda:1 },
+  "La Pampa":             { inscripcionInicial:1,    transferencia:1,    prenda:1 },
+  "La Rioja":             { inscripcionInicial:1,    transferencia:1,    prenda:1 },
+  "Mendoza":              { inscripcionInicial:1.75, transferencia:1.25, prenda:2 },
+  "Misiones":             { inscripcionInicial:3,    transferencia:3,    prenda:3 },
+  "Neuquén":              { inscripcionInicial:1.4,  transferencia:1.4,  prenda:1.4 },
+  "Río Negro":            { inscripcionInicial:2,    transferencia:2,    prenda:1 },
+  "Salta":                { inscripcionInicial:2.5,  transferencia:2.5,  prenda:0 },
+  "San Juan":             { inscripcionInicial:0,    transferencia:0.7,  prenda:2 },
+  "San Luis":             { inscripcionInicial:1.5,  transferencia:1.5,  prenda:1.2 },
+  "Santa Cruz":           { inscripcionInicial:3,    transferencia:3,    prenda:1.4 },
+  "Santa Fe":             { inscripcionInicial:1.2,  transferencia:1.2,  prenda:1 },
+  "Santiago del Estero":  { inscripcionInicial:0,    transferencia:1,    prenda:1 },
+  "Tierra del Fuego":     { inscripcionInicial:1,    transferencia:1,    prenda:1 },
+  "Tucumán":              { inscripcionInicial:2,    transferencia:1,    prenda:1.2 },
+};
+
+/* ---------------------------------------------------------------------
+   3) UTILIDADES
+   --------------------------------------------------------------------- */
+const fmt = (n)=> (isFinite(n)?n:0).toLocaleString("es-AR",{style:"currency",currency:"ARS",minimumFractionDigits:2,maximumFractionDigits:2});
+const round2 = (n)=> Math.round((n + Number.EPSILON) * 100) / 100;
+const uid = ()=> Math.random().toString(36).slice(2,9);
+
+// Acepta números escritos con coma decimal (1,5) y/o punto de miles (150.000,50)
+function parseDecimal(str){
+  if(typeof str !== "string") return Number(str)||0;
+  let s = str.trim();
+  if(s==="") return 0;
+  if(s.includes(",") && s.includes(".")) s = s.replace(/\./g,"").replace(",", ".");
+  else if(s.includes(",")) s = s.replace(",", ".");
+  const n = parseFloat(s);
+  return isFinite(n) ? n : 0;
+}
+
+/* ---------------------------------------------------------------------
+   4) ESTADO
+   --------------------------------------------------------------------- */
+// Valor de UVA: se guarda aparte para no tener que recargarlo cada vez
+const UVA_KEY = "el_legajo_uva_v1";
+function getSavedUva(){
+  const raw = localStorage.getItem(UVA_KEY);
+  const n = raw !== null ? parseFloat(raw) : NaN;
+  return isNaN(n) ? 1850.00 : n;
+}
+function saveUva(v){ localStorage.setItem(UVA_KEY, String(v)); }
+
+function crearEstadoInicial(){
+  return {
+    uva: getSavedUva(),
+    cliente: "", vehiculo: "",
+    categoria: "automotor",
+    subcategoria: "transferencia",
+    opcionSeleccionada: "A",
+    conPrenda: false,
+    comercianteHabitualista: false,
+    valFiscal: 0, valVenta: 0,
+    montoContratoPrenda: 0,
+    origen: "nacional",
+    provincia: "CABA",
+    adicionalesSeleccionados: {},
+    piezasRecupero: 0,
+    envioLegajo: false,
+    especialesAniosMora: 0,
+    especialesTrimestresMora: 0,
+    especialesBaseMora: 0,
+    selloAlicuota: 0, selloExento:false,
+    selloPrendaAlicuota: 0, selloPrendaExento:false,
+    selloMoraAplicar: false,
+    municipalItems: [],
+    stItems: [],
+    honFijo:0,
+    honorariosAdicionales: [],
+    gastosItems: [ {id:uid(), nombre:"Traslados / viáticos", precio:0, activo:false} ],
+    chkInformeDominio:true, precioInformeDominio:0,
+    chkInformeAnotaciones:false, precioInformeAnotaciones:0,
+    chkEmbargo:false, precioEmbargo:0,
+    chkInformeMultas:false, precioInformeMultas:0,
+    multasItems: [],
+    tramitesAdicionales: [],
+    moraFechaFirma: "",
+    moraFechaPresentacion: new Date().toISOString().slice(0,10),
+    moraFeriadosExtra: [],
+    moraIncluirEnPresupuesto: false,
+    vista: "mandatario",
+  };
+}
+
+let state = crearEstadoInicial();
+
+// Configuración global de honorarios por tipo de trámite (persiste entre presupuestos)
+let honorarioConfig = {};
+const HON_CONFIG_KEY = "el_legajo_honorario_config_v1";
+function loadHonorarioConfig(){
+  try{ honorarioConfig = JSON.parse(localStorage.getItem(HON_CONFIG_KEY)) || {}; }
+  catch(e){ honorarioConfig = {}; }
+}
+function saveHonorarioConfig(){ localStorage.setItem(HON_CONFIG_KEY, JSON.stringify(honorarioConfig)); }
+function honorarioConfigKey(catKey, subKey){ return `${catKey}.${subKey}`; }
+
+// Trámites/aranceles creados por el mandatario (future-proof: nuevos trámites DNRPA)
+let customTramites = [];
+const CUSTOM_TRAMITES_KEY = "el_legajo_custom_tramites_v1";
+function loadCustomTramites(){
+  try{ customTramites = JSON.parse(localStorage.getItem(CUSTOM_TRAMITES_KEY)) || []; }
+  catch(e){ customTramites = []; }
+}
+function saveCustomTramites(){ localStorage.setItem(CUSTOM_TRAMITES_KEY, JSON.stringify(customTramites)); }
+
+// Mora sobre el Impuesto a los Sellos, por provincia (configurable/ampliable por el mandatario)
+let moraSellosConfig = {};
+const MORA_SELLOS_KEY = "el_legajo_mora_sellos_v1";
+function defaultMoraSellosConfig(){
+  return {
+    "Chaco": { periodo:"mensual", porcentaje:5, topeTipo:"porcentaje", topeValor:300 },
+    "Corrientes": { periodo:"trimestral", porcentaje:50, topeTipo:"moras", topeValor:5 },
+  };
+}
+function loadMoraSellosConfig(){
+  const raw = localStorage.getItem(MORA_SELLOS_KEY);
+  if(raw === null){ moraSellosConfig = defaultMoraSellosConfig(); return; } // nunca se guardó nada: primera vez
+  try{ moraSellosConfig = JSON.parse(raw); }
+  catch(e){ moraSellosConfig = defaultMoraSellosConfig(); }
+}
+function saveMoraSellosConfig(){ localStorage.setItem(MORA_SELLOS_KEY, JSON.stringify(moraSellosConfig)); }
+
+// Catálogo de Formularios / Solicitudes Tipo, con precio, persistido y ampliable
+let formulariosConfig = [];
+const FORMULARIOS_CONFIG_KEY = "el_legajo_formularios_config_v1";
+function defaultFormulariosConfig(){
+  return [
+    {id:uid(), nombre:"Solicitud Tipo 08 (Transferencia)", precio:0},
+    {id:uid(), nombre:"Solicitud Tipo 02 (Inscripción Inicial)", precio:0},
+    {id:uid(), nombre:"Solicitud Tipo 12 (Verificación Física/Digital)", precio:0},
+    {id:uid(), nombre:"Solicitud Tipo 04 (Informes / Duplicados)", precio:0},
+    {id:uid(), nombre:"Solicitud Tipo 06 (Cambio de radicación)", precio:0},
+    {id:uid(), nombre:"Solicitud Tipo 09 (Prenda)", precio:0},
+    {id:uid(), nombre:"SUGIT 13D (Verificación digital)", precio:0},
+  ];
+}
+function loadFormulariosConfig(){
+  const raw = localStorage.getItem(FORMULARIOS_CONFIG_KEY);
+  if(raw === null){ formulariosConfig = defaultFormulariosConfig(); return; } // nunca se guardó nada: primera vez
+  try{ formulariosConfig = JSON.parse(raw); }
+  catch(e){ formulariosConfig = defaultFormulariosConfig(); }
+}
+function saveFormulariosConfig(){ localStorage.setItem(FORMULARIOS_CONFIG_KEY, JSON.stringify(formulariosConfig)); }
+
+/* ---------------------------------------------------------------------
+   5) CALCULO
+   --------------------------------------------------------------------- */
+function mrpaValue(){ return round2(state.uva/2); }
+function mayorValor(){ return Math.max(Number(state.valFiscal)||0, Number(state.valVenta)||0); }
+
+// Calcula el monto ($) de una definición de trámite genérica (oficial o personalizado)
+// def: {tipo:"fijo"|"porcentaje"|"permil", mrpa, porcentaje, minimoMRPA, permil}
+function calcMontoDefinicion(item){
+  const mv = mrpaValue();
+  const ctx = {
+    valorBase: mayorValor(),
+    montoContrato: Number(state.montoContratoPrenda)||0,
+    piezas: item.piezas, envioLegajo: item.envioLegajo,
+    aniosMora: item.aniosMora, trimestresMora: item.trimestresMora, baseMora: item.baseMora,
+  };
+  return calcularOpcion(item, ctx, mv);
+}
+
+// Función pura de cálculo: recibe la opción del Anexo y un "contexto" con todos los
+// datos variables (valores, piezas, envío de legajo, años/trimestres de mora, etc.)
+// La usan tanto el trámite principal (con datos de `state`) como cada "trámite adicional"
+// (con sus propios datos independientes), así el cálculo es idéntico en los dos casos.
+function calcularOpcion(opt, ctx, mv){
+  let montoMRPA = 0, montoPesos = 0, detalle = "";
+
+  if(opt.tipo === "porcentaje"){
+    const base = Number(ctx.valorBase)||0;
+    const pesos = Math.max(base*(opt.porcentaje/100), opt.minimoMRPA*mv);
+    montoPesos = pesos;
+    detalle = `${opt.porcentaje}% de ${fmt(base)} (mín. ${opt.minimoMRPA} MRPA)`;
+  } else if(opt.tipo === "permil"){
+    const base = Number(ctx.montoContrato)||0;
+    const pesos = Math.max(base*(opt.permil/1000), opt.minimoMRPA*mv);
+    montoPesos = pesos;
+    detalle = `${opt.permil}‰ de ${fmt(base)} — monto del contrato (mín. ${opt.minimoMRPA} MRPA)`;
+  } else if(opt.recargoAnual && opt.recargoAnual.tipo === "pctSobreBase"){
+    const anios = Math.min(Number(ctx.aniosMora)||0, opt.recargoAnual.maxAnios);
+    const base = Number(ctx.baseMora)||0;
+    montoPesos = round2(base * (opt.recargoAnual.porcentaje/100) * anios);
+    detalle = anios>0
+      ? `${opt.recargoAnual.porcentaje}% de ${fmt(base)} × ${anios} año(s) de mora (máx. ${opt.recargoAnual.maxAnios})`
+      : `Sin años de mora cargados`;
+  } else {
+    montoMRPA = opt.mrpa;
+    const notas = [];
+    if(opt.recargoPorPiezaMRPA && Number(ctx.piezas)>0){
+      montoMRPA += opt.recargoPorPiezaMRPA * Number(ctx.piezas);
+      notas.push(`+${ctx.piezas} pieza(s) de recupero`);
+    }
+    if(opt.envioLegajoMRPA && ctx.envioLegajo){
+      montoMRPA += opt.envioLegajoMRPA;
+      notas.push(`+ envío de legajo`);
+    }
+    if(opt.recargoAnual && opt.recargoAnual.tipo === "unidadesMRPA" && Number(ctx.aniosMora)>0){
+      const anios = Math.min(Number(ctx.aniosMora), opt.recargoAnual.maxAnios);
+      montoMRPA += opt.mrpa * anios;
+      notas.push(`+${anios} año(s) de rehabilitación`);
+    }
+    if(opt.recargoTrimestral && Number(ctx.trimestresMora)>0){
+      montoMRPA += opt.mrpa * Number(ctx.trimestresMora);
+      notas.push(`+${ctx.trimestresMora} trimestre(s) de mora`);
+    }
+    montoPesos = montoMRPA * mv;
+    detalle = `${montoMRPA} MRPA` + (notas.length ? ` (${notas.join(", ")})` : "");
+  }
+
+  return { detalle, montoPesos: round2(montoPesos) };
+}
+
+function calcArancelPrincipal(){
+  const cat = MRPA_DATA[state.categoria];
+  const sub = cat.subcategorias[state.subcategoria];
+  const opt = sub.opciones.find(o=>o.id===state.opcionSeleccionada) || sub.opciones[0];
+  const mv = mrpaValue();
+
+  const ctx = {
+    valorBase: mayorValor(),
+    montoContrato: Number(state.montoContratoPrenda)||0,
+    piezas: state.piezasRecupero,
+    envioLegajo: state.envioLegajo,
+    aniosMora: state.especialesAniosMora,
+    trimestresMora: state.especialesTrimestresMora,
+    baseMora: state.especialesBaseMora,
+  };
+  const r = calcularOpcion(opt, ctx, mv);
+  let montoPesos = r.montoPesos, detalle = r.detalle;
+
+  let descuento = 0;
+  if(sub.admiteDescuentoHabitualista && state.comercianteHabitualista && opt.id==="A"){
+    descuento = round2(montoPesos*0.10);
+    montoPesos = round2(montoPesos - descuento);
+  }
+
+  return { label: `${cat.label} — ${sub.label} (${opt.id})`, opt, detalle, montoPesos: round2(montoPesos), descuento };
+}
+
+/* ---------------------------------------------------------------------
+   CALCULADORA DE MORA REGISTRAL (presentación tardía) — no forma parte
+   de los Anexos I/II/III; escala provista por el usuario. Verificar contra
+   el Digesto de Normas Técnico-Registrales vigente antes de facturar.
+   --------------------------------------------------------------------- */
+const FERIADOS_FIJOS_AR = [[1,1],[3,24],[4,2],[5,1],[5,25],[6,20],[7,9],[8,17],[10,12],[11,20],[12,8],[12,25]];
+
+function easterDate(year){
+  const a = year % 19, b = Math.floor(year/100), c = year % 100;
+  const d = Math.floor(b/4), e = b % 4, f = Math.floor((b+8)/25);
+  const g = Math.floor((b-f+1)/3), h = (19*a+b-d-g+15)%30;
+  const i = Math.floor(c/4), k = c%4, l = (32+2*e+2*i-h-k)%7;
+  const m = Math.floor((a+11*h+22*l)/451);
+  const month = Math.floor((h+l-7*m+114)/31);
+  const day = ((h+l-7*m+114)%31)+1;
+  return new Date(year, month-1, day);
+}
+function addDays(date, n){ const d = new Date(date); d.setDate(d.getDate()+n); return d; }
+function dateKey(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; }
+
+function feriadosDelAnio(year){
+  const list = FERIADOS_FIJOS_AR.map(([m,d])=>new Date(year,m-1,d));
+  const easter = easterDate(year);
+  list.push(addDays(easter,-48), addDays(easter,-47), addDays(easter,-2)); // Carnaval (lun/mar) y Viernes Santo
+  return list;
+}
+
+function buildFeriadosSet(yearStart, yearEnd, extra){
+  const set = new Set();
+  for(let y=yearStart; y<=yearEnd; y++) feriadosDelAnio(y).forEach(d=>set.add(dateKey(d)));
+  (extra||[]).forEach(e=>set.add(e));
+  return set;
+}
+function esDiaHabil(date, feriadosSet){
+  const dia = date.getDay();
+  if(dia===0 || dia===6) return false;
+  return !feriadosSet.has(dateKey(date));
+}
+function diasHabilesEntre(inicio, fin, feriadosSet){
+  if(fin<=inicio) return 0;
+  let count=0, d=new Date(inicio);
+  while(d<fin){ d=addDays(d,1); if(esDiaHabil(d,feriadosSet)) count++; }
+  return count;
+}
+function sumarDiasHabiles(inicio, n, feriadosSet){
+  let d=new Date(inicio), count=0;
+  while(count<n){ d=addDays(d,1); if(esDiaHabil(d,feriadosSet)) count++; }
+  return d;
+}
+
+function calcMoraRegistral(){
+  const valorBase = mayorValor();
+  const arancelBase = round2(valorBase*0.01);
+  const resultado = { diasHabiles:0, moraIndex:0, pct:0, arancelBase, montoMora:0, total:arancelBase, estado:"Cargá las dos fechas", valido:false };
+  if(!state.moraFechaFirma || !state.moraFechaPresentacion) return resultado;
+
+  const fFirma = new Date(state.moraFechaFirma+"T00:00:00");
+  const fPresent = new Date(state.moraFechaPresentacion+"T00:00:00");
+  if(isNaN(fFirma) || isNaN(fPresent) || fPresent < fFirma) return resultado;
+
+  const yMin = Math.min(fFirma.getFullYear(), fPresent.getFullYear()) - 1;
+  const yMax = Math.max(fFirma.getFullYear(), fPresent.getFullYear()) + 5;
+  const feriadosSet = buildFeriadosSet(yMin, yMax, state.moraFeriadosExtra);
+
+  const diasHabiles = diasHabilesEntre(fFirma, fPresent, feriadosSet);
+  let moraIndex = 0;
+  if(diasHabiles > 90){
+    const fechaInicioMora = sumarDiasHabiles(fFirma, 90, feriadosSet);
+    moraIndex = 5;
+    for(let k=1;k<=4;k++){
+      const limite = new Date(fechaInicioMora); limite.setFullYear(limite.getFullYear()+k);
+      if(fPresent < limite){ moraIndex = k; break; }
+    }
+  }
+  const pct = moraIndex*20;
+  const montoMora = round2(arancelBase*(pct/100));
+  const estado = moraIndex===0 ? "En término (sin mora)" : `Con mora registral — ${moraIndex}ª mora`;
+  return { diasHabiles, moraIndex, pct, arancelBase, montoMora, total: round2(arancelBase+montoMora), estado, valido:true };
+}
+
+function calcArancelPrendaSimultanea(){
+  const cat = MRPA_DATA[state.categoria];
+  const sub = cat.subcategorias.prendaLeasing;
+  const opt = sub.opciones[0]; // opción A: inscripción
+  const mv = mrpaValue();
+  const base = Number(state.montoContratoPrenda)||0;
+  const permilPesos = base * (opt.permil/1000);
+  const minPesos = opt.minimoMRPA * mv;
+  const montoPesos = round2(Math.max(permilPesos, minPesos));
+  return { label:`${sub.label} (simultánea, opción A)`,
+    detalle:`${opt.permil}‰ de ${fmt(base)} (mín. ${opt.minimoMRPA} MRPA)`, montoPesos };
+}
+
+function calcBloqueDNRPA(){
+  const principal = calcArancelPrincipal();
+  const adicionales = { items:[], total:0 }; // el Bloque 8 (adicionales) ahora se agrega vía "Trámites adicionales"
+  let prendaExtra = null;
+  if(state.subcategoria !== "prendaLeasing" && state.conPrenda){
+    prendaExtra = calcArancelPrendaSimultanea();
+  }
+  const extras = state.tramitesAdicionales.map(t=>{
+    const r = calcMontoDefinicion(t);
+    return { id:t.id, nombre:t.nombre, detalle:r.detalle, montoPesos:r.montoPesos };
+  });
+  const extrasTotal = round2(extras.reduce((a,e)=>a+e.montoPesos,0));
+  const mora = calcMoraRegistral();
+  const moraMontoIncluido = (state.moraIncluirEnPresupuesto && mora.moraIndex>0) ? mora.montoMora : 0;
+  const subtotal = round2(principal.montoPesos + adicionales.total + (prendaExtra ? prendaExtra.montoPesos : 0) + extrasTotal + moraMontoIncluido);
+  return { principal, adicionales, prendaExtra, extras, extrasTotal, mora, moraMontoIncluido, subtotal };
+}
+
+// Formula legible tal cual figura en el PDF: "17 MRPA", "1% del valor (mín. 32 MRPA)", "1‰ del contrato (mín. 12 MRPA)"
+function formulaTexto(def){
+  if(def.tipo === "porcentaje") return `${def.porcentaje}% del valor (mín. ${def.minimoMRPA} MRPA)`;
+  if(def.tipo === "permil") return `${def.permil}‰ del contrato (mín. ${def.minimoMRPA} MRPA)`;
+  return `${def.mrpa} MRPA`;
+}
+
+// Catálogo combinado (oficial + personalizado), organizado por categoría, para el selector de "trámites adicionales"
+// Catálogo anidado: { categoria: { subcategoria: { label, items:[...] } } } — refleja
+// exactamente la estructura del PDF (columna "Categoría" del Anexo = nuestra subcategoría).
+const CUSTOM_SUBKEY = "__personalizados__";
+
+function buildCatalogoAnidado(){
+  const catalogo = {};
+  Object.keys(MRPA_DATA).forEach(catKey=>{
+    const cat = MRPA_DATA[catKey];
+    catalogo[catKey] = {};
+    SUBCAT_ORDER.filter(k=>cat.subcategorias[k]).forEach(subKey=>{
+      const sub = cat.subcategorias[subKey];
+      const items = sub.opciones.map(o=>{
+        let def;
+        if(sub.esAdicionales) def = { tipo:"fijo", mrpa:o.mrpa };
+        else if(o.tipo==="porcentaje") def = { tipo:"porcentaje", porcentaje:o.porcentaje, minimoMRPA:o.minimoMRPA };
+        else if(o.tipo==="permil") def = { tipo:"permil", permil:o.permil, minimoMRPA:o.minimoMRPA };
+        else def = { tipo:"fijo", mrpa:o.mrpa };
+        if(o.recargoPorPiezaMRPA) def.recargoPorPiezaMRPA = o.recargoPorPiezaMRPA;
+        if(o.envioLegajoMRPA) def.envioLegajoMRPA = o.envioLegajoMRPA;
+        if(o.recargoAnual) def.recargoAnual = o.recargoAnual;
+        if(o.recargoTrimestral) def.recargoTrimestral = o.recargoTrimestral;
+        const nombre = `${o.id}. ${o.label}`;
+        return { nombre, etiqueta:`${nombre} — ${formulaTexto(def)}`, ...def };
+      });
+      catalogo[catKey][subKey] = { label: sub.label, items };
+    });
+  });
+  customTramites.forEach(ct=>{
+    const def = { tipo:ct.tipoCalculo, mrpa:ct.mrpa, porcentaje:ct.porcentaje, minimoMRPA:ct.minimoMRPA, permil:ct.permil };
+    const item = { nombre: `⭐ ${ct.nombre}`, etiqueta:`⭐ ${ct.nombre} — ${formulaTexto(def)}`, ...def };
+    const targets = ct.categoria === "todas" ? Object.keys(catalogo) : [ct.categoria];
+    targets.forEach(catKey=>{
+      if(!catalogo[catKey]) return;
+      if(!catalogo[catKey][CUSTOM_SUBKEY]) catalogo[catKey][CUSTOM_SUBKEY] = { label:"Trámites propios", items:[] };
+      catalogo[catKey][CUSTOM_SUBKEY].items.push(item);
+    });
+  });
+  return catalogo;
+}
+
+function mostrarBloquePrenda(){
+  return state.subcategoria === "prendaLeasing" || state.conPrenda;
+}
+
+function mesesEntre(d1, d2){
+  let meses = (d2.getFullYear()-d1.getFullYear())*12 + (d2.getMonth()-d1.getMonth());
+  if(d2.getDate() < d1.getDate()) meses -= 1;
+  return Math.max(0, meses);
+}
+function trimestresEntre(d1, d2){ return Math.floor(mesesEntre(d1,d2)/3); }
+
+function calcMoraSellos(){
+  const regla = moraSellosConfig[state.provincia];
+  const resultado = { aplica:false, tieneRegla: !!regla, periodos:0, pct:0, monto:0, baseSellos:0, regla };
+  if(!regla || !state.selloMoraAplicar) return resultado;
+  if(!state.moraFechaFirma || !state.moraFechaPresentacion) return resultado;
+  const f1 = new Date(state.moraFechaFirma+"T00:00:00");
+  const f2 = new Date(state.moraFechaPresentacion+"T00:00:00");
+  if(isNaN(f1) || isNaN(f2) || f2 < f1) return resultado;
+
+  const periodos = regla.periodo === "mensual" ? mesesEntre(f1,f2) : trimestresEntre(f1,f2);
+  let periodosCobrados = periodos;
+  if(regla.topeTipo === "moras") periodosCobrados = Math.min(periodos, regla.topeValor);
+  let pct = periodosCobrados * regla.porcentaje;
+  if(regla.topeTipo === "porcentaje") pct = Math.min(pct, regla.topeValor);
+
+  // La mora corre sobre el monto del Impuesto a los Sellos ya calculado (valor x alícuota),
+  // NO sobre la valuación del vehículo.
+  const baseSellos = state.selloExento ? 0 : round2(mayorValor() * (Number(state.selloAlicuota)||0)/100);
+  const monto = round2(baseSellos*(pct/100));
+  return { aplica: pct>0, tieneRegla:true, periodos, pct, monto, baseSellos, regla };
+}
+
+function calcBloqueProvincial(){
+  const base = mayorValor();
+  const sellos = state.selloExento ? 0 : round2(base * (Number(state.selloAlicuota)||0)/100);
+  let sellosPrenda = 0;
+  if(mostrarBloquePrenda() && !state.selloPrendaExento){
+    sellosPrenda = round2((Number(state.montoContratoPrenda)||0) * (Number(state.selloPrendaAlicuota)||0)/100);
+  }
+  const moraSellos = calcMoraSellos();
+  const municipal = state.municipalItems.reduce((a,i)=> a + (i.activo!==false ? (Number(i.precio)||0):0), 0);
+  const subtotal = round2(sellos + sellosPrenda + (moraSellos.aplica?moraSellos.monto:0) + municipal);
+  return { sellos, sellosPrenda: round2(sellosPrenda), moraSellos, municipal: round2(municipal), subtotal };
+}
+
+function calcBloqueFormularios(){
+  const st = state.stItems.reduce((a,i)=> a + (Number(i.precio)||0), 0);
+  const subtotal = round2(st);
+  return { solicitudesTipo: round2(st), subtotal };
+}
+
+function calcBloqueHonorarios(){
+  const honorario = Number(state.honFijo)||0;
+  const honorariosAdicionalesTotal = state.honorariosAdicionales.reduce((a,i)=> a + (Number(i.monto)||0), 0);
+  const gastos = state.gastosItems.reduce((a,i)=> a + (i.activo? (Number(i.precio)||0):0), 0);
+  const subtotal = round2(honorario + honorariosAdicionalesTotal + gastos);
+  return { honorario: round2(honorario), honorariosAdicionalesTotal: round2(honorariosAdicionalesTotal), gastosOperativos: round2(gastos), subtotal };
+}
+
+function informeDominioOficial(){
+  const cat = MRPA_DATA[state.categoria];
+  const opt = cat.subcategorias.informes.opciones[0]; // opción A
+  const mrpa = opt.mrpa;
+  const pesos = round2(mrpa * mrpaValue());
+  return { mrpa, pesos };
+}
+
+function calcBloqueInformes(){
+  const informeDominio = state.chkInformeDominio ? (Number(state.precioInformeDominio)||0) : 0;
+  const informeAnotaciones = state.chkInformeAnotaciones ? (Number(state.precioInformeAnotaciones)||0) : 0;
+  const embargos = state.chkEmbargo ? (Number(state.precioEmbargo)||0) : 0;
+  const infoMultas = state.chkInformeMultas ? (Number(state.precioInformeMultas)||0) : 0;
+  const multas = state.multasItems.reduce((a,i)=> a + (Number(i.monto)||0), 0);
+  const subtotal = round2(informeDominio + informeAnotaciones + embargos + infoMultas + multas);
+  return { informeDominio: round2(informeDominio), informeAnotaciones: round2(informeAnotaciones),
+            embargosInhibiciones: round2(embargos), costoInformeMultas: round2(infoMultas),
+            multasAcumuladas: round2(multas), subtotal };
+}
+
+function calcTodo(){
+  const dnrpa = calcBloqueDNRPA();
+  const provincial = calcBloqueProvincial();
+  const formularios = calcBloqueFormularios();
+  const honorarios = calcBloqueHonorarios();
+  const informes = calcBloqueInformes();
+  const total = round2(dnrpa.subtotal + provincial.subtotal + formularios.subtotal + honorarios.subtotal + informes.subtotal);
+  return { dnrpa, provincial, formularios, honorarios, informes, total };
+}
+
+/* ---------------------------------------------------------------------
+   6) ACTUALIZACIÓN LIVIANA (sin reconstruir inputs en edición continua)
+   --------------------------------------------------------------------- */
+function refreshTotals(){
+  const calc = calcTodo();
+  const set = (id, txt)=>{ const el = document.getElementById(id); if(el) el.textContent = txt; };
+  set("sub-dnrpa", fmt(calc.dnrpa.subtotal));
+  set("sub-provincial", fmt(calc.provincial.subtotal));
+  set("sub-formularios", fmt(calc.formularios.subtotal));
+  set("sub-honorarios", fmt(calc.honorarios.subtotal));
+  set("sub-informes", fmt(calc.informes.subtotal));
+  set("dnrpaPrincipalDetalle", calc.dnrpa.principal.detalle);
+  set("dnrpaPrincipalAmt", fmt(calc.dnrpa.principal.montoPesos));
+  if(calc.dnrpa.prendaExtra){
+    set("dnrpaPrendaDetalle", calc.dnrpa.prendaExtra.detalle);
+    set("dnrpaPrendaAmt", fmt(calc.dnrpa.prendaExtra.montoPesos));
+  }
+  set("valMayorOut", `Se toma el mayor: ${fmt(mayorValor())}`);
+  set("mrpaOut", `1 MRPA = ${fmt(mrpaValue())}`);
+  renderReceipt(calc);
+  return calc;
+}
+
+/* ---------------------------------------------------------------------
+   7) RENDER — SIDEBAR (categoría / trámite / valuación)
+   --------------------------------------------------------------------- */
+function aplicarHonorarioConfigActual(){
+  const key = honorarioConfigKey(state.categoria, state.subcategoria);
+  if(honorarioConfig[key] !== undefined) state.honFijo = honorarioConfig[key];
+}
+
+// Autocompleta el % de sellos según la provincia y el tipo de trámite (sólo Inscripción
+// Inicial / Transferencia, que son las únicas columnas que distingue la tabla provista).
+// El % de sellos de Prenda se autocompleta siempre, aparte, y queda editable.
+function aplicarSelloProvincial(){
+  const datos = SELLOS_PROVINCIAS[state.provincia];
+  if(!datos) return;
+  if(state.subcategoria === "inscripcionInicial") state.selloAlicuota = datos.inscripcionInicial;
+  else if(state.subcategoria === "transferencia") state.selloAlicuota = datos.transferencia;
+  state.selloPrendaAlicuota = datos.prenda;
+}
+
+function renderCatPills(){
+  const wrap = document.getElementById("catPills");
+  wrap.innerHTML = "";
+  Object.keys(MRPA_DATA).forEach(key=>{
+    const p = document.createElement("span");
+    p.className = "pill" + (state.categoria===key ? " active":"");
+    p.textContent = MRPA_DATA[key].label;
+    p.dataset.v = key;
+    p.onclick = ()=>{
+      state.categoria = key;
+      const firstSub = SUBCAT_ORDER.find(s=> MRPA_DATA[key].subcategorias[s]);
+      state.subcategoria = firstSub;
+      state.opcionSeleccionada = MRPA_DATA[key].subcategorias[firstSub].opciones[0].id;
+      state.adicionalesSeleccionados = {};
+      state.especialesAniosMora = 0; state.especialesBaseMora = 0; state.especialesTrimestresMora = 0; state.envioLegajo = false; state.piezasRecupero = 0;
+      aplicarHonorarioConfigActual();
+      aplicarSelloProvincial();
+      renderAll();
+    };
+    wrap.appendChild(p);
+  });
+}
+
+function renderSubcatSelect(){
+  const sel = document.getElementById("subcatSelect");
+  sel.innerHTML = "";
+  const cat = MRPA_DATA[state.categoria];
+  SUBCAT_ORDER.filter(k=>cat.subcategorias[k] && !cat.subcategorias[k].esAdicionales).forEach(key=>{
+    const opt = document.createElement("option");
+    opt.value = key; opt.textContent = cat.subcategorias[key].label;
+    if(key===state.subcategoria) opt.selected = true;
+    sel.appendChild(opt);
+  });
+  sel.onchange = ()=>{
+    state.subcategoria = sel.value;
+    state.opcionSeleccionada = MRPA_DATA[state.categoria].subcategorias[sel.value].opciones[0].id;
+    state.especialesAniosMora = 0; state.especialesBaseMora = 0; state.especialesTrimestresMora = 0; state.envioLegajo = false; state.piezasRecupero = 0;
+    aplicarHonorarioConfigActual();
+    aplicarSelloProvincial();
+    renderAll();
+  };
+}
+
+function renderProvinciaSelect(){
+  const sel = document.getElementById("provinciaSelect");
+  if(sel.dataset.built) { sel.value = state.provincia; return; }
+  sel.innerHTML = "";
+  PROVINCIAS.forEach(p=>{
+    const o = document.createElement("option");
+    o.value = p; o.textContent = p;
+    if(p===state.provincia) o.selected = true;
+    sel.appendChild(o);
+  });
+  sel.dataset.built = "1";
+  sel.onchange = ()=>{ state.provincia = sel.value; aplicarSelloProvincial(); renderAll(); };
+}
+
+function renderValuacion(){
+  document.getElementById("valFiscal").value = state.valFiscal;
+  document.getElementById("valVenta").value = state.valVenta;
+  document.getElementById("valMayorOut").textContent = `Se toma el mayor: ${fmt(mayorValor())}`;
+  document.querySelectorAll("#origenPills .pill").forEach(p=>{
+    p.classList.toggle("active", p.dataset.v===state.origen);
+  });
+  const mostrarPrenda = mostrarBloquePrenda();
+  document.getElementById("montoContratoPrendaWrap").style.display = mostrarPrenda ? "" : "none";
+  document.getElementById("montoContratoPrenda").value = state.montoContratoPrenda;
+  document.getElementById("selloPrendaWrap").style.display = mostrarPrenda ? "" : "none";
+  document.getElementById("selloPrendaAlicuota").value = state.selloPrendaAlicuota;
+  document.getElementById("selloPrendaExento").checked = state.selloPrendaExento;
+}
+
+/* ---------------------------------------------------------------------
+   8) RENDER — BLOQUE I: DNRPA
+   --------------------------------------------------------------------- */
+function renderBloqueDNRPA(calc){
+  const cat = MRPA_DATA[state.categoria];
+  const sub = cat.subcategorias[state.subcategoria];
+  const opt = sub.opciones.find(o=>o.id===state.opcionSeleccionada) || sub.opciones[0];
+  const wrap = document.getElementById("dnrpaOpciones");
+  wrap.innerHTML = `<h3 style="font-size:13px;margin:0 0 6px;color:var(--ink-soft);">${cat.anexo} — ${sub.label}</h3>`;
+  sub.opciones.forEach(o=>{
+    const row = document.createElement("label");
+    row.className = "opt-row";
+    row.style.cursor = "pointer";
+    const valTxt = o.tipo==="porcentaje" ? `${o.porcentaje}% (mín ${o.minimoMRPA} MRPA)`
+                 : o.tipo==="permil" ? `${o.permil}‰ (mín ${o.minimoMRPA} MRPA)`
+                 : o.recargoAnual && o.recargoAnual.tipo==="pctSobreBase" ? `${o.recargoAnual.porcentaje}% s/base (mora)`
+                 : `${o.mrpa} MRPA`;
+    row.innerHTML = `
+      <input type="radio" class="radio" name="opcionArancel" ${o.id===state.opcionSeleccionada?"checked":""}>
+      <span class="opt-txt">
+        <span class="opt-label"><b>${o.id}.</b> ${o.label}</span>
+        ${o.recargoAnual ? `<div class="opt-detail">${o.recargoAnual.texto}</div>` : ""}
+        ${o.nota ? `<div class="opt-detail">${o.nota}</div>` : ""}
+      </span>
+      <span class="opt-val">${valTxt}</span>`;
+    row.querySelector("input").onchange = ()=>{ state.opcionSeleccionada = o.id; renderAll(); };
+    wrap.appendChild(row);
+  });
+
+  // Recupero de piezas (Modificaciones B)
+  if(opt.recargoPorPiezaMRPA){
+    const piezasField = document.createElement("div");
+    piezasField.className = "field"; piezasField.style.marginTop="10px";
+    piezasField.innerHTML = `<label>Cant. de piezas con recupero (+${opt.recargoPorPiezaMRPA} MRPA c/u)</label>
+      <input type="number" id="piezasRecuperoInput" value="${state.piezasRecupero}" min="0">`;
+    wrap.appendChild(piezasField);
+    piezasField.querySelector("input").oninput = (e)=>{ state.piezasRecupero = Number(e.target.value)||0; refreshTotals(); };
+  }
+
+  // Envío de legajo (Modificaciones A: cambio de domicilio con envío de legajo)
+  if(opt.envioLegajoMRPA){
+    const legajoField = document.createElement("div");
+    legajoField.className = "check-item"; legajoField.style.marginTop = "10px";
+    legajoField.innerHTML = `<input type="checkbox" id="envioLegajoInput" ${state.envioLegajo?"checked":""}>
+      <span class="lbl">Es cambio de domicilio con envío de legajo (+${opt.envioLegajoMRPA} MRPA)</span>`;
+    wrap.appendChild(legajoField);
+    legajoField.querySelector("input").onchange = (e)=>{ state.envioLegajo = e.target.checked; refreshTotals(); };
+  }
+
+  // Mora / recargo anual (Especiales A y B)
+  if(opt.recargoAnual){
+    const moraField = document.createElement("div");
+    moraField.className = "field"; moraField.style.marginTop = "10px";
+    if(opt.recargoAnual.tipo === "unidadesMRPA"){
+      moraField.innerHTML = `<label>Años/fracciones de mora — rehabilitación (máx. ${opt.recargoAnual.maxAnios})</label>
+        <input type="number" id="especialesAniosMoraInput" min="0" max="${opt.recargoAnual.maxAnios}" value="${state.especialesAniosMora}">`;
+      wrap.appendChild(moraField);
+      moraField.querySelector("input").oninput = (e)=>{ state.especialesAniosMora = Number(e.target.value)||0; refreshTotals(); };
+    } else if(opt.recargoAnual.tipo === "pctSobreBase"){
+      moraField.innerHTML = `
+        <div class="row2">
+          <div class="field" style="margin-bottom:0;">
+            <label>Base del arancel del trámite en mora ($)</label>
+            <input type="text" inputmode="decimal" id="especialesBaseMoraInput" value="${state.especialesBaseMora}">
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label>Años/fracciones de mora (máx. ${opt.recargoAnual.maxAnios})</label>
+            <input type="number" id="especialesAniosMoraInput" min="0" max="${opt.recargoAnual.maxAnios}" value="${state.especialesAniosMora}">
+          </div>
+        </div>`;
+      wrap.appendChild(moraField);
+      moraField.querySelector("#especialesBaseMoraInput").oninput = (e)=>{ state.especialesBaseMora = parseDecimal(e.target.value); refreshTotals(); };
+      moraField.querySelector("#especialesAniosMoraInput").oninput = (e)=>{ state.especialesAniosMora = Number(e.target.value)||0; refreshTotals(); };
+    }
+  }
+
+  // Mora trimestral (Especiales A: mora de placas provisorias / permiso de circulación)
+  if(opt.recargoTrimestral){
+    const trimField = document.createElement("div");
+    trimField.className = "field"; trimField.style.marginTop = "10px";
+    trimField.innerHTML = `<label>Trimestres de mora — placas/permiso provisorio</label>
+      <input type="number" id="especialesTrimestresMoraInput" min="0" value="${state.especialesTrimestresMora}">
+      <small class="hint">${opt.recargoTrimestral.texto}</small>`;
+    wrap.appendChild(trimField);
+    trimField.querySelector("input").oninput = (e)=>{ state.especialesTrimestresMora = Number(e.target.value)||0; refreshTotals(); };
+  }
+
+  if(sub.incluye){
+    const inc = document.createElement("div");
+    inc.className = "reference-box";
+    inc.style.background = "var(--paper-dim)"; inc.style.borderColor="var(--rule-strong)"; inc.style.color="var(--ink-soft)";
+    inc.innerHTML = `<b>Incluye:</b> ${sub.incluye.join(" · ")}`;
+    wrap.appendChild(inc);
+  }
+
+  if(calc.principal.descuento>0){
+    const d = document.createElement("div");
+    d.className = "line";
+    d.innerHTML = `<span>Descuento comerciante habitualista (10%)</span><span class="amt">− ${fmt(calc.principal.descuento)}</span>`;
+    wrap.appendChild(d);
+  }
+
+  const linePrincipal = document.createElement("div");
+  linePrincipal.className = "line total";
+  linePrincipal.innerHTML = `<span>Arancel principal (<span id="dnrpaPrincipalDetalle">${calc.principal.detalle}</span>)</span><span class="amt" id="dnrpaPrincipalAmt">${fmt(calc.principal.montoPesos)}</span>`;
+  wrap.appendChild(linePrincipal);
+
+  if(calc.prendaExtra){
+    const linePrenda = document.createElement("div");
+    linePrenda.className = "line";
+    linePrenda.innerHTML = `<span>Prenda y Leasing simultánea (<span id="dnrpaPrendaDetalle">${calc.prendaExtra.detalle}</span>)</span><span class="amt" id="dnrpaPrendaAmt">${fmt(calc.prendaExtra.montoPesos)}</span>`;
+    wrap.appendChild(linePrenda);
+  }
+
+  if(state.moraIncluirEnPresupuesto && calc.mora.moraIndex>0){
+    const lineMora = document.createElement("div");
+    lineMora.className = "line";
+    lineMora.innerHTML = `<span>Mora registral (${calc.mora.moraIndex}ª mora, ${calc.mora.pct}%)</span><span class="amt" id="dnrpaMoraAmt">${fmt(calc.moraMontoIncluido)}</span>`;
+    wrap.appendChild(lineMora);
+  }
+
+  const adWrap = document.getElementById("dnrpaAdicionales");
+  if(adWrap) adWrap.innerHTML = "";
+
+  document.getElementById("sub-dnrpa").textContent = fmt(calc.subtotal);
+
+  renderTramitesAdicionalesList(calc.extras);
+  renderMoraPanel(calc.mora);
+}
+
+function renderMoraPanel(mora){
+  document.getElementById("moraFechaFirma").value = state.moraFechaFirma;
+  document.getElementById("moraFechaPresentacion").value = state.moraFechaPresentacion;
+  document.getElementById("moraIncluirEnPresupuesto").checked = state.moraIncluirEnPresupuesto;
+
+  const box = document.getElementById("moraResultado");
+  if(!mora.valido){
+    box.innerHTML = mora.estado;
+  } else {
+    box.innerHTML = `
+      <div class="line"><span>Días hábiles administrativos</span><span class="amt">${mora.diasHabiles}</span></div>
+      <div class="line"><span>Estado del trámite</span><span class="amt">${mora.estado}</span></div>
+      <div class="line"><span>Arancel base (1% del valor, informativo)</span><span class="amt">${fmt(mora.arancelBase)}</span></div>
+      <div class="line"><span>Mora registral (${mora.pct}%)</span><span class="amt">${fmt(mora.montoMora)}</span></div>
+      <div class="line total"><span>Total arancel + mora</span><span class="amt">${fmt(mora.total)}</span></div>`;
+  }
+
+  const listWrap = document.getElementById("moraFeriadosList");
+  listWrap.innerHTML = "";
+  state.moraFeriadosExtra.forEach(f=>{
+    const row = document.createElement("div");
+    row.className = "check-item";
+    row.innerHTML = `<span class="lbl">${f}</span><button class="del-x" type="button">&times;</button>`;
+    row.querySelector(".del-x").onclick = ()=>{
+      state.moraFeriadosExtra = state.moraFeriadosExtra.filter(x=>x!==f);
+      renderAll();
+    };
+    listWrap.appendChild(row);
+  });
+}
+
+function renderTramitesAdicionalesList(extras){
+  const wrap = document.getElementById("tramitesAdicionalesList");
+  wrap.innerHTML = "";
+  if(extras.length===0){ wrap.innerHTML = `<p class="empty-hint">Sin trámites adicionales en este expediente.</p>`; return; }
+  extras.forEach(item=>{
+    const row = document.createElement("div");
+    row.className = "tramite-row";
+    row.innerHTML = `
+      <div class="tr-txt">
+        <div class="tr-nombre">${item.nombre}</div>
+        <div class="tr-detalle">${item.detalle}</div>
+      </div>
+      <div class="tr-right">
+        <span class="tr-monto num">${fmt(item.montoPesos)}</span>
+        <button class="del-x" type="button">&times;</button>
+      </div>`;
+    row.querySelector(".del-x").onclick = ()=>{
+      state.tramitesAdicionales = state.tramitesAdicionales.filter(t=>t.id!==item.id);
+      renderAll();
+    };
+    wrap.appendChild(row);
+  });
+}
+
+function renderSelectorTramiteAdicional(){
+  const catSel = document.getElementById("tramiteAdicionalCategoria");
+  if(!catSel.dataset.built){
+    catSel.innerHTML = "";
+    Object.keys(MRPA_DATA).forEach(catKey=>{
+      const o = document.createElement("option");
+      o.value = catKey; o.textContent = MRPA_DATA[catKey].label;
+      catSel.appendChild(o);
+    });
+    catSel.dataset.built = "1";
+    catSel.onchange = renderSubcategoriasTramiteAdicional;
+  }
+  renderSubcategoriasTramiteAdicional();
+}
+
+let tramiteAdicionalExtra = {};
+
+function renderSubcategoriasTramiteAdicional(){
+  const catSel = document.getElementById("tramiteAdicionalCategoria");
+  const subSel = document.getElementById("tramiteAdicionalSubcategoria");
+  const catalogo = buildCatalogoAnidado();
+  const subcats = catalogo[catSel.value] || {};
+  subSel.innerHTML = "";
+  Object.keys(subcats).forEach(subKey=>{
+    const o = document.createElement("option");
+    o.value = subKey; o.textContent = subcats[subKey].label;
+    subSel.appendChild(o);
+  });
+  subSel.onchange = renderOpcionesTramiteAdicional;
+  renderOpcionesTramiteAdicional();
+}
+
+function renderOpcionesTramiteAdicional(){
+  const catSel = document.getElementById("tramiteAdicionalCategoria");
+  const subSel = document.getElementById("tramiteAdicionalSubcategoria");
+  const tramSel = document.getElementById("tramiteAdicionalTramite");
+  const catalogo = buildCatalogoAnidado();
+  const items = (catalogo[catSel.value]?.[subSel.value]?.items) || [];
+  tramSel.innerHTML = "";
+  items.forEach((t,i)=>{
+    const o = document.createElement("option");
+    o.value = i; o.textContent = t.etiqueta;
+    tramSel.appendChild(o);
+  });
+  tramSel.onchange = renderExtrasTramiteAdicional;
+  renderExtrasTramiteAdicional();
+}
+
+function renderExtrasTramiteAdicional(){
+  const catSel = document.getElementById("tramiteAdicionalCategoria");
+  const subSel = document.getElementById("tramiteAdicionalSubcategoria");
+  const tramSel = document.getElementById("tramiteAdicionalTramite");
+  const items = (buildCatalogoAnidado()[catSel.value]?.[subSel.value]?.items) || [];
+  const opt = items[Number(tramSel.value)];
+  tramiteAdicionalExtra = {};
+  const wrap = document.getElementById("tramiteAdicionalExtras");
+  wrap.innerHTML = "";
+  if(!opt) return;
+
+  if(opt.recargoPorPiezaMRPA){
+    tramiteAdicionalExtra.piezas = 0;
+    const f = document.createElement("div");
+    f.className = "field"; f.style.marginTop = "8px";
+    f.innerHTML = `<label>Cant. de piezas con recupero (+${opt.recargoPorPiezaMRPA} MRPA c/u)</label>
+      <input type="number" min="0" value="0">`;
+    f.querySelector("input").oninput = (e)=>{ tramiteAdicionalExtra.piezas = Number(e.target.value)||0; };
+    wrap.appendChild(f);
+  }
+  if(opt.envioLegajoMRPA){
+    tramiteAdicionalExtra.envioLegajo = false;
+    const f = document.createElement("div");
+    f.className = "check-item"; f.style.marginTop = "8px";
+    f.innerHTML = `<input type="checkbox"><span class="lbl">Es cambio de domicilio con envío de legajo (+${opt.envioLegajoMRPA} MRPA)</span>`;
+    f.querySelector("input").onchange = (e)=>{ tramiteAdicionalExtra.envioLegajo = e.target.checked; };
+    wrap.appendChild(f);
+  }
+  if(opt.recargoAnual){
+    if(opt.recargoAnual.tipo === "unidadesMRPA"){
+      tramiteAdicionalExtra.aniosMora = 0;
+      const f = document.createElement("div");
+      f.className = "field"; f.style.marginTop = "8px";
+      f.innerHTML = `<label>Años/fracciones de mora — rehabilitación (máx. ${opt.recargoAnual.maxAnios})</label>
+        <input type="number" min="0" max="${opt.recargoAnual.maxAnios}" value="0">`;
+      f.querySelector("input").oninput = (e)=>{ tramiteAdicionalExtra.aniosMora = Number(e.target.value)||0; };
+      wrap.appendChild(f);
+    } else if(opt.recargoAnual.tipo === "pctSobreBase"){
+      tramiteAdicionalExtra.baseMora = 0; tramiteAdicionalExtra.aniosMora = 0;
+      const f = document.createElement("div");
+      f.className = "row2"; f.style.marginTop = "8px";
+      f.innerHTML = `
+        <div class="field" style="margin-bottom:0;">
+          <label>Base del arancel en mora ($)</label>
+          <input type="text" inputmode="decimal" value="0">
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label>Años/fracciones de mora (máx. ${opt.recargoAnual.maxAnios})</label>
+          <input type="number" min="0" max="${opt.recargoAnual.maxAnios}" value="0">
+        </div>`;
+      const [baseInp, aniosInp] = f.querySelectorAll("input");
+      baseInp.oninput = ()=>{ tramiteAdicionalExtra.baseMora = parseDecimal(baseInp.value); };
+      aniosInp.oninput = ()=>{ tramiteAdicionalExtra.aniosMora = Number(aniosInp.value)||0; };
+      wrap.appendChild(f);
+    }
+  }
+  if(opt.recargoTrimestral){
+    tramiteAdicionalExtra.trimestresMora = 0;
+    const f = document.createElement("div");
+    f.className = "field"; f.style.marginTop = "8px";
+    f.innerHTML = `<label>Trimestres de mora</label>
+      <input type="number" min="0" value="0">
+      <small class="hint">${opt.recargoTrimestral.texto}</small>`;
+    f.querySelector("input").oninput = (e)=>{ tramiteAdicionalExtra.trimestresMora = Number(e.target.value)||0; };
+    wrap.appendChild(f);
+  }
+}
+
+function renderMisTramitesCustomList(){
+  const wrap = document.getElementById("misTramitesCustomList");
+  if(customTramites.length===0){ wrap.innerHTML = `<p class="empty-hint">Todavía no creaste trámites propios.</p>`; return; }
+  wrap.innerHTML = "";
+  customTramites.forEach(ct=>{
+    const catLabel = ct.categoria==="todas" ? "Todas" : (MRPA_DATA[ct.categoria]?.label || ct.categoria);
+    const formulaTxt = ct.tipoCalculo==="fijo" ? `${ct.mrpa} MRPA`
+                      : ct.tipoCalculo==="porcentaje" ? `${ct.porcentaje}% (mín. ${ct.minimoMRPA} MRPA)`
+                      : `${ct.permil}‰ (mín. ${ct.minimoMRPA} MRPA)`;
+    const row = document.createElement("div");
+    row.className = "tramite-row";
+    row.innerHTML = `
+      <div class="tr-txt">
+        <div class="tr-nombre">${ct.nombre} <span style="color:var(--ink-faint);">(${catLabel})</span></div>
+        <div class="tr-detalle">${formulaTxt}</div>
+      </div>
+      <div class="tr-right"><button class="del-x" type="button">&times;</button></div>`;
+    row.querySelector(".del-x").onclick = ()=>{
+      customTramites = customTramites.filter(c=>c.id!==ct.id);
+      saveCustomTramites();
+      renderSelectorTramiteAdicional();
+      renderMisTramitesCustomList();
+    };
+    wrap.appendChild(row);
+  });
+}
+
+/* ---------------------------------------------------------------------
+   9) RENDER — LISTAS EDITABLES GENÉRICAS (bloques II, III, IV, V)
+   --------------------------------------------------------------------- */
+function renderEditableList(containerId, items, opts){
+  const wrap = document.getElementById(containerId);
+  wrap.innerHTML = "";
+  if(items.length===0){
+    wrap.innerHTML = `<p class="empty-hint">${opts.emptyText || "Todavía no agregaste nada acá."}</p>`;
+    return;
+  }
+  items.forEach(item=>{
+    const row = document.createElement("div");
+    row.className = "check-item";
+    const showCheck = opts.showCheck !== false;
+    row.innerHTML = `
+      ${showCheck ? `<input type="checkbox" ${item.activo!==false?"checked":""}>` : ""}
+      <input type="text" class="lbl" style="border:1px solid var(--rule-strong);border-radius:3px;padding:5px 7px; background:var(--input-bg); color:var(--ink);" value="${item.nombre}">
+      <span class="price"><input type="text" inputmode="decimal" value="${opts.montoField==="monto" ? item.monto : item.precio}"></span>
+      <button class="del-x" type="button">&times;</button>`;
+    let idx = 0;
+    const chk = showCheck ? row.children[idx++] : null;
+    const nombreInp = row.children[idx++];
+    const priceInp = row.querySelector(".price input");
+    if(chk) chk.onchange = ()=>{ item.activo = chk.checked; refreshTotals(); };
+    nombreInp.oninput = ()=>{ item.nombre = nombreInp.value; };
+    priceInp.oninput = ()=>{
+      const v = parseDecimal(priceInp.value);
+      if(opts.montoField==="monto") item.monto = v; else item.precio = v;
+      refreshTotals();
+    };
+    row.querySelector(".del-x").onclick = ()=>{ opts.onDelete(item.id); renderAll(); };
+    wrap.appendChild(row);
+  });
+}
+
+/* ---------------------------------------------------------------------
+   10) RENDER — BLOQUE II: PROVINCIAL
+   --------------------------------------------------------------------- */
+function renderBloqueProvincial(calc){
+  document.getElementById("selloAlicuota").value = state.selloAlicuota;
+  document.getElementById("selloExento").checked = state.selloExento;
+  document.getElementById("selloMoraAplicar").checked = state.selloMoraAplicar;
+
+  const infoBox = document.getElementById("selloMoraInfo");
+  const ms = calc.moraSellos;
+  if(!ms.tieneRegla){
+    infoBox.innerHTML = `No hay regla de mora de sellos cargada para <b>${state.provincia}</b>. Agregala en "⚙ Agregar / administrar mora de sellos por provincia".`;
+  } else if(!state.moraFechaFirma || !state.moraFechaPresentacion){
+    infoBox.innerHTML = `Regla cargada para <b>${state.provincia}</b> (${ms.regla.porcentaje}% ${ms.regla.periodo}). Cargá las fechas en la Calculadora de Mora Registral (Bloque I) para calcularla.`;
+  } else {
+    infoBox.innerHTML = `<b>${state.provincia}</b>: ${ms.periodos} ${ms.regla.periodo==="mensual"?"mes(es)":"trimestre(s)"} transcurrido(s) → recargo ${ms.pct}% ${ms.pct >= (ms.regla.topeTipo==="porcentaje"?ms.regla.topeValor:Infinity) ? "(tope alcanzado)" : ""} sobre el sello (${fmt(ms.baseSellos)}) = ${fmt(ms.monto)}`;
+  }
+
+  renderEditableList("municipalItems", state.municipalItems, {
+    montoField:"precio", emptyText:"Sin formularios municipales cargados todavía.",
+    onDelete:(id)=>{ state.municipalItems = state.municipalItems.filter(i=>i.id!==id); }
+  });
+  document.getElementById("sub-provincial").textContent = fmt(calc.subtotal);
+}
+
+function renderMoraSelloProvinciaSelect(){
+  const sel = document.getElementById("moraSelloProvinciaInput");
+  if(sel.dataset.built) return;
+  sel.innerHTML = "";
+  PROVINCIAS.forEach(p=>{
+    const o = document.createElement("option");
+    o.value = p; o.textContent = p;
+    sel.appendChild(o);
+  });
+  sel.dataset.built = "1";
+}
+
+function renderMoraSellosConfigList(){
+  const wrap = document.getElementById("moraSellosConfigList");
+  const keys = Object.keys(moraSellosConfig);
+  if(keys.length===0){ wrap.innerHTML = `<p class="empty-hint">Todavía no cargaste ninguna.</p>`; return; }
+  wrap.innerHTML = "";
+  keys.forEach(prov=>{
+    const r = moraSellosConfig[prov];
+    const topeTxt = r.topeTipo==="porcentaje" ? `tope ${r.topeValor}%` : `tope ${r.topeValor} moras`;
+    const row = document.createElement("div");
+    row.className = "tramite-row";
+    row.innerHTML = `
+      <div class="tr-txt">
+        <div class="tr-nombre">${prov}</div>
+        <div class="tr-detalle">${r.porcentaje}% ${r.periodo} — ${topeTxt}</div>
+      </div>
+      <div class="tr-right"><button class="del-x" type="button">&times;</button></div>`;
+    row.querySelector(".del-x").onclick = ()=>{
+      delete moraSellosConfig[prov];
+      saveMoraSellosConfig();
+      renderMoraSellosConfigList();
+      renderAll();
+    };
+    wrap.appendChild(row);
+  });
+}
+
+/* ---------------------------------------------------------------------
+   11) RENDER — BLOQUE III: FORMULARIOS Y SOLICITUDES
+   --------------------------------------------------------------------- */
+function renderBloqueFormularios(calc){
+  renderSTAgregadosList();
+  document.getElementById("sub-formularios").textContent = fmt(calc.subtotal);
+}
+
+function renderSTAgregadosList(){
+  const wrap = document.getElementById("stItems");
+  wrap.innerHTML = "";
+  if(state.stItems.length===0){ wrap.innerHTML = `<p class="empty-hint">Sin formularios agregados a este expediente.</p>`; return; }
+  state.stItems.forEach(item=>{
+    const row = document.createElement("div");
+    row.className = "tramite-row";
+    row.innerHTML = `
+      <div class="tr-txt"><div class="tr-nombre">${item.nombre}</div></div>
+      <div class="tr-right">
+        <span class="tr-monto num">${fmt(item.precio)}</span>
+        <button class="del-x" type="button">&times;</button>
+      </div>`;
+    row.querySelector(".del-x").onclick = ()=>{
+      state.stItems = state.stItems.filter(i=>i.id!==item.id);
+      renderAll();
+    };
+    wrap.appendChild(row);
+  });
+}
+
+function renderSTAdicionalSelect(){
+  const sel = document.getElementById("stAdicionalSelect");
+  sel.innerHTML = "";
+  formulariosConfig.forEach((f,i)=>{
+    const o = document.createElement("option");
+    o.value = i; o.textContent = `${f.nombre} — ${fmt(f.precio)}`;
+    sel.appendChild(o);
+  });
+}
+
+function renderFormulariosConfigList(){
+  const wrap = document.getElementById("formulariosConfigList");
+  if(formulariosConfig.length===0){ wrap.innerHTML = `<p class="empty-hint">Sin formularios en el catálogo.</p>`; return; }
+  wrap.innerHTML = "";
+  formulariosConfig.forEach(f=>{
+    const row = document.createElement("div");
+    row.className = "config-row";
+    row.innerHTML = `
+      <span class="clbl">${f.nombre}</span>
+      <span class="cprice"><input type="text" inputmode="decimal" value="${f.precio}"></span>
+      <button class="del-x" type="button" style="margin-left:4px;">&times;</button>`;
+    const input = row.querySelector("input");
+    input.oninput = ()=>{
+      f.precio = parseDecimal(input.value);
+      saveFormulariosConfig();
+      renderSTAdicionalSelect();
+    };
+    row.querySelector(".del-x").onclick = ()=>{
+      formulariosConfig = formulariosConfig.filter(x=>x.id!==f.id);
+      saveFormulariosConfig();
+      renderSTAdicionalSelect();
+      renderFormulariosConfigList();
+    };
+    wrap.appendChild(row);
+  });
+}
+
+/* ---------------------------------------------------------------------
+   12) RENDER — BLOQUE IV: HONORARIOS
+   --------------------------------------------------------------------- */
+function renderBloqueHonorarios(calc){
+  document.getElementById("honFijo").value = state.honFijo;
+
+  renderHonorariosAdicionalesList();
+
+  renderEditableList("gastosItems", state.gastosItems, {
+    montoField:"precio",
+    onDelete:(id)=>{ state.gastosItems = state.gastosItems.filter(i=>i.id!==id); }
+  });
+
+  document.getElementById("sub-honorarios").textContent = fmt(calc.subtotal);
+}
+
+// Lista de todos los trámites configurados en "Configurar honorarios por tipo de trámite"
+function listaHonorarioConfigEntries(){
+  const out = [];
+  Object.keys(MRPA_DATA).forEach(catKey=>{
+    const cat = MRPA_DATA[catKey];
+    SUBCAT_PARA_CONFIG.filter(k=>cat.subcategorias[k]).forEach(subKey=>{
+      const key = honorarioConfigKey(catKey, subKey);
+      out.push({ key, label: `${cat.label} — ${cat.subcategorias[subKey].label}`, monto: honorarioConfig[key]||0 });
+    });
+  });
+  return out;
+}
+
+function renderHonorarioAdicionalSelect(){
+  const sel = document.getElementById("honorarioAdicionalSelect");
+  sel.innerHTML = "";
+  listaHonorarioConfigEntries().forEach((e,i)=>{
+    const o = document.createElement("option");
+    o.value = i; o.textContent = `${e.label} — ${fmt(e.monto)}`;
+    sel.appendChild(o);
+  });
+}
+
+function renderHonorariosAdicionalesList(){
+  const wrap = document.getElementById("honorariosAdicionalesList");
+  wrap.innerHTML = "";
+  if(state.honorariosAdicionales.length===0){ wrap.innerHTML = `<p class="empty-hint">Sin honorarios adicionales sumados.</p>`; return; }
+  state.honorariosAdicionales.forEach(item=>{
+    const row = document.createElement("div");
+    row.className = "tramite-row";
+    row.innerHTML = `
+      <div class="tr-txt"><div class="tr-nombre">${item.nombre}</div></div>
+      <div class="tr-right">
+        <span class="tr-monto num">${fmt(item.monto)}</span>
+        <button class="del-x" type="button">&times;</button>
+      </div>`;
+    row.querySelector(".del-x").onclick = ()=>{
+      state.honorariosAdicionales = state.honorariosAdicionales.filter(h=>h.id!==item.id);
+      renderAll();
+    };
+    wrap.appendChild(row);
+  });
+}
+
+function initHonorarioConfigPanel(){
+  const wrap = document.getElementById("honorarioConfigPanel");
+  wrap.innerHTML = "";
+  Object.keys(MRPA_DATA).forEach(catKey=>{
+    const cat = MRPA_DATA[catKey];
+    const title = document.createElement("div");
+    title.className = "config-group-title";
+    title.textContent = cat.label;
+    wrap.appendChild(title);
+    SUBCAT_PARA_CONFIG.filter(k=>cat.subcategorias[k]).forEach(subKey=>{
+      const sub = cat.subcategorias[subKey];
+      const key = honorarioConfigKey(catKey, subKey);
+      const row = document.createElement("div");
+      row.className = "config-row";
+      row.innerHTML = `
+        <span class="clbl">${sub.label}</span>
+        <span class="cprice"><input type="text" inputmode="decimal" value="${honorarioConfig[key]||0}"></span>`;
+      const input = row.querySelector("input");
+      input.oninput = ()=>{
+        honorarioConfig[key] = parseDecimal(input.value);
+        saveHonorarioConfig();
+        renderHonorarioAdicionalSelect();
+        if(state.categoria===catKey && state.subcategoria===subKey){
+          state.honFijo = honorarioConfig[key];
+          refreshTotals();
+          document.getElementById("honFijo").value = state.honFijo;
+        }
+      };
+      wrap.appendChild(row);
+    });
+  });
+}
+
+/* ---------------------------------------------------------------------
+   13) RENDER — BLOQUE V: INFORMES Y DEUDA
+   --------------------------------------------------------------------- */
+function renderBloqueInformes(calc){
+  const oficial = informeDominioOficial();
+  const box = document.getElementById("infoDominioOficialBox");
+  box.innerHTML = `Arancel oficial DNRPA por Informe de Dominio (Anexo, Bloque 5, opción A): <b>${oficial.mrpa} MRPA = ${fmt(oficial.pesos)}</b>
+    <button type="button" id="btnUsarInformeOficial">Usar este valor</button>`;
+  document.getElementById("btnUsarInformeOficial").onclick = ()=>{
+    state.precioInformeDominio = oficial.pesos;
+    document.getElementById("precioInformeDominio").value = state.precioInformeDominio;
+    refreshTotals();
+  };
+
+  document.getElementById("chkInformeDominio").checked = state.chkInformeDominio;
+  document.getElementById("precioInformeDominio").value = state.precioInformeDominio;
+  document.getElementById("chkInformeAnotaciones").checked = state.chkInformeAnotaciones;
+  document.getElementById("precioInformeAnotaciones").value = state.precioInformeAnotaciones;
+  document.getElementById("chkEmbargo").checked = state.chkEmbargo;
+  document.getElementById("precioEmbargo").value = state.precioEmbargo;
+  document.getElementById("chkInformeMultas").checked = state.chkInformeMultas;
+  document.getElementById("precioInformeMultas").value = state.precioInformeMultas;
+
+  renderEditableList("multasItems", state.multasItems, {
+    montoField:"monto", showCheck:false, emptyText:"Sin multas cargadas.",
+    onDelete:(id)=>{ state.multasItems = state.multasItems.filter(i=>i.id!==id); }
+  });
+
+  document.getElementById("sub-informes").textContent = fmt(calc.subtotal);
+}
+
+/* ---------------------------------------------------------------------
+   14) RENDER — RESUMEN / RECIBO
+   --------------------------------------------------------------------- */
+function renderReceipt(calc){
+  const box = document.getElementById("receiptBox");
+  const cat = MRPA_DATA[state.categoria];
+  const sub = cat.subcategorias[state.subcategoria];
+
+  // Solo refleja visualmente el total ya calculado en la barra fija de mobile (sin recalcular nada)
+  const mobileTotalEl = document.getElementById("mobileBarTotal");
+  if(mobileTotalEl) mobileTotalEl.textContent = fmt(calc.total);
+
+  if(state.vista === "cliente"){
+    box.innerHTML = `
+      <h3>${state.vehiculo || "Presupuesto"}</h3>
+      <div class="rline"><span>Trámite</span><span>${sub.label}</span></div>
+      <div class="rline grand"><span>TOTAL DEL TRÁMITE</span><span class="num stamp-total">${fmt(calc.total)}</span></div>
+    `;
+    return;
+  }
+
+  box.innerHTML = `
+    <h3>${state.vehiculo || "Presupuesto"} — ${cat.label}</h3>
+    <div class="rline"><span>I · DNRPA</span><span class="num">${fmt(calc.dnrpa.subtotal)}</span></div>
+    <div class="rline"><span>II · Provincial/Municipal</span><span class="num">${fmt(calc.provincial.subtotal)}</span></div>
+    <div class="rline"><span>III · Formularios/ST</span><span class="num">${fmt(calc.formularios.subtotal)}</span></div>
+    <div class="rline"><span>IV · Honorarios/Gestión</span><span class="num">${fmt(calc.honorarios.subtotal)}</span></div>
+    <div class="rline"><span>V · Informes/Deuda</span><span class="num">${fmt(calc.informes.subtotal)}</span></div>
+    <div class="rline grand"><span>TOTAL</span><span class="num stamp-total">${fmt(calc.total)}</span></div>
+  `;
+}
+
+/* ---------------------------------------------------------------------
+   15) RENDER MASTER
+   --------------------------------------------------------------------- */
+function renderAll(){
+  document.getElementById("mrpaOut").textContent = `1 MRPA = ${fmt(mrpaValue())}`;
+  document.getElementById("clienteNombre").value = state.cliente;
+  document.getElementById("clienteVehiculo").value = state.vehiculo;
+  renderCatPills();
+  renderSubcatSelect();
+  renderProvinciaSelect();
+  renderValuacion();
+  document.getElementById("conPrenda").checked = state.conPrenda;
+  document.getElementById("comercianteHabitualista").checked = state.comercianteHabitualista;
+
+  const calc = calcTodo();
+  renderBloqueDNRPA(calc.dnrpa);
+  renderBloqueProvincial(calc.provincial);
+  renderBloqueFormularios(calc.formularios);
+  renderBloqueHonorarios(calc.honorarios);
+  renderBloqueInformes(calc.informes);
+  renderReceipt(calc);
+
+  document.getElementById("vtCliente").classList.toggle("active", state.vista==="cliente");
+  document.getElementById("vtMandatario").classList.toggle("active", state.vista==="mandatario");
+}
+
+/* ---------------------------------------------------------------------
+   16) JSON DE SALIDA
+   --------------------------------------------------------------------- */
+function buildJSON(){
+  const calc = calcTodo();
+  const cat = MRPA_DATA[state.categoria];
+  const sub = cat.subcategorias[state.subcategoria];
+  return {
+    tramite: `${sub.label} — ${cat.label} (${cat.anexo}, opción ${state.opcionSeleccionada})`,
+    cliente: state.cliente,
+    vehiculo: state.vehiculo,
+    datos_vehiculo: {
+      valuacion_oficial: Number(state.valFiscal)||0,
+      valor_compraventa: Number(state.valVenta)||0,
+      valor_considerado: mayorValor(),
+      monto_contrato_prenda: Number(state.montoContratoPrenda)||0,
+      origen: state.origen === "nacional" ? "Nacional" : "Importado",
+      provincia: state.provincia
+    },
+    bloque_dnrpa: {
+      arancel_transferencia: calc.dnrpa.principal.montoPesos,
+      descuento_comerciante_habitualista: calc.dnrpa.principal.descuento,
+      arancel_prenda_simultanea: calc.dnrpa.prendaExtra ? calc.dnrpa.prendaExtra.montoPesos : 0,
+      aranceles_fijos: calc.dnrpa.adicionales.total,
+      tramites_adicionales: calc.dnrpa.extras.map(e=>({ nombre:e.nombre, monto:e.montoPesos })),
+      mora_registral: { dias_habiles: calc.dnrpa.mora.diasHabiles, mora_indice: calc.dnrpa.mora.moraIndex,
+        porcentaje: calc.dnrpa.mora.pct, monto: calc.dnrpa.moraMontoIncluido, incluida_en_total: state.moraIncluirEnPresupuesto },
+      subtotal_dnrpa: calc.dnrpa.subtotal
+    },
+    bloque_provincial: {
+      impuesto_sellos: calc.provincial.sellos,
+      sellos_prenda: calc.provincial.sellosPrenda,
+      mora_sellos: { aplica: calc.provincial.moraSellos.aplica, periodos: calc.provincial.moraSellos.periodos,
+        porcentaje: calc.provincial.moraSellos.pct, base_sellos: calc.provincial.moraSellos.baseSellos,
+        monto: calc.provincial.moraSellos.aplica ? calc.provincial.moraSellos.monto : 0 },
+      formularios_municipales: calc.provincial.municipal,
+      subtotal_provincial: calc.provincial.subtotal
+    },
+    bloque_formularios: {
+      solicitudes_tipo: calc.formularios.solicitudesTipo,
+      certificaciones: 0.00,
+      subtotal_formularios: calc.formularios.subtotal
+    },
+    bloque_honorarios: {
+      honorarios_mandatario: calc.honorarios.honorario,
+      honorarios_adicionales: state.honorariosAdicionales.map(h=>({ nombre:h.nombre, monto:h.monto })),
+      gastos_operativos: calc.honorarios.gastosOperativos,
+      subtotal_honorarios: calc.honorarios.subtotal
+    },
+    bloque_informes_y_deudas: {
+      informe_dominio: calc.informes.informeDominio,
+      costo_informe_multas: calc.informes.costoInformeMultas,
+      multas_acumuladas: calc.informes.multasAcumuladas,
+      embargos_inhibiciones: calc.informes.embargosInhibiciones,
+      subtotal_informes: calc.informes.subtotal
+    },
+    total_presupuesto: calc.total
+  };
+}
+
+function buildTextoResumen(){
+  const j = buildJSON();
+  const calc = calcTodo();
+  return [
+    `PRESUPUESTO — ${j.tramite}`,
+    j.cliente ? `Cliente: ${j.cliente}` : null,
+    j.vehiculo ? `Vehículo: ${j.vehiculo}` : null,
+    ``,
+    `I. Aranceles DNRPA ......... ${fmt(calc.dnrpa.subtotal)}`,
+    `II. Provincial/Municipal .... ${fmt(calc.provincial.subtotal)}`,
+    `III. Formularios/ST ......... ${fmt(calc.formularios.subtotal)}`,
+    `IV. Honorarios/Gestión ...... ${fmt(calc.honorarios.subtotal)}`,
+    `V. Informes/Deuda ........... ${fmt(calc.informes.subtotal)}`,
+    ``,
+    `TOTAL: ${fmt(calc.total)}`,
+  ].filter(Boolean).join("\n");
+}
+
+/* ---------------------------------------------------------------------
+   17) PERSISTENCIA — GUARDAR / LISTAR PRESUPUESTOS
+   --------------------------------------------------------------------- */
+const LS_KEY = "el_legajo_presupuestos_v1";
+
+function getSaved(){
+  try{ return JSON.parse(localStorage.getItem(LS_KEY)) || []; }catch(e){ return []; }
+}
+function setSaved(list){ localStorage.setItem(LS_KEY, JSON.stringify(list)); }
+
+function guardarPresupuesto(){
+  const list = getSaved();
+  const entry = {
+    id: uid(), fecha: new Date().toISOString(),
+    cliente: state.cliente || "(sin nombre)", vehiculo: state.vehiculo || "",
+    total: calcTodo().total,
+    state: JSON.parse(JSON.stringify(state))
+  };
+  list.unshift(entry);
+  setSaved(list);
+  renderSavedList();
+  showToast("✓ Presupuesto guardado");
+}
+
+function cargarPresupuesto(id){
+  const entry = getSaved().find(e=>e.id===id);
+  if(!entry) return;
+  state = JSON.parse(JSON.stringify(entry.state));
+  renderAll();
+  document.getElementById("modalSaved").classList.remove("open");
+}
+
+function eliminarPresupuesto(id){
+  setSaved(getSaved().filter(e=>e.id!==id));
+  renderSavedList();
+}
+
+function renderSavedList(){
+  const wrap = document.getElementById("savedList");
+  const list = getSaved();
+  if(list.length===0){ wrap.innerHTML = `<p class="empty-hint">Todavía no guardaste presupuestos.</p>`; return; }
+  wrap.innerHTML = "";
+  list.forEach(e=>{
+    const row = document.createElement("div");
+    row.className = "saved-item";
+    const fecha = new Date(e.fecha).toLocaleDateString("es-AR");
+    row.innerHTML = `
+      <div><span class="sname">${e.cliente}</span> — ${e.vehiculo || "s/d"}<br><span style="color:var(--ink-faint)">${fecha} · ${fmt(e.total)}</span></div>
+      <div class="sacts"><button data-a="load">Abrir</button><button data-a="del">Eliminar</button></div>`;
+    row.querySelector('[data-a="load"]').onclick = ()=>cargarPresupuesto(e.id);
+    row.querySelector('[data-a="del"]').onclick = ()=>eliminarPresupuesto(e.id);
+    wrap.appendChild(row);
+  });
+}
+
+/* ---------------------------------------------------------------------
+   18) TEMA CLARO / OSCURO
+   --------------------------------------------------------------------- */
+const THEME_KEY = "el_legajo_theme";
+function applyTheme(theme){
+  if(theme === "dark" || theme === "light") document.documentElement.setAttribute("data-theme", theme);
+  else document.documentElement.removeAttribute("data-theme");
+}
+function initTheme(){ applyTheme(localStorage.getItem(THEME_KEY) || "auto"); }
+function toggleTheme(){
+  const current = document.documentElement.getAttribute("data-theme");
+  const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const effectiveIsDark = current ? current === "dark" : prefersDark;
+  const next = effectiveIsDark ? "light" : "dark";
+  localStorage.setItem(THEME_KEY, next);
+  applyTheme(next);
+}
+
+/* ---------------------------------------------------------------------
+   18c) TOAST — reemplaza los alert() nativos por un aviso propio
+   --------------------------------------------------------------------- */
+function showToast(msg, ms=2600){
+  const wrap = document.getElementById("toastWrap");
+  if(!wrap){ return; } // fallback silencioso si no existe el contenedor
+  const t = document.createElement("div");
+  t.className = "toast";
+  t.textContent = msg;
+  wrap.appendChild(t);
+  requestAnimationFrame(()=> t.classList.add("show"));
+  setTimeout(()=>{
+    t.classList.remove("show");
+    setTimeout(()=> t.remove(), 250);
+  }, ms);
+}
+
+/* ---------------------------------------------------------------------
+   18b) MODO MOBILE — respaldo en JS del @media (por si algún navegador/
+   webview no aplica bien el CSS), agrega la clase "es-mobile" al <html>
+   --------------------------------------------------------------------- */
+function actualizarModoMobile(){
+  const esMobile = window.innerWidth <= 1080 || (window.matchMedia && window.matchMedia("(max-width: 1080px)").matches);
+  document.documentElement.classList.toggle("es-mobile", !!esMobile);
+}
+
+/* ---------------------------------------------------------------------
+   19) EVENTOS GENERALES
+   --------------------------------------------------------------------- */
+function wireStaticEvents(){
+  document.getElementById("btnTheme").onclick = toggleTheme;
+  document.getElementById("uvaInput").oninput = (e)=>{ state.uva = Number(e.target.value)||0; saveUva(state.uva); renderAll(); };
+  document.getElementById("clienteNombre").oninput = (e)=>{ state.cliente = e.target.value; renderReceipt(calcTodo()); };
+  document.getElementById("clienteVehiculo").oninput = (e)=>{ state.vehiculo = e.target.value; renderReceipt(calcTodo()); };
+  document.getElementById("conPrenda").onchange = (e)=>{ state.conPrenda = e.target.checked; renderAll(); };
+  document.getElementById("comercianteHabitualista").onchange = (e)=>{ state.comercianteHabitualista = e.target.checked; renderAll(); };
+  document.getElementById("valFiscal").oninput = (e)=>{ state.valFiscal = Number(e.target.value)||0; refreshTotals(); };
+  document.getElementById("valVenta").oninput = (e)=>{ state.valVenta = Number(e.target.value)||0; refreshTotals(); };
+  document.getElementById("montoContratoPrenda").oninput = (e)=>{ state.montoContratoPrenda = parseDecimal(e.target.value); refreshTotals(); };
+
+  document.querySelectorAll("#origenPills .pill").forEach(p=>{
+    p.onclick = ()=>{ state.origen = p.dataset.v; renderAll(); };
+  });
+
+  document.getElementById("selloAlicuota").oninput = (e)=>{ state.selloAlicuota = parseDecimal(e.target.value); refreshTotals(); };
+  document.getElementById("selloExento").onchange = (e)=>{ state.selloExento = e.target.checked; refreshTotals(); };
+  document.getElementById("selloPrendaAlicuota").oninput = (e)=>{ state.selloPrendaAlicuota = parseDecimal(e.target.value); refreshTotals(); };
+  document.getElementById("selloPrendaExento").onchange = (e)=>{ state.selloPrendaExento = e.target.checked; refreshTotals(); };
+
+  // --- Mora de sellos por provincia ---
+  document.getElementById("selloMoraAplicar").onchange = (e)=>{ state.selloMoraAplicar = e.target.checked; renderAll(); };
+
+  let moraSelloPeriodo = "mensual";
+  let moraSelloTopeTipo = "porcentaje";
+  document.querySelectorAll("#moraSelloPeriodoPills .pill").forEach(p=>{
+    p.onclick = ()=>{
+      moraSelloPeriodo = p.dataset.v;
+      document.querySelectorAll("#moraSelloPeriodoPills .pill").forEach(x=>x.classList.toggle("active", x===p));
+    };
+  });
+  document.querySelectorAll("#moraSelloTopeTipoPills .pill").forEach(p=>{
+    p.onclick = ()=>{
+      moraSelloTopeTipo = p.dataset.v;
+      document.querySelectorAll("#moraSelloTopeTipoPills .pill").forEach(x=>x.classList.toggle("active", x===p));
+      document.getElementById("moraSelloTopeValorLabel").textContent = moraSelloTopeTipo==="porcentaje" ? "Tope (% máximo de recargo)" : "Tope (cantidad máxima de moras/períodos)";
+    };
+  });
+  document.getElementById("btnGuardarMoraSello").onclick = ()=>{
+    const prov = document.getElementById("moraSelloProvinciaInput").value;
+    moraSellosConfig[prov] = {
+      periodo: moraSelloPeriodo,
+      porcentaje: parseDecimal(document.getElementById("moraSelloPorcentajeInput").value),
+      topeTipo: moraSelloTopeTipo,
+      topeValor: parseDecimal(document.getElementById("moraSelloTopeValorInput").value),
+    };
+    saveMoraSellosConfig();
+    renderMoraSellosConfigList();
+    renderAll();
+  };
+
+  document.getElementById("addMunicipal").onclick = ()=>{
+    state.municipalItems.push({id:uid(), nombre:"Nuevo ítem municipal", precio:0, activo:true});
+    renderAll();
+  };
+  document.getElementById("addGasto").onclick = ()=>{
+    state.gastosItems.push({id:uid(), nombre:"Nuevo gasto", precio:0, activo:true});
+    renderAll();
+  };
+  document.getElementById("addMulta").onclick = ()=>{
+    state.multasItems.push({id:uid(), nombre:"Multa / infracción", monto:0});
+    renderAll();
+  };
+
+  document.getElementById("honFijo").oninput = (e)=>{ state.honFijo = parseDecimal(e.target.value); refreshTotals(); };
+
+  document.getElementById("chkInformeDominio").onchange = (e)=>{ state.chkInformeDominio = e.target.checked; refreshTotals(); };
+  document.getElementById("precioInformeDominio").oninput = (e)=>{ state.precioInformeDominio = parseDecimal(e.target.value); refreshTotals(); };
+  document.getElementById("chkInformeAnotaciones").onchange = (e)=>{ state.chkInformeAnotaciones = e.target.checked; refreshTotals(); };
+  document.getElementById("precioInformeAnotaciones").oninput = (e)=>{ state.precioInformeAnotaciones = parseDecimal(e.target.value); refreshTotals(); };
+  document.getElementById("chkEmbargo").onchange = (e)=>{ state.chkEmbargo = e.target.checked; refreshTotals(); };
+  document.getElementById("precioEmbargo").oninput = (e)=>{ state.precioEmbargo = parseDecimal(e.target.value); refreshTotals(); };
+  document.getElementById("chkInformeMultas").onchange = (e)=>{ state.chkInformeMultas = e.target.checked; refreshTotals(); };
+  document.getElementById("precioInformeMultas").oninput = (e)=>{ state.precioInformeMultas = parseDecimal(e.target.value); refreshTotals(); };
+
+  document.getElementById("vtCliente").onclick = ()=>{ state.vista = "cliente"; renderAll(); };
+  document.getElementById("vtMandatario").onclick = ()=>{ state.vista = "mandatario"; renderAll(); };
+
+  document.getElementById("btnGuardar").onclick = guardarPresupuesto;
+  document.getElementById("btnNuevo").onclick = ()=>{
+    if(confirm("¿Limpiar todo para armar un presupuesto nuevo? Si no lo guardaste, se pierde lo cargado (tu configuración de honorarios y trámites propios NO se borra).")){
+      state = crearEstadoInicial();
+      renderAll();
+      showToast("✓ Listo para un presupuesto nuevo");
+    }
+  };
+
+  // --- Hoja deslizante del resumen (solo mobile) ---
+  const abrirHojaResumen = ()=>{
+    document.getElementById("summaryPanel").classList.add("open");
+    document.getElementById("sheetBackdrop").classList.add("open");
+    document.body.classList.add("sheet-open");
+  };
+  const cerrarHojaResumen = ()=>{
+    document.getElementById("summaryPanel").classList.remove("open");
+    document.getElementById("sheetBackdrop").classList.remove("open");
+    document.body.classList.remove("sheet-open");
+  };
+  document.getElementById("btnOpenSheet").onclick = abrirHojaResumen;
+  document.getElementById("btnCloseSheet").onclick = cerrarHojaResumen;
+  document.getElementById("sheetBackdrop").onclick = cerrarHojaResumen;
+
+  document.getElementById("btnSavedOpen").onclick = ()=>{ renderSavedList(); document.getElementById("modalSaved").classList.add("open"); };
+  document.querySelectorAll("[data-close]").forEach(b=>{
+    b.onclick = ()=> document.getElementById(b.dataset.close).classList.remove("open");
+  });
+  document.querySelectorAll(".modal-bg").forEach(m=>{
+    m.addEventListener("click", (e)=>{ if(e.target===m) m.classList.remove("open"); });
+  });
+
+  document.getElementById("btnCopiar").onclick = async ()=>{
+    const txt = buildTextoResumen();
+    try{ await navigator.clipboard.writeText(txt); showToast("✓ Resumen copiado al portapapeles"); }
+    catch(e){ prompt("Copiá el resumen:", txt); }
+  };
+
+  document.getElementById("btnJSON").onclick = ()=>{
+    document.getElementById("jsonOut").value = JSON.stringify(buildJSON(), null, 2);
+    document.getElementById("modalJSON").classList.add("open");
+  };
+  document.getElementById("btnDescargarJSON").onclick = ()=>{
+    const blob = new Blob([JSON.stringify(buildJSON(), null, 2)], {type:"application/json"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `presupuesto_${(state.cliente||"cliente").replace(/\s+/g,"_")}.json`;
+    a.click();
+  };
+
+  // --- Calculadora de Mora Registral ---
+  document.getElementById("moraFechaFirma").onchange = (e)=>{ state.moraFechaFirma = e.target.value; renderAll(); };
+  document.getElementById("moraFechaPresentacion").onchange = (e)=>{ state.moraFechaPresentacion = e.target.value; renderAll(); };
+  document.getElementById("moraIncluirEnPresupuesto").onchange = (e)=>{ state.moraIncluirEnPresupuesto = e.target.checked; renderAll(); };
+
+  // --- Honorarios adicionales ---
+  document.getElementById("addHonorarioAdicional").onclick = ()=>{
+    const sel = document.getElementById("honorarioAdicionalSelect");
+    const entries = listaHonorarioConfigEntries();
+    const match = entries[Number(sel.value)];
+    if(!match) return;
+    state.honorariosAdicionales.push({ id: uid(), nombre: match.label, monto: match.monto });
+    renderAll();
+  };
+
+  // --- Formularios / Solicitudes Tipo ---
+  document.getElementById("addSTAdicional").onclick = ()=>{
+    const sel = document.getElementById("stAdicionalSelect");
+    const f = formulariosConfig[Number(sel.value)];
+    if(!f) return;
+    state.stItems.push({ id: uid(), nombre: f.nombre, precio: f.precio });
+    renderAll();
+  };
+  document.getElementById("btnGuardarFormulario").onclick = ()=>{
+    const nombre = document.getElementById("nuevoFormularioNombre").value.trim();
+    if(!nombre){ showToast("Ponele un nombre al formulario"); return; }
+    const precio = parseDecimal(document.getElementById("nuevoFormularioPrecio").value);
+    formulariosConfig.push({ id: uid(), nombre, precio });
+    saveFormulariosConfig();
+    renderSTAdicionalSelect();
+    renderFormulariosConfigList();
+    showToast(`✓ "${nombre}" agregado al catálogo`);
+    document.getElementById("nuevoFormularioNombre").value = "";
+    document.getElementById("nuevoFormularioPrecio").value = "0";
+  };
+
+  document.getElementById("addMoraFeriado").onclick = ()=>{
+    const inp = document.getElementById("moraFeriadoNuevo");
+    if(!inp.value) return;
+    if(!state.moraFeriadosExtra.includes(inp.value)) state.moraFeriadosExtra.push(inp.value);
+    inp.value = "";
+    renderAll();
+  };
+
+  // --- Trámites adicionales en el expediente ---
+  document.getElementById("addTramiteAdicional").onclick = ()=>{
+    const catSel = document.getElementById("tramiteAdicionalCategoria");
+    const subSel = document.getElementById("tramiteAdicionalSubcategoria");
+    const tramSel = document.getElementById("tramiteAdicionalTramite");
+    const catalogo = buildCatalogoAnidado();
+    const subInfo = catalogo[catSel.value]?.[subSel.value];
+    const match = subInfo?.items[Number(tramSel.value)];
+    if(!match) return;
+    const prefijo = subSel.value === CUSTOM_SUBKEY ? "" : `${subInfo.label} — `;
+    state.tramitesAdicionales.push({
+      id: uid(), nombre: `${MRPA_DATA[catSel.value].label} — ${prefijo}${match.nombre}`, tipo: match.tipo,
+      mrpa: match.mrpa, porcentaje: match.porcentaje, minimoMRPA: match.minimoMRPA, permil: match.permil,
+      recargoPorPiezaMRPA: match.recargoPorPiezaMRPA, envioLegajoMRPA: match.envioLegajoMRPA,
+      recargoAnual: match.recargoAnual, recargoTrimestral: match.recargoTrimestral,
+      piezas: tramiteAdicionalExtra.piezas, envioLegajo: tramiteAdicionalExtra.envioLegajo,
+      aniosMora: tramiteAdicionalExtra.aniosMora, trimestresMora: tramiteAdicionalExtra.trimestresMora,
+      baseMora: tramiteAdicionalExtra.baseMora,
+    });
+    renderAll();
+  };
+
+  // --- Crear trámite / arancel nuevo (future-proof) ---
+  let nuevoTramiteTipo = "fijo";
+  document.querySelectorAll("#nuevoTramiteTipoPills .pill").forEach(p=>{
+    p.onclick = ()=>{
+      nuevoTramiteTipo = p.dataset.v;
+      document.querySelectorAll("#nuevoTramiteTipoPills .pill").forEach(x=>x.classList.toggle("active", x===p));
+      document.getElementById("nuevoTramiteCamposFijo").style.display = nuevoTramiteTipo==="fijo" ? "" : "none";
+      document.getElementById("nuevoTramiteCamposPct").style.display = nuevoTramiteTipo==="porcentaje" ? "" : "none";
+      document.getElementById("nuevoTramiteCamposPermil").style.display = nuevoTramiteTipo==="permil" ? "" : "none";
+    };
+  });
+  document.getElementById("btnGuardarNuevoTramite").onclick = ()=>{
+    const nombre = document.getElementById("nuevoTramiteNombre").value.trim();
+    if(!nombre){ showToast("Ponele un nombre al trámite"); return; }
+    const nuevo = {
+      id: uid(), nombre,
+      categoria: document.getElementById("nuevoTramiteCategoria").value,
+      tipoCalculo: nuevoTramiteTipo,
+      mrpa: parseDecimal(document.getElementById("nuevoTramiteMRPA").value),
+      porcentaje: parseDecimal(document.getElementById("nuevoTramitePct").value),
+      minimoMRPA: nuevoTramiteTipo==="porcentaje" ? parseDecimal(document.getElementById("nuevoTramiteMinPct").value) : parseDecimal(document.getElementById("nuevoTramiteMinPermil").value),
+      permil: parseDecimal(document.getElementById("nuevoTramitePermil").value),
+    };
+    customTramites.push(nuevo);
+    saveCustomTramites();
+    renderSelectorTramiteAdicional();
+    renderMisTramitesCustomList();
+    showToast(`✓ "${nombre}" agregado a tu catálogo`);
+    document.getElementById("nuevoTramiteNombre").value = "";
+    document.getElementById("nuevoTramiteMRPA").value = "0";
+    document.getElementById("nuevoTramitePct").value = "0";
+    document.getElementById("nuevoTramiteMinPct").value = "0";
+    document.getElementById("nuevoTramitePermil").value = "0";
+    document.getElementById("nuevoTramiteMinPermil").value = "0";
+  };
+}
+
+/* ---------------------------------------------------------------------
+   20) INIT
+   --------------------------------------------------------------------- */
+document.addEventListener("DOMContentLoaded", ()=>{
+  initTheme();
+  actualizarModoMobile();
+  window.addEventListener("resize", actualizarModoMobile);
+  window.addEventListener("orientationchange", actualizarModoMobile);
+  loadHonorarioConfig();
+  aplicarHonorarioConfigActual();
+  aplicarSelloProvincial();
+  loadCustomTramites();
+  loadMoraSellosConfig();
+  loadFormulariosConfig();
+  wireStaticEvents();
+  initHonorarioConfigPanel();
+  renderHonorarioAdicionalSelect();
+  renderSelectorTramiteAdicional();
+  renderMisTramitesCustomList();
+  renderMoraSelloProvinciaSelect();
+  renderMoraSellosConfigList();
+  renderSTAdicionalSelect();
+  renderFormulariosConfigList();
+  renderAll();
+});
+
+})();
+
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{
+    try{
+      const swCode = `const CACHE_NAME = "el-legajo-v2";
+const ASSETS = ["./", "./index.html"];
+
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)).catch(()=>{})
+  );
+  self.skipWaiting();
+});
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+    )
+  );
+  self.clients.claim();
+});
+
+self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") return;
+  event.respondWith(
+    fetch(event.request)
+      .then((res) => {
+        if (res && res.status === 200) {
+          const clone = res.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+        }
+        return res;
+      })
+      .catch(() => caches.match(event.request))
+  );
+});
+`;
+      const swBlob = new Blob([swCode], {type:'application/javascript'});
+      const swUrl = URL.createObjectURL(swBlob);
+      navigator.serviceWorker.register(swUrl).catch(()=>{});
+    }catch(e){}
+  });
+}
+</script>
+</body>
+</html>
