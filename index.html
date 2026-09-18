@@ -171,17 +171,27 @@ header.top .brand .sub{font-size:12px; color:var(--stamp-dim); font-family:var(-
   .app{grid-template-columns: minmax(0,1fr);}
   .sidebar{position:static;}
 
-  /* El panel de resumen se abre a pantalla completa (patrón simple y a prueba de fallos:
-     no depende de calcular alturas de viewport ni animaciones de transform). */
+  /* El panel de resumen ocupa toda la pantalla (base sólida, sin depender de
+     alturas de viewport) pero anima como si subiera desde abajo. */
   .summary{
-    display:none;
+    visibility:hidden;
+    display:flex !important; flex-direction:column;
     position:fixed !important; inset:0 !important; z-index:80;
     background:var(--panel);
     overflow-y:auto;
     padding:16px 16px calc(20px + env(safe-area-inset-bottom));
+    transform:translateY(100%);
+    transition:transform .32s cubic-bezier(.22,.9,.35,1), visibility 0s linear .32s;
   }
-  .summary.open{display:flex !important; flex-direction:column;}
-  .sheet-grip{display:none;}
+  .summary.open{
+    visibility:visible;
+    transform:translateY(0);
+    transition:transform .32s cubic-bezier(.22,.9,.35,1), visibility 0s linear 0s;
+  }
+  .sheet-grip{
+    width:44px; height:5px; border-radius:3px; background:var(--rule-strong);
+    margin:2px auto 14px; flex-shrink:0;
+  }
   .sheet-close{
     display:block; margin:0 0 14px; padding:8px 16px; align-self:flex-start;
     border:1px solid var(--rule-strong); border-radius:20px; background:var(--paper-dim);
@@ -214,14 +224,24 @@ body.sheet-open{overflow:hidden;}
 html.es-mobile .app{grid-template-columns: minmax(0,1fr);}
 html.es-mobile .sidebar{position:static;}
 html.es-mobile .summary{
-  display:none;
+  visibility:hidden;
+  display:flex !important; flex-direction:column;
   position:fixed !important; inset:0 !important; z-index:80;
   background:var(--panel);
   overflow-y:auto;
   padding:16px 16px calc(20px + env(safe-area-inset-bottom));
+  transform:translateY(100%);
+  transition:transform .32s cubic-bezier(.22,.9,.35,1), visibility 0s linear .32s;
 }
-html.es-mobile .summary.open{display:flex !important; flex-direction:column;}
-html.es-mobile .sheet-grip{display:none;}
+html.es-mobile .summary.open{
+  visibility:visible;
+  transform:translateY(0);
+  transition:transform .32s cubic-bezier(.22,.9,.35,1), visibility 0s linear 0s;
+}
+html.es-mobile .sheet-grip{
+  width:44px; height:5px; border-radius:3px; background:var(--rule-strong);
+  margin:2px auto 14px; flex-shrink:0;
+}
 html.es-mobile .sheet-close{
   display:block; margin:0 0 14px; padding:8px 16px; align-self:flex-start;
   border:1px solid var(--rule-strong); border-radius:20px; background:var(--paper-dim);
@@ -2363,6 +2383,7 @@ function renderReceipt(calc){
    --------------------------------------------------------------------- */
 function renderAll(){
   document.getElementById("mrpaOut").textContent = `1 MRPA = ${fmt(mrpaValue())}`;
+  document.getElementById("uvaInput").value = state.uva;
   document.getElementById("clienteNombre").value = state.cliente;
   document.getElementById("clienteVehiculo").value = state.vehiculo;
   renderCatPills();
@@ -2566,7 +2587,7 @@ function actualizarModoMobile(){
    --------------------------------------------------------------------- */
 function wireStaticEvents(){
   document.getElementById("btnTheme").onclick = toggleTheme;
-  document.getElementById("uvaInput").oninput = (e)=>{ state.uva = Number(e.target.value)||0; saveUva(state.uva); renderAll(); };
+  document.getElementById("uvaInput").oninput = (e)=>{ state.uva = Number(e.target.value)||0; saveUva(state.uva); refreshTotals(); };
   document.getElementById("clienteNombre").oninput = (e)=>{ state.cliente = e.target.value; renderReceipt(calcTodo()); };
   document.getElementById("clienteVehiculo").oninput = (e)=>{ state.vehiculo = e.target.value; renderReceipt(calcTodo()); };
   document.getElementById("conPrenda").onchange = (e)=>{ state.conPrenda = e.target.checked; renderAll(); };
