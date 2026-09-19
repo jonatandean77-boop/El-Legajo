@@ -2985,7 +2985,7 @@ self.addEventListener("fetch", (event) => {
     ({ initializeApp } = await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js"));
     ({ getFirestore, doc, getDoc, updateDoc, arrayUnion } = await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js"));
   }catch(e){
-    mostrarBloqueo("No se pudo conectar con el servidor de licencias. Verificá tu conexión a internet y volvé a cargar la página.");
+    mostrarBloqueo("No se pudo cargar el sistema de licencias (SDK). Detalle técnico: " + (e && e.message ? e.message : e));
     return;
   }
 
@@ -3057,7 +3057,8 @@ self.addEventListener("fetch", (event) => {
         elBtn.disabled = false; elBtn.textContent = "Activar";
       }
     }catch(err){
-      elError.textContent = "No se pudo verificar (revisá tu conexión a internet) — probá de nuevo.";
+      const codigoErr = err && err.code ? ` (${err.code})` : "";
+      elError.textContent = `No se pudo verificar${codigoErr}. Detalle: ${err && err.message ? err.message : err}`;
       elError.style.display = "block";
       elBtn.disabled = false; elBtn.textContent = "Activar";
     }
