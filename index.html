@@ -418,6 +418,35 @@ details[open] summary{margin-bottom:6px;}
 
 footer.appfoot{text-align:center; color:var(--ink-faint); font-size:11.5px; padding:26px 20px 40px;}
 
+/* ---------- PANTALLA DE ACCESO (licencia) ---------- */
+.gate-overlay{
+  position:fixed; inset:0; z-index:999;
+  background:var(--surface-ink); color:var(--surface-ink-text);
+  display:flex; align-items:center; justify-content:center;
+  padding:24px;
+}
+.gate-card{ max-width:360px; width:100%; text-align:center; }
+.gate-logo{ width:64px; height:64px; margin:0 auto 16px; display:block; }
+.gate-title{ font-family:var(--serif); font-size:24px; margin:0 0 22px; color:var(--surface-ink-text); }
+.gate-status{ color:var(--surface-ink-text); opacity:.75; font-size:14px; }
+.gate-form{ display:flex; flex-direction:column; gap:10px; }
+.gate-label{ font-size:11px; text-transform:uppercase; letter-spacing:.05em; opacity:.7; text-align:left; }
+.gate-input{
+  padding:13px 14px; border-radius:var(--radius); border:1px solid var(--stamp-dim);
+  background:rgba(255,255,255,.06); color:#fff; font-family:var(--mono); font-size:16px; text-align:center;
+  text-transform:uppercase; letter-spacing:.05em;
+}
+.gate-input::placeholder{ color:rgba(255,255,255,.35); }
+.gate-input:focus{ outline:2px solid var(--gold); outline-offset:1px; }
+.gate-btn{
+  padding:13px; border:none; border-radius:var(--radius); background:var(--stamp); color:#fff;
+  font-size:14px; font-weight:600; min-height:48px; cursor:pointer;
+}
+.gate-btn:disabled{ opacity:.6; cursor:default; }
+.gate-btn:hover:not(:disabled){ opacity:.9; }
+.gate-error{ color:#E28A78; font-size:13px; text-align:left; }
+
+
 /* ---------- TOAST (reemplaza los alert() nativos) ---------- */
 .toast-wrap{
   position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(20px);
@@ -463,6 +492,26 @@ button:focus-visible, input:focus-visible, select:focus-visible, .pill:focus-vis
 </style>
 </head>
 <body>
+
+<!-- ============ PANTALLA DE ACCESO (licencia por dispositivo) ============ -->
+<div id="licenseGate" class="gate-overlay">
+  <div class="gate-card">
+    <svg class="gate-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="50" cy="50" r="47" fill="#1B2430" stroke="#9C3B2E" stroke-width="5"/>
+      <circle cx="50" cy="50" r="38" fill="none" stroke="#9C3B2E" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <text x="50" y="69" font-size="50" font-weight="700" text-anchor="middle" fill="#F3EEE2" font-family="Georgia, serif">L</text>
+    </svg>
+    <h1 class="gate-title">El Legajo</h1>
+    <div id="gateVerificando" class="gate-status">Verificando licencia…</div>
+    <form id="gateForm" class="gate-form" style="display:none;">
+      <label for="gateCodigoInput" class="gate-label">Código de licencia</label>
+      <input type="text" id="gateCodigoInput" class="gate-input" placeholder="EJ: LEGAJO-XXXXXX" autocomplete="off" autocapitalize="characters">
+      <button type="submit" class="gate-btn" id="gateBtnValidar">Activar</button>
+      <div id="gateError" class="gate-error" style="display:none;"></div>
+    </form>
+    <div id="gateLocked" class="gate-status" style="display:none; color:#E28A78;"></div>
+  </div>
+</div>
 
 <header class="top">
   <div class="brand">
@@ -2818,8 +2867,12 @@ function wireStaticEvents(){
 
 /* ---------------------------------------------------------------------
    20) INIT
+   El arranque real de la app no ocurre solo con DOMContentLoaded: lo
+   dispara el módulo de licencias (ver <head>) recién cuando confirma que
+   el código de acceso es válido para este dispositivo. Por eso se expone
+   como función en vez de autoejecutarse.
    --------------------------------------------------------------------- */
-document.addEventListener("DOMContentLoaded", ()=>{
+function __iniciarAppReal(){
   initTheme();
   actualizarModoMobile();
   window.addEventListener("resize", actualizarModoMobile);
@@ -2840,7 +2893,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
   renderSTAdicionalSelect();
   renderFormulariosConfigList();
   renderAll();
-});
+}
+window.__iniciarLegajo = __iniciarAppReal;
 
 })();
 
@@ -2889,6 +2943,126 @@ self.addEventListener("fetch", (event) => {
     }catch(e){}
   });
 }
+</script>
+
+<!-- ============ LICENCIAS — dominio + código por dispositivo (Firebase) ============ -->
+<script type="module">
+(async () => {
+  const DOMINIOS_AUTORIZADOS = ["jonatandean77-boop.github.io"];
+
+  const gate = document.getElementById("licenseGate");
+  const elVerificando = document.getElementById("gateVerificando");
+  const elForm = document.getElementById("gateForm");
+  const elLocked = document.getElementById("gateLocked");
+  const elError = document.getElementById("gateError");
+  const elInput = document.getElementById("gateCodigoInput");
+  const elBtn = document.getElementById("gateBtnValidar");
+
+  function mostrarBloqueo(msg){
+    elVerificando.style.display = "none";
+    elForm.style.display = "none";
+    elLocked.textContent = msg;
+    elLocked.style.display = "block";
+  }
+  function mostrarFormulario(){
+    elVerificando.style.display = "none";
+    elForm.style.display = "flex";
+    elInput.focus();
+  }
+  function ocultarGate(){
+    gate.style.display = "none";
+  }
+
+  // 1) Chequeo de dominio — gratis, sin red. Para sumar un dominio nuevo
+  //    (ej: al comprar uno propio), agregalo a la lista de arriba.
+  if(!DOMINIOS_AUTORIZADOS.includes(location.hostname)){
+    mostrarBloqueo("Esta aplicación es de uso exclusivo y no está habilitada para funcionar desde este sitio.");
+    return;
+  }
+
+  let initializeApp, getFirestore, doc, getDoc, updateDoc, arrayUnion;
+  try{
+    ({ initializeApp } = await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js"));
+    ({ getFirestore, doc, getDoc, updateDoc, arrayUnion } = await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js"));
+  }catch(e){
+    mostrarBloqueo("No se pudo conectar con el servidor de licencias. Verificá tu conexión a internet y volvé a cargar la página.");
+    return;
+  }
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAApPHVxnvWZ0S-obWlm7UKlFcS-gAgnhg",
+    authDomain: "el-legajo-calculadora-mdtrio.firebaseapp.com",
+    projectId: "el-legajo-calculadora-mdtrio",
+    storageBucket: "el-legajo-calculadora-mdtrio.firebasestorage.app",
+    messagingSenderId: "21414437734",
+    appId: "1:21414437734:web:2a90f29eaaa9cb68ef5ea7"
+  };
+  const fbApp = initializeApp(firebaseConfig);
+  const db = getFirestore(fbApp);
+
+  // 2) Identificador de este dispositivo (persistente en este navegador)
+  const DEVICE_KEY = "el_legajo_device_id";
+  let deviceId = localStorage.getItem(DEVICE_KEY);
+  if(!deviceId){
+    deviceId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now()+"-"+Math.random().toString(36).slice(2));
+    localStorage.setItem(DEVICE_KEY, deviceId);
+  }
+
+  const LICENCIA_KEY = "el_legajo_licencia_v1";
+
+  async function validarCodigo(codigo){
+    const ref = doc(db, "licencias", codigo);
+    const snap = await getDoc(ref);
+    if(!snap.exists()) return { ok:false, msg:"Código inválido." };
+    const data = snap.data();
+    if(data.activo === false) return { ok:false, msg:"Esta licencia fue desactivada. Consultá con quien te la vendió." };
+    const dispositivos = Array.isArray(data.dispositivos) ? data.dispositivos : [];
+    const max = typeof data.maxDispositivos === "number" ? data.maxDispositivos : 2;
+    if(dispositivos.includes(deviceId)) return { ok:true };
+    if(dispositivos.length >= max){
+      return { ok:false, msg:`Este código ya está en uso en el máximo de dispositivos permitidos (${max}).` };
+    }
+    await updateDoc(ref, { dispositivos: arrayUnion(deviceId) });
+    return { ok:true };
+  }
+
+  // 3) Si este dispositivo ya tenía una licencia validada, entra directo
+  //    (y revalida en segundo plano por si el vendedor la desactivó).
+  let cache = null;
+  try{ cache = JSON.parse(localStorage.getItem(LICENCIA_KEY)); }catch(e){}
+  if(cache && cache.codigo && cache.deviceId === deviceId){
+    ocultarGate();
+    window.__iniciarLegajo();
+    validarCodigo(cache.codigo).then(r=>{ if(!r.ok) localStorage.removeItem(LICENCIA_KEY); }).catch(()=>{});
+    return;
+  }
+
+  // 4) Pedir el código de licencia
+  mostrarFormulario();
+  elForm.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const codigo = elInput.value.trim().toUpperCase();
+    if(!codigo) return;
+    elBtn.disabled = true; elBtn.textContent = "Verificando…";
+    elError.style.display = "none";
+    try{
+      const r = await validarCodigo(codigo);
+      if(r.ok){
+        localStorage.setItem(LICENCIA_KEY, JSON.stringify({codigo, deviceId}));
+        ocultarGate();
+        window.__iniciarLegajo();
+      } else {
+        elError.textContent = r.msg;
+        elError.style.display = "block";
+        elBtn.disabled = false; elBtn.textContent = "Activar";
+      }
+    }catch(err){
+      elError.textContent = "No se pudo verificar (revisá tu conexión a internet) — probá de nuevo.";
+      elError.style.display = "block";
+      elBtn.disabled = false; elBtn.textContent = "Activar";
+    }
+  });
+})();
 </script>
 </body>
 </html>
