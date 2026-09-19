@@ -1270,18 +1270,17 @@ function parseDecimal(str){
 /* ---------------------------------------------------------------------
    4) ESTADO
    --------------------------------------------------------------------- */
-// Valor de UVA: se guarda aparte para no tener que recargarlo cada vez
-const UVA_KEY = "el_legajo_uva_v1";
-function getSavedUva(){
-  const raw = localStorage.getItem(UVA_KEY);
-  const n = raw !== null ? parseFloat(raw) : NaN;
-  return isNaN(n) ? 1850.00 : n;
-}
-function saveUva(v){ localStorage.setItem(UVA_KEY, String(v)); }
+// Conexión con Firebase: se inyecta recién cuando se valida la licencia
+// (ver __iniciarAppReal). A partir de ahí, la configuración y los
+// presupuestos guardados viven en Firebase, atados al código de licencia,
+// y se sincronizan solos entre todos los dispositivos que usen ese código.
+let __sync = null; // { db, codigo, fx }
+function configDocRef(){ return __sync.fx.doc(__sync.db, "licencias", __sync.codigo, "config", "app"); }
+function presupuestosColRef(){ return __sync.fx.collection(__sync.db, "licencias", __sync.codigo, "presupuestos"); }
 
-function crearEstadoInicial(){
+function crearEstadoInicial(uvaActual){
   return {
-    uva: getSavedUva(),
+    uva: typeof uvaActual === "number" ? uvaActual : 1850.00,
     cliente: "", vehiculo: "",
     categoria: "automotor",
     subcategoria: "transferencia",
@@ -1322,45 +1321,21 @@ function crearEstadoInicial(){
 
 let state = crearEstadoInicial();
 
-// Configuración global de honorarios por tipo de trámite (persiste entre presupuestos)
+// Configuración compartida entre todos los dispositivos con la misma licencia
+// (vive en Firebase — ver suscribirConfig). Los valores de acá abajo son
+// solo el arranque, antes de que llegue el primer dato sincronizado.
 let honorarioConfig = {};
-const HON_CONFIG_KEY = "el_legajo_honorario_config_v1";
-function loadHonorarioConfig(){
-  try{ honorarioConfig = JSON.parse(localStorage.getItem(HON_CONFIG_KEY)) || {}; }
-  catch(e){ honorarioConfig = {}; }
-}
-function saveHonorarioConfig(){ localStorage.setItem(HON_CONFIG_KEY, JSON.stringify(honorarioConfig)); }
+let customTramites = [];
 function honorarioConfigKey(catKey, subKey){ return `${catKey}.${subKey}`; }
 
-// Trámites/aranceles creados por el mandatario (future-proof: nuevos trámites DNRPA)
-let customTramites = [];
-const CUSTOM_TRAMITES_KEY = "el_legajo_custom_tramites_v1";
-function loadCustomTramites(){
-  try{ customTramites = JSON.parse(localStorage.getItem(CUSTOM_TRAMITES_KEY)) || []; }
-  catch(e){ customTramites = []; }
-}
-function saveCustomTramites(){ localStorage.setItem(CUSTOM_TRAMITES_KEY, JSON.stringify(customTramites)); }
-
-// Mora sobre el Impuesto a los Sellos, por provincia (configurable/ampliable por el mandatario)
-let moraSellosConfig = {};
-const MORA_SELLOS_KEY = "el_legajo_mora_sellos_v1";
 function defaultMoraSellosConfig(){
   return {
     "Chaco": { periodo:"mensual", porcentaje:5, topeTipo:"porcentaje", topeValor:300 },
     "Corrientes": { periodo:"trimestral", porcentaje:50, topeTipo:"moras", topeValor:5 },
   };
 }
-function loadMoraSellosConfig(){
-  const raw = localStorage.getItem(MORA_SELLOS_KEY);
-  if(raw === null){ moraSellosConfig = defaultMoraSellosConfig(); return; } // nunca se guardó nada: primera vez
-  try{ moraSellosConfig = JSON.parse(raw); }
-  catch(e){ moraSellosConfig = defaultMoraSellosConfig(); }
-}
-function saveMoraSellosConfig(){ localStorage.setItem(MORA_SELLOS_KEY, JSON.stringify(moraSellosConfig)); }
+let moraSellosConfig = defaultMoraSellosConfig();
 
-// Catálogo de Formularios / Solicitudes Tipo, con precio, persistido y ampliable
-let formulariosConfig = [];
-const FORMULARIOS_CONFIG_KEY = "el_legajo_formularios_config_v1";
 function defaultFormulariosConfig(){
   return [
     {id:uid(), nombre:"Solicitud Tipo 08 (Transferencia)", precio:0},
@@ -1372,13 +1347,41 @@ function defaultFormulariosConfig(){
     {id:uid(), nombre:"SUGIT 13D (Verificación digital)", precio:0},
   ];
 }
-function loadFormulariosConfig(){
-  const raw = localStorage.getItem(FORMULARIOS_CONFIG_KEY);
-  if(raw === null){ formulariosConfig = defaultFormulariosConfig(); return; } // nunca se guardó nada: primera vez
-  try{ formulariosConfig = JSON.parse(raw); }
-  catch(e){ formulariosConfig = defaultFormulariosConfig(); }
+let formulariosConfig = defaultFormulariosConfig();
+
+// Guarda cualquiera de las 5 configuraciones (mergea, no pisa las demás)
+function guardarConfigRemota(parcial){
+  __sync.fx.setDoc(configDocRef(), parcial, { merge:true }).catch(err=>{
+    console.error("No se pudo guardar la configuración:", err);
+    showToast("⚠ No se pudo guardar (revisá tu conexión)");
+  });
 }
-function saveFormulariosConfig(){ localStorage.setItem(FORMULARIOS_CONFIG_KEY, JSON.stringify(formulariosConfig)); }
+function saveHonorarioConfig(){ guardarConfigRemota({ honorarioConfig }); }
+function saveCustomTramites(){ guardarConfigRemota({ customTramites }); }
+function saveMoraSellosConfig(){ guardarConfigRemota({ moraSellosConfig }); }
+function saveFormulariosConfig(){ guardarConfigRemota({ formulariosConfig }); }
+function saveUva(v){ guardarConfigRemota({ uva: v }); }
+
+// Suscripción en vivo a la configuración: cualquier cambio hecho desde
+// OTRO dispositivo con la misma licencia (o confirmado desde este) se
+// refleja acá solo. Mientras una escritura propia está "pendiente" de
+// confirmar, solo actualiza los totales (no toca los paneles de edición,
+// para no interrumpir a alguien escribiendo).
+function suscribirConfig(alConfirmar){
+  __sync.fx.onSnapshot(configDocRef(), (snap)=>{
+    const data = snap.exists() ? snap.data() : {};
+    honorarioConfig = data.honorarioConfig || {};
+    customTramites = data.customTramites || [];
+    moraSellosConfig = (data.moraSellosConfig && Object.keys(data.moraSellosConfig).length) ? data.moraSellosConfig : defaultMoraSellosConfig();
+    formulariosConfig = (data.formulariosConfig && data.formulariosConfig.length) ? data.formulariosConfig : defaultFormulariosConfig();
+    if(typeof data.uva === "number") state.uva = data.uva;
+    if(snap.metadata.hasPendingWrites){
+      refreshTotals();
+    } else {
+      alConfirmar();
+    }
+  }, (err)=>{ console.error("Error de sincronización:", err); showToast("⚠ Se perdió la sincronización con el servidor"); });
+}
 
 /* ---------------------------------------------------------------------
    5) CALCULO
@@ -2595,30 +2598,33 @@ function buildTextoResumen(){
 
 /* ---------------------------------------------------------------------
    17) PERSISTENCIA — GUARDAR / LISTAR PRESUPUESTOS
+   Viven en Firebase (colección propia de cada licencia), sincronizados
+   en vivo: lo que guarda un dispositivo aparece solo en los demás.
    --------------------------------------------------------------------- */
-const LS_KEY = "el_legajo_presupuestos_v1";
+let presupuestosGuardados = []; // cache local, la mantiene al día la suscripción en vivo
 
-function getSaved(){
-  try{ return JSON.parse(localStorage.getItem(LS_KEY)) || []; }catch(e){ return []; }
+function suscribirPresupuestos(alCambiar){
+  const q = __sync.fx.query(presupuestosColRef(), __sync.fx.orderBy("fecha", "desc"));
+  __sync.fx.onSnapshot(q, (snap)=>{
+    presupuestosGuardados = snap.docs.map(d=>({ id: d.id, ...d.data() }));
+    alCambiar();
+  }, (err)=>{ console.error("Error de sincronización de presupuestos:", err); });
 }
-function setSaved(list){ localStorage.setItem(LS_KEY, JSON.stringify(list)); }
 
 function guardarPresupuesto(){
-  const list = getSaved();
   const entry = {
-    id: uid(), fecha: new Date().toISOString(),
+    fecha: new Date().toISOString(),
     cliente: state.cliente || "(sin nombre)", vehiculo: state.vehiculo || "",
     total: calcTodo().total,
     state: JSON.parse(JSON.stringify(state))
   };
-  list.unshift(entry);
-  setSaved(list);
-  renderSavedList();
-  showToast("✓ Presupuesto guardado");
+  __sync.fx.addDoc(presupuestosColRef(), entry)
+    .then(()=> showToast("✓ Presupuesto guardado"))
+    .catch(err=>{ console.error(err); showToast("⚠ No se pudo guardar (revisá tu conexión)"); });
 }
 
 function cargarPresupuesto(id){
-  const entry = getSaved().find(e=>e.id===id);
+  const entry = presupuestosGuardados.find(e=>e.id===id);
   if(!entry) return;
   state = JSON.parse(JSON.stringify(entry.state));
   renderAll();
@@ -2626,13 +2632,13 @@ function cargarPresupuesto(id){
 }
 
 function eliminarPresupuesto(id){
-  setSaved(getSaved().filter(e=>e.id!==id));
-  renderSavedList();
+  __sync.fx.deleteDoc(__sync.fx.doc(__sync.db, "licencias", __sync.codigo, "presupuestos", id))
+    .catch(err=>{ console.error(err); showToast("⚠ No se pudo eliminar (revisá tu conexión)"); });
 }
 
 function renderSavedList(){
   const wrap = document.getElementById("savedList");
-  const list = getSaved();
+  const list = presupuestosGuardados;
   if(list.length===0){ wrap.innerHTML = `<p class="empty-hint">Todavía no guardaste presupuestos.</p>`; return; }
   wrap.innerHTML = "";
   list.forEach(e=>{
@@ -2776,7 +2782,7 @@ function wireStaticEvents(){
   document.getElementById("btnGuardar").onclick = guardarPresupuesto;
   document.getElementById("btnNuevo").onclick = ()=>{
     if(confirm("¿Limpiar todo para armar un presupuesto nuevo? Si no lo guardaste, se pierde lo cargado (tu configuración de honorarios y trámites propios NO se borra).")){
-      state = crearEstadoInicial();
+      state = crearEstadoInicial(state.uva);
       renderAll();
       showToast("✓ Listo para un presupuesto nuevo");
     }
@@ -2933,18 +2939,9 @@ function wireStaticEvents(){
    el código de acceso es válido para este dispositivo. Por eso se expone
    como función en vez de autoejecutarse.
    --------------------------------------------------------------------- */
-function __iniciarAppReal(){
-  initTheme();
-  actualizarModoMobile();
-  window.addEventListener("resize", actualizarModoMobile);
-  window.addEventListener("orientationchange", actualizarModoMobile);
-  loadHonorarioConfig();
+function renderTodoLoDependienteDeConfig(){
   aplicarHonorarioConfigActual();
   aplicarSelloProvincial();
-  loadCustomTramites();
-  loadMoraSellosConfig();
-  loadFormulariosConfig();
-  wireStaticEvents();
   initHonorarioConfigPanel();
   renderHonorarioAdicionalSelect();
   renderSelectorTramiteAdicional();
@@ -2954,6 +2951,21 @@ function __iniciarAppReal(){
   renderSTAdicionalSelect();
   renderFormulariosConfigList();
   renderAll();
+}
+
+function __iniciarAppReal(sync){
+  __sync = sync; // { db, codigo, fx } — conexión ya validada por el gate de licencia
+  initTheme();
+  actualizarModoMobile();
+  window.addEventListener("resize", actualizarModoMobile);
+  window.addEventListener("orientationchange", actualizarModoMobile);
+  wireStaticEvents();
+  renderAll(); // primer pantallazo mientras llega la config sincronizada
+  suscribirConfig(renderTodoLoDependienteDeConfig);
+  suscribirPresupuestos(()=>{
+    const modal = document.getElementById("modalSaved");
+    if(modal && modal.classList.contains("open")) renderSavedList();
+  });
 }
 window.__iniciarLegajo = __iniciarAppReal;
 
@@ -3058,7 +3070,9 @@ self.addEventListener("fetch", (event) => {
 
   /* ============================= GATE NORMAL ============================= */
   async function iniciarGateNormal(db){
-    const { doc, getDoc, updateDoc, arrayUnion } = await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js");
+    const { doc, getDoc, setDoc, updateDoc, arrayUnion, onSnapshot, collection, addDoc, deleteDoc, query, orderBy } =
+      await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js");
+    const fx = { doc, getDoc, setDoc, updateDoc, arrayUnion, onSnapshot, collection, addDoc, deleteDoc, query, orderBy };
 
     const gate = document.getElementById("licenseGate");
     const elVerificando = document.getElementById("gateVerificando");
@@ -3110,7 +3124,7 @@ self.addEventListener("fetch", (event) => {
     try{ cache = JSON.parse(localStorage.getItem(LICENCIA_KEY)); }catch(e){}
     if(cache && cache.codigo && cache.deviceId === deviceId){
       ocultarGate();
-      window.__iniciarLegajo();
+      window.__iniciarLegajo({ db, codigo: cache.codigo, fx });
       validarCodigo(cache.codigo).then(r=>{ if(!r.ok) localStorage.removeItem(LICENCIA_KEY); }).catch(()=>{});
       return;
     }
@@ -3127,7 +3141,7 @@ self.addEventListener("fetch", (event) => {
         if(r.ok){
           localStorage.setItem(LICENCIA_KEY, JSON.stringify({codigo, deviceId}));
           ocultarGate();
-          window.__iniciarLegajo();
+          window.__iniciarLegajo({ db, codigo, fx });
         } else {
           elError.textContent = r.msg;
           elError.style.display = "block";
