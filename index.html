@@ -446,6 +446,26 @@ footer.appfoot{text-align:center; color:var(--ink-faint); font-size:11.5px; padd
 .gate-btn:hover:not(:disabled){ opacity:.9; }
 .gate-error{ color:#E28A78; font-size:13px; text-align:left; }
 
+/* ---------- PANEL ADMIN ---------- */
+.admin-card{ max-width:600px; width:100%; text-align:center; margin:0 auto; }
+.admin-input{ text-transform:none; letter-spacing:normal; text-align:left; }
+.admin-h3{ font-family:var(--serif); font-size:16px; margin:0 0 10px; color:var(--surface-ink-text); text-align:left; }
+.admin-nuevo-codigo{
+  margin-top:10px; padding:12px; text-align:left;
+  background:rgba(111,190,147,.14); border:1px solid var(--green); border-radius:var(--radius);
+  color:var(--surface-ink-text); font-size:13.5px;
+}
+.admin-license-row{
+  display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;
+  padding:10px 12px; border:1px solid rgba(255,255,255,.14); border-radius:var(--radius);
+  margin-bottom:8px; text-align:left; color:var(--surface-ink-text);
+}
+.mini-btn{
+  border:1px solid rgba(255,255,255,.3); background:transparent; color:var(--surface-ink-text);
+  padding:6px 10px; border-radius:var(--radius); font-size:12px;
+}
+.mini-btn:hover{ border-color:var(--gold); color:var(--gold); }
+
 
 /* ---------- TOAST (reemplaza los alert() nativos) ---------- */
 .toast-wrap{
@@ -510,6 +530,47 @@ button:focus-visible, input:focus-visible, select:focus-visible, .pill:focus-vis
       <div id="gateError" class="gate-error" style="display:none;"></div>
     </form>
     <div id="gateLocked" class="gate-status" style="display:none; color:#E28A78;"></div>
+  </div>
+</div>
+
+<!-- ============ PANEL ADMIN (solo con ?admin en el link) ============ -->
+<div id="adminPanel" class="gate-overlay" style="display:none; align-items:flex-start; overflow-y:auto; padding:40px 16px;">
+  <div class="admin-card">
+    <svg class="gate-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="50" cy="50" r="47" fill="#1B2430" stroke="#9C3B2E" stroke-width="5"/>
+      <circle cx="50" cy="50" r="38" fill="none" stroke="#9C3B2E" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <text x="50" y="69" font-size="50" font-weight="700" text-anchor="middle" fill="#F3EEE2" font-family="Georgia, serif">L</text>
+    </svg>
+    <h1 class="gate-title">Panel de licencias</h1>
+
+    <form id="adminLoginForm" class="gate-form">
+      <label class="gate-label">Email</label>
+      <input type="email" id="adminEmail" class="gate-input admin-input" autocomplete="username">
+      <label class="gate-label">Contraseña</label>
+      <input type="password" id="adminPassword" class="gate-input admin-input" autocomplete="current-password">
+      <button type="submit" class="gate-btn" id="adminLoginBtn">Ingresar</button>
+      <div id="adminLoginError" class="gate-error" style="display:none;"></div>
+    </form>
+
+    <div id="adminContent" style="display:none; text-align:left;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:8px;">
+        <span style="font-size:12.5px; opacity:.7;" id="adminEmailShown"></span>
+        <button type="button" class="sheet-close" id="adminLogoutBtn" style="margin:0;">Cerrar sesión</button>
+      </div>
+
+      <h3 class="admin-h3">Generar licencia nueva</h3>
+      <div class="row2">
+        <input type="text" id="adminClienteInput" class="gate-input admin-input" placeholder="Nombre del cliente (opcional)">
+        <button type="button" class="gate-btn" id="adminGenerarBtn">+ Generar código</button>
+      </div>
+      <div id="adminNuevoCodigoBox" class="admin-nuevo-codigo" style="display:none;">
+        Código generado: <b id="adminNuevoCodigoTexto" style="font-family:var(--mono);"></b>
+        <button type="button" class="mini-btn" id="adminCopiarCodigoBtn">Copiar</button>
+      </div>
+
+      <h3 class="admin-h3" style="margin-top:24px;">Licencias existentes</h3>
+      <div id="adminListaLicencias"></div>
+    </div>
   </div>
 </div>
 
@@ -2950,42 +3011,27 @@ self.addEventListener("fetch", (event) => {
 (async () => {
   const DOMINIOS_AUTORIZADOS = ["jonatandean77-boop.github.io"];
 
-  const gate = document.getElementById("licenseGate");
-  const elVerificando = document.getElementById("gateVerificando");
-  const elForm = document.getElementById("gateForm");
-  const elLocked = document.getElementById("gateLocked");
-  const elError = document.getElementById("gateError");
-  const elInput = document.getElementById("gateCodigoInput");
-  const elBtn = document.getElementById("gateBtnValidar");
-
-  function mostrarBloqueo(msg){
-    elVerificando.style.display = "none";
-    elForm.style.display = "none";
-    elLocked.textContent = msg;
-    elLocked.style.display = "block";
-  }
-  function mostrarFormulario(){
-    elVerificando.style.display = "none";
-    elForm.style.display = "flex";
-    elInput.focus();
-  }
-  function ocultarGate(){
-    gate.style.display = "none";
-  }
-
   // 1) Chequeo de dominio — gratis, sin red. Para sumar un dominio nuevo
   //    (ej: al comprar uno propio), agregalo a la lista de arriba.
   if(!DOMINIOS_AUTORIZADOS.includes(location.hostname)){
-    mostrarBloqueo("Esta aplicación es de uso exclusivo y no está habilitada para funcionar desde este sitio.");
+    document.getElementById("gateVerificando").style.display = "none";
+    document.getElementById("gateForm").style.display = "none";
+    const el = document.getElementById("gateLocked");
+    el.textContent = "Esta aplicación es de uso exclusivo y no está habilitada para funcionar desde este sitio.";
+    el.style.display = "block";
     return;
   }
 
-  let initializeApp, getFirestore, doc, getDoc, updateDoc, arrayUnion;
+  let initializeApp, getFirestore;
   try{
     ({ initializeApp } = await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js"));
-    ({ getFirestore, doc, getDoc, updateDoc, arrayUnion } = await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js"));
+    ({ getFirestore } = await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js"));
   }catch(e){
-    mostrarBloqueo("No se pudo cargar el sistema de licencias (SDK). Detalle técnico: " + (e && e.message ? e.message : e));
+    const el = document.getElementById("gateLocked");
+    document.getElementById("gateVerificando").style.display = "none";
+    document.getElementById("gateForm").style.display = "none";
+    el.textContent = "No se pudo cargar el sistema de licencias (SDK). Detalle técnico: " + (e && e.message ? e.message : e);
+    el.style.display = "block";
     return;
   }
 
@@ -3000,69 +3046,208 @@ self.addEventListener("fetch", (event) => {
   const fbApp = initializeApp(firebaseConfig);
   const db = getFirestore(fbApp);
 
-  // 2) Identificador de este dispositivo (persistente en este navegador)
-  const DEVICE_KEY = "el_legajo_device_id";
-  let deviceId = localStorage.getItem(DEVICE_KEY);
-  if(!deviceId){
-    deviceId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now()+"-"+Math.random().toString(36).slice(2));
-    localStorage.setItem(DEVICE_KEY, deviceId);
-  }
+  const esAdmin = new URLSearchParams(location.search).has("admin");
 
-  const LICENCIA_KEY = "el_legajo_licencia_v1";
-
-  async function validarCodigo(codigo){
-    const ref = doc(db, "licencias", codigo);
-    const snap = await getDoc(ref);
-    if(!snap.exists()) return { ok:false, msg:"Código inválido." };
-    const data = snap.data();
-    if(data.activo === false) return { ok:false, msg:"Esta licencia fue desactivada. Consultá con quien te la vendió." };
-    const dispositivos = Array.isArray(data.dispositivos) ? data.dispositivos : [];
-    const max = typeof data.maxDispositivos === "number" ? data.maxDispositivos : 2;
-    if(dispositivos.includes(deviceId)) return { ok:true };
-    if(dispositivos.length >= max){
-      return { ok:false, msg:`Este código ya está en uso en el máximo de dispositivos permitidos (${max}).` };
-    }
-    await updateDoc(ref, { dispositivos: arrayUnion(deviceId) });
-    return { ok:true };
-  }
-
-  // 3) Si este dispositivo ya tenía una licencia validada, entra directo
-  //    (y revalida en segundo plano por si el vendedor la desactivó).
-  let cache = null;
-  try{ cache = JSON.parse(localStorage.getItem(LICENCIA_KEY)); }catch(e){}
-  if(cache && cache.codigo && cache.deviceId === deviceId){
-    ocultarGate();
-    window.__iniciarLegajo();
-    validarCodigo(cache.codigo).then(r=>{ if(!r.ok) localStorage.removeItem(LICENCIA_KEY); }).catch(()=>{});
+  if(esAdmin){
+    document.getElementById("licenseGate").style.display = "none";
+    await iniciarPanelAdmin(fbApp, db);
     return;
   }
 
-  // 4) Pedir el código de licencia
-  mostrarFormulario();
-  elForm.addEventListener("submit", async (e)=>{
-    e.preventDefault();
-    const codigo = elInput.value.trim().toUpperCase();
-    if(!codigo) return;
-    elBtn.disabled = true; elBtn.textContent = "Verificando…";
-    elError.style.display = "none";
-    try{
-      const r = await validarCodigo(codigo);
-      if(r.ok){
-        localStorage.setItem(LICENCIA_KEY, JSON.stringify({codigo, deviceId}));
-        ocultarGate();
-        window.__iniciarLegajo();
-      } else {
-        elError.textContent = r.msg;
+  await iniciarGateNormal(db);
+
+  /* ============================= GATE NORMAL ============================= */
+  async function iniciarGateNormal(db){
+    const { doc, getDoc, updateDoc, arrayUnion } = await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js");
+
+    const gate = document.getElementById("licenseGate");
+    const elVerificando = document.getElementById("gateVerificando");
+    const elForm = document.getElementById("gateForm");
+    const elLocked = document.getElementById("gateLocked");
+    const elError = document.getElementById("gateError");
+    const elInput = document.getElementById("gateCodigoInput");
+    const elBtn = document.getElementById("gateBtnValidar");
+
+    function mostrarBloqueo(msg){
+      elVerificando.style.display = "none";
+      elForm.style.display = "none";
+      elLocked.textContent = msg;
+      elLocked.style.display = "block";
+    }
+    function mostrarFormulario(){
+      elVerificando.style.display = "none";
+      elForm.style.display = "flex";
+      elInput.focus();
+    }
+    function ocultarGate(){ gate.style.display = "none"; }
+
+    const DEVICE_KEY = "el_legajo_device_id";
+    let deviceId = localStorage.getItem(DEVICE_KEY);
+    if(!deviceId){
+      deviceId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now()+"-"+Math.random().toString(36).slice(2));
+      localStorage.setItem(DEVICE_KEY, deviceId);
+    }
+
+    const LICENCIA_KEY = "el_legajo_licencia_v1";
+
+    async function validarCodigo(codigo){
+      const ref = doc(db, "licencias", codigo);
+      const snap = await getDoc(ref);
+      if(!snap.exists()) return { ok:false, msg:"Código inválido." };
+      const data = snap.data();
+      if(data.activo === false) return { ok:false, msg:"Esta licencia fue desactivada. Consultá con quien te la vendió." };
+      const dispositivos = Array.isArray(data.dispositivos) ? data.dispositivos : [];
+      const max = typeof data.maxDispositivos === "number" ? data.maxDispositivos : 2;
+      if(dispositivos.includes(deviceId)) return { ok:true };
+      if(dispositivos.length >= max){
+        return { ok:false, msg:`Este código ya está en uso en el máximo de dispositivos permitidos (${max}).` };
+      }
+      await updateDoc(ref, { dispositivos: arrayUnion(deviceId) });
+      return { ok:true };
+    }
+
+    let cache = null;
+    try{ cache = JSON.parse(localStorage.getItem(LICENCIA_KEY)); }catch(e){}
+    if(cache && cache.codigo && cache.deviceId === deviceId){
+      ocultarGate();
+      window.__iniciarLegajo();
+      validarCodigo(cache.codigo).then(r=>{ if(!r.ok) localStorage.removeItem(LICENCIA_KEY); }).catch(()=>{});
+      return;
+    }
+
+    mostrarFormulario();
+    elForm.addEventListener("submit", async (e)=>{
+      e.preventDefault();
+      const codigo = elInput.value.trim().toUpperCase();
+      if(!codigo) return;
+      elBtn.disabled = true; elBtn.textContent = "Verificando…";
+      elError.style.display = "none";
+      try{
+        const r = await validarCodigo(codigo);
+        if(r.ok){
+          localStorage.setItem(LICENCIA_KEY, JSON.stringify({codigo, deviceId}));
+          ocultarGate();
+          window.__iniciarLegajo();
+        } else {
+          elError.textContent = r.msg;
+          elError.style.display = "block";
+          elBtn.disabled = false; elBtn.textContent = "Activar";
+        }
+      }catch(err){
+        const codigoErr = err && err.code ? ` (${err.code})` : "";
+        elError.textContent = `No se pudo verificar${codigoErr}. Detalle: ${err && err.message ? err.message : err}`;
         elError.style.display = "block";
         elBtn.disabled = false; elBtn.textContent = "Activar";
       }
-    }catch(err){
-      const codigoErr = err && err.code ? ` (${err.code})` : "";
-      elError.textContent = `No se pudo verificar${codigoErr}. Detalle: ${err && err.message ? err.message : err}`;
-      elError.style.display = "block";
-      elBtn.disabled = false; elBtn.textContent = "Activar";
+    });
+  }
+
+  /* ============================= PANEL ADMIN ============================= */
+  async function iniciarPanelAdmin(fbApp, db){
+    const { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } =
+      await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js");
+    const { collection, getDocs, doc, setDoc, updateDoc } =
+      await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js");
+
+    const auth = getAuth(fbApp);
+    const panel = document.getElementById("adminPanel");
+    panel.style.display = "flex";
+
+    const loginForm = document.getElementById("adminLoginForm");
+    const loginError = document.getElementById("adminLoginError");
+    const content = document.getElementById("adminContent");
+
+    onAuthStateChanged(auth, (user)=>{
+      if(user){
+        loginForm.style.display = "none";
+        content.style.display = "block";
+        document.getElementById("adminEmailShown").textContent = user.email;
+        cargarLicencias();
+      } else {
+        loginForm.style.display = "flex";
+        content.style.display = "none";
+      }
+    });
+
+    loginForm.addEventListener("submit", async (e)=>{
+      e.preventDefault();
+      loginError.style.display = "none";
+      const email = document.getElementById("adminEmail").value.trim();
+      const pass = document.getElementById("adminPassword").value;
+      const btn = document.getElementById("adminLoginBtn");
+      btn.disabled = true; btn.textContent = "Ingresando…";
+      try{
+        await signInWithEmailAndPassword(auth, email, pass);
+      }catch(err){
+        loginError.textContent = "No se pudo iniciar sesión: " + (err.code || err.message);
+        loginError.style.display = "block";
+      }
+      btn.disabled = false; btn.textContent = "Ingresar";
+    });
+
+    document.getElementById("adminLogoutBtn").addEventListener("click", ()=> signOut(auth));
+
+    function generarCodigoAleatorio(){
+      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // sin caracteres ambiguos (sin O/0, I/1)
+      let s = "";
+      for(let i=0;i<6;i++) s += chars[Math.floor(Math.random()*chars.length)];
+      return "LEGAJO-" + s;
     }
-  });
+
+    document.getElementById("adminGenerarBtn").addEventListener("click", async ()=>{
+      const cliente = document.getElementById("adminClienteInput").value.trim();
+      const codigo = generarCodigoAleatorio();
+      await setDoc(doc(db, "licencias", codigo), {
+        activo: true, dispositivos: [], maxDispositivos: 2,
+        cliente: cliente || "", creado: new Date().toISOString()
+      });
+      document.getElementById("adminNuevoCodigoTexto").textContent = codigo;
+      document.getElementById("adminNuevoCodigoBox").style.display = "block";
+      document.getElementById("adminClienteInput").value = "";
+      cargarLicencias();
+    });
+
+    document.getElementById("adminCopiarCodigoBtn").addEventListener("click", ()=>{
+      const txt = document.getElementById("adminNuevoCodigoTexto").textContent;
+      navigator.clipboard.writeText(txt).catch(()=>{});
+    });
+
+    async function cargarLicencias(){
+      const wrap = document.getElementById("adminListaLicencias");
+      wrap.textContent = "Cargando…";
+      let snap;
+      try{ snap = await getDocs(collection(db, "licencias")); }
+      catch(err){ wrap.textContent = "No se pudo cargar: " + (err.code || err.message); return; }
+      if(snap.empty){ wrap.innerHTML = `<p class="empty-hint">No hay licencias cargadas todavía.</p>`; return; }
+      wrap.innerHTML = "";
+      snap.forEach(docSnap=>{
+        const d = docSnap.data();
+        const codigo = docSnap.id;
+        const usados = Array.isArray(d.dispositivos) ? d.dispositivos.length : 0;
+        const max = typeof d.maxDispositivos === "number" ? d.maxDispositivos : 2;
+        const row = document.createElement("div");
+        row.className = "admin-license-row";
+        row.innerHTML = `
+          <div>
+            <b style="font-family:var(--mono);">${codigo}</b>${d.cliente ? ` — ${d.cliente}` : ""}
+            <div style="font-size:12px; opacity:.7;">${usados}/${max} dispositivos · ${d.activo === false ? "desactivada" : "activa"}</div>
+          </div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button type="button" class="mini-btn" data-a="toggle">${d.activo === false ? "Reactivar" : "Desactivar"}</button>
+            <button type="button" class="mini-btn" data-a="liberar">Liberar dispositivos</button>
+          </div>`;
+        row.querySelector('[data-a="toggle"]').onclick = async ()=>{
+          await updateDoc(doc(db,"licencias",codigo), { activo: d.activo === false });
+          cargarLicencias();
+        };
+        row.querySelector('[data-a="liberar"]').onclick = async ()=>{
+          await updateDoc(doc(db,"licencias",codigo), { dispositivos: [] });
+          cargarLicencias();
+        };
+        wrap.appendChild(row);
+      });
+    }
+  }
 })();
 </script>
 </body>
