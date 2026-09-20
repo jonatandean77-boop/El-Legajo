@@ -369,6 +369,8 @@ small.hint, p.hint{display:block; color:var(--ink-faint); font-size:10.5px; line
 .receipt .rline{display:flex; justify-content:space-between; gap:8px; font-size:12.5px; padding:5px 0; border-bottom:1px dotted rgba(255,255,255,.18); flex-wrap:wrap;}
 .receipt .rline span:first-child{flex:1 1 100px; min-width:0;}
 .receipt .rline.grand{font-size:19px; border-bottom:none; padding-top:12px; font-weight:700;}
+.receipt .rline.sub{font-size:11px; padding:3px 0 3px 14px; opacity:.72; border-bottom:none;}
+.receipt .rline.sub span:first-child{font-style:italic;}
 .receipt .stamp-total{color:#E7B7AC;}
 .view-toggle{display:flex; gap:0; margin-bottom:14px; border:1px solid var(--rule-strong); border-radius:var(--radius); overflow:hidden;}
 .view-toggle button{flex:1; border:none; background:var(--panel); padding:8px; font-size:12.5px; color:var(--ink-soft);}
@@ -597,6 +599,20 @@ button:focus-visible, input:focus-visible, select:focus-visible, .pill:focus-vis
 
   <!-- ============ SIDEBAR: VEHICULO Y TRAMITE ============ -->
   <aside class="sidebar">
+    <div class="card">
+      <div class="card-head"><h2 style="font-size:14px;">Tus datos (mandatario)</h2></div>
+      <div class="card-body">
+        <div class="field">
+          <label for="mandatarioNombre">Nombre y Apellido</label>
+          <input type="text" id="mandatarioNombre" placeholder="Nombre y apellido">
+        </div>
+        <div class="field" style="margin-bottom:6px;">
+          <label for="mandatarioMatricula">N° de Matrícula</label>
+          <input type="text" id="mandatarioMatricula" placeholder="Matrícula">
+        </div>
+        <small class="hint">Se usa para armar el PDF del presupuesto. Se carga una sola vez.</small>
+      </div>
+    </div>
     <div class="card">
       <div class="card-head"><h2 style="font-size:14px;">Datos del cliente</h2></div>
       <div class="card-body">
@@ -1022,6 +1038,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, .pill:focus-vis
     <div class="receipt" id="receiptBox"></div>
     <button class="act-btn primary" id="btnGuardar">Guardar presupuesto</button>
     <button class="act-btn" id="btnCopiar">Copiar resumen</button>
+    <button class="act-btn" id="btnPDF">Exportar PDF</button>
     <button class="act-btn" id="btnJSON">Exportar JSON</button>
     <button class="act-btn" id="btnNuevo" style="border-color:var(--stamp); color:var(--stamp);">🗑 Nuevo presupuesto (limpiar todo)</button>
   </aside>
@@ -1062,6 +1079,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, .pill:focus-vis
 
 <div class="toast-wrap" id="toastWrap"></div>
 
+<script src="https://unpkg.com/jspdf@4.2.1/dist/jspdf.umd.min.js"></script>
 <script>
 /* ==========================================================================
    EL LEGAJO — Motor de cálculo de presupuestos DNRPA
@@ -1362,6 +1380,10 @@ function saveMoraSellosConfig(){ guardarConfigRemota({ moraSellosConfig }); }
 function saveFormulariosConfig(){ guardarConfigRemota({ formulariosConfig }); }
 function saveUva(v){ guardarConfigRemota({ uva: v }); }
 
+// Datos del mandatario (para el membrete del PDF) — compartidos entre dispositivos
+let datosMandatario = { nombre: "", matricula: "" };
+function saveDatosMandatario(){ guardarConfigRemota({ datosMandatario }); }
+
 // Suscripción en vivo a la configuración: cualquier cambio hecho desde
 // OTRO dispositivo con la misma licencia (o confirmado desde este) se
 // refleja acá solo. Mientras una escritura propia está "pendiente" de
@@ -1375,6 +1397,7 @@ function suscribirConfig(alConfirmar){
     moraSellosConfig = (data.moraSellosConfig && Object.keys(data.moraSellosConfig).length) ? data.moraSellosConfig : defaultMoraSellosConfig();
     formulariosConfig = (data.formulariosConfig && data.formulariosConfig.length) ? data.formulariosConfig : defaultFormulariosConfig();
     if(typeof data.uva === "number") state.uva = data.uva;
+    datosMandatario = data.datosMandatario || { nombre: "", matricula: "" };
     if(snap.metadata.hasPendingWrites){
       refreshTotals();
     } else {
@@ -2462,6 +2485,36 @@ function renderBloqueInformes(calc){
 /* ---------------------------------------------------------------------
    14) RENDER — RESUMEN / RECIBO
    --------------------------------------------------------------------- */
+// Desglose legible del Bloque I (para la Vista mandatario y el texto de WhatsApp interno)
+function subLineasDNRPA(calc){
+  const lineas = [];
+  let labelPrincipal = `Arancel principal (${calc.dnrpa.principal.detalle})`;
+  if(calc.dnrpa.principal.descuento > 0){
+    labelPrincipal += ` — incluye descuento comerciante habitualista de ${fmt(calc.dnrpa.principal.descuento)}`;
+  }
+  lineas.push({ label: labelPrincipal, monto: calc.dnrpa.principal.montoPesos });
+  if(calc.dnrpa.prendaExtra){
+    lineas.push({ label: "Prenda y Leasing simultánea", monto: calc.dnrpa.prendaExtra.montoPesos });
+  }
+  calc.dnrpa.extras.forEach(e=>{
+    lineas.push({ label: e.nombre, monto: e.montoPesos });
+  });
+  if(calc.dnrpa.moraMontoIncluido > 0){
+    lineas.push({ label: `Mora registral (${calc.dnrpa.mora.moraIndex}ª mora)`, monto: calc.dnrpa.moraMontoIncluido });
+  }
+  return lineas;
+}
+
+// Desglose legible del Bloque II
+function subLineasProvincial(calc){
+  const lineas = [];
+  if(calc.provincial.sellos > 0) lineas.push({ label: "Impuesto a los Sellos", monto: calc.provincial.sellos });
+  if(calc.provincial.sellosPrenda > 0) lineas.push({ label: "Sellos sobre contrato de Prenda", monto: calc.provincial.sellosPrenda });
+  if(calc.provincial.moraSellos.aplica) lineas.push({ label: `Mora de Sellos (${state.provincia})`, monto: calc.provincial.moraSellos.monto });
+  if(calc.provincial.municipal > 0) lineas.push({ label: "Formularios / gestiones municipales", monto: calc.provincial.municipal });
+  return lineas;
+}
+
 function renderReceipt(calc){
   const box = document.getElementById("receiptBox");
   const cat = MRPA_DATA[state.categoria];
@@ -2483,7 +2536,9 @@ function renderReceipt(calc){
   box.innerHTML = `
     <h3>${state.vehiculo || "Presupuesto"} — ${cat.label}</h3>
     <div class="rline"><span>I · DNRPA</span><span class="num">${fmt(calc.dnrpa.subtotal)}</span></div>
+    ${subLineasDNRPA(calc).map(l=>`<div class="rline sub"><span>${l.label}</span><span class="num">${fmt(l.monto)}</span></div>`).join("")}
     <div class="rline"><span>II · Provincial/Municipal</span><span class="num">${fmt(calc.provincial.subtotal)}</span></div>
+    ${subLineasProvincial(calc).map(l=>`<div class="rline sub"><span>${l.label}</span><span class="num">${fmt(l.monto)}</span></div>`).join("")}
     <div class="rline"><span>III · Formularios/ST</span><span class="num">${fmt(calc.formularios.subtotal)}</span></div>
     <div class="rline"><span>IV · Honorarios/Gestión</span><span class="num">${fmt(calc.honorarios.subtotal)}</span></div>
     <div class="rline"><span>V · Informes/Deuda</span><span class="num">${fmt(calc.informes.subtotal)}</span></div>
@@ -2581,19 +2636,119 @@ function buildJSON(){
 function buildTextoResumen(){
   const j = buildJSON();
   const calc = calcTodo();
+  const cat = MRPA_DATA[state.categoria];
+  const sub = cat.subcategorias[state.subcategoria];
+  const firma = datosMandatario.nombre
+    ? `${datosMandatario.nombre}${datosMandatario.matricula ? ` — Matrícula N° ${datosMandatario.matricula}` : ""}`
+    : null;
+
+  if(state.vista === "cliente"){
+    // Para mandar al cliente: solo el trámite y el total, sin desglosar ningún bloque.
+    return [
+      `PRESUPUESTO — ${sub.label}`,
+      j.cliente ? `Cliente: ${j.cliente}` : null,
+      j.vehiculo ? `Vehículo: ${j.vehiculo}` : null,
+      ``,
+      `TOTAL DEL TRÁMITE: ${fmt(calc.total)}`,
+      firma ? `` : null,
+      firma,
+    ].filter(Boolean).join("\n");
+  }
+
+  // Vista mandatario: desglose completo, para uso interno (no para el cliente).
+  const dnrpaLineas = subLineasDNRPA(calc).map(l=>`   - ${l.label}: ${fmt(l.monto)}`).join("\n");
+  const provLineas = subLineasProvincial(calc).map(l=>`   - ${l.label}: ${fmt(l.monto)}`).join("\n");
   return [
     `PRESUPUESTO — ${j.tramite}`,
     j.cliente ? `Cliente: ${j.cliente}` : null,
     j.vehiculo ? `Vehículo: ${j.vehiculo}` : null,
     ``,
     `I. Aranceles DNRPA ......... ${fmt(calc.dnrpa.subtotal)}`,
+    dnrpaLineas || null,
     `II. Provincial/Municipal .... ${fmt(calc.provincial.subtotal)}`,
+    provLineas || null,
     `III. Formularios/ST ......... ${fmt(calc.formularios.subtotal)}`,
     `IV. Honorarios/Gestión ...... ${fmt(calc.honorarios.subtotal)}`,
     `V. Informes/Deuda ........... ${fmt(calc.informes.subtotal)}`,
     ``,
     `TOTAL: ${fmt(calc.total)}`,
   ].filter(Boolean).join("\n");
+}
+
+/* ---------------------------------------------------------------------
+   16-B) EXPORTAR PDF PROFESIONAL (para el cliente — solo total, sin desglose)
+   --------------------------------------------------------------------- */
+function generarPDFPresupuesto(){
+  if(!window.jspdf || !window.jspdf.jsPDF){
+    showToast("⚠ No se pudo cargar el generador de PDF");
+    return;
+  }
+  const { jsPDF } = window.jspdf;
+  const calc = calcTodo();
+  const cat = MRPA_DATA[state.categoria];
+  const sub = cat.subcategorias[state.subcategoria];
+  const nombreMandatario = (datosMandatario.nombre || "").trim();
+  const matricula = (datosMandatario.matricula || "").trim();
+  const fechaHoy = new Date().toLocaleDateString("es-AR", { day:"2-digit", month:"2-digit", year:"numeric" });
+
+  const doc = new jsPDF({ unit:"mm", format:"a4" });
+  const NAVY = [27,36,48], STAMP = [156,59,46], CREAM = [243,238,226], INK = [30,34,40], INK_SOFT = [90,100,112];
+
+  // Membrete
+  doc.setFillColor(...NAVY);
+  doc.rect(0, 0, 210, 34, "F");
+  doc.setTextColor(...CREAM);
+  doc.setFont("times", "bold");
+  doc.setFontSize(17);
+  doc.text(nombreMandatario || "Mandatario Matriculado", 18, 16);
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(10);
+  doc.text(matricula ? `Mandatario Matriculado — Matrícula N° ${matricula}` : "Mandatario Matriculado", 18, 24);
+
+  // Título y fecha
+  doc.setTextColor(...INK);
+  doc.setFont("times", "bold");
+  doc.setFontSize(16);
+  doc.text("PRESUPUESTO", 18, 48);
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(10);
+  doc.setTextColor(...INK_SOFT);
+  doc.text(`Fecha: ${fechaHoy}`, 148, 48);
+
+  // Datos del trámite
+  doc.setTextColor(...INK);
+  doc.setFontSize(11);
+  let y = 62;
+  const linea = (label, valor) => {
+    if(!valor) return;
+    doc.setFont("helvetica", "bold"); doc.text(`${label}:`, 18, y);
+    doc.setFont("helvetica", "normal"); doc.text(String(valor), 48, y);
+    y += 8;
+  };
+  linea("Cliente", state.cliente);
+  linea("Vehículo", state.vehiculo);
+  linea("Categoría", cat.label);
+  linea("Trámite", sub.label);
+
+  // Total, en caja destacada
+  y += 6;
+  doc.setFillColor(...STAMP);
+  doc.rect(18, y, 174, 18, "F");
+  doc.setTextColor(255,255,255);
+  doc.setFont("times", "bold");
+  doc.setFontSize(13);
+  doc.text("TOTAL DEL TRÁMITE", 24, y+11.5);
+  doc.setFontSize(15);
+  doc.text(fmt(calc.total), 190, y+11.5, { align:"right" });
+
+  // Pie
+  doc.setTextColor(...INK_SOFT);
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(8.5);
+  doc.text("Presupuesto estimado, sujeto a confirmación de datos registrales y valuación fiscal vigente.", 18, 280);
+
+  const nombreArchivo = `presupuesto_${(state.cliente||"cliente").replace(/\s+/g,"_")}.pdf`;
+  doc.save(nombreArchivo);
 }
 
 /* ---------------------------------------------------------------------
@@ -2706,6 +2861,8 @@ function wireStaticEvents(){
   document.getElementById("uvaInput").oninput = (e)=>{ state.uva = Number(e.target.value)||0; saveUva(state.uva); refreshTotals(); };
   document.getElementById("clienteNombre").oninput = (e)=>{ state.cliente = e.target.value; renderReceipt(calcTodo()); };
   document.getElementById("clienteVehiculo").oninput = (e)=>{ state.vehiculo = e.target.value; renderReceipt(calcTodo()); };
+  document.getElementById("mandatarioNombre").oninput = (e)=>{ datosMandatario.nombre = e.target.value; saveDatosMandatario(); };
+  document.getElementById("mandatarioMatricula").oninput = (e)=>{ datosMandatario.matricula = e.target.value; saveDatosMandatario(); };
   document.getElementById("conPrenda").onchange = (e)=>{ state.conPrenda = e.target.checked; renderAll(); };
   document.getElementById("comercianteHabitualista").onchange = (e)=>{ state.comercianteHabitualista = e.target.checked; renderAll(); };
   document.getElementById("valFiscal").oninput = (e)=>{ state.valFiscal = Number(e.target.value)||0; refreshTotals(); };
@@ -2816,6 +2973,8 @@ function wireStaticEvents(){
     try{ await navigator.clipboard.writeText(txt); showToast("✓ Resumen copiado al portapapeles"); }
     catch(e){ prompt("Copiá el resumen:", txt); }
   };
+
+  document.getElementById("btnPDF").onclick = ()=>{ generarPDFPresupuesto(); };
 
   document.getElementById("btnJSON").onclick = ()=>{
     document.getElementById("jsonOut").value = JSON.stringify(buildJSON(), null, 2);
@@ -2940,6 +3099,8 @@ function wireStaticEvents(){
    como función en vez de autoejecutarse.
    --------------------------------------------------------------------- */
 function renderTodoLoDependienteDeConfig(){
+  document.getElementById("mandatarioNombre").value = datosMandatario.nombre || "";
+  document.getElementById("mandatarioMatricula").value = datosMandatario.matricula || "";
   aplicarHonorarioConfigActual();
   aplicarSelloProvincial();
   initHonorarioConfigPanel();
