@@ -203,6 +203,14 @@ header.top .brand .sub{font-size:12px; color:var(--stamp-dim); font-family:var(-
   color:var(--ink-soft); font-size:13px;
 }
 .admin-logout-btn:hover{ border-color:var(--gold); color:var(--gold); }
+.admin-tabs{ display:flex; gap:6px; margin-bottom:18px; border-bottom:1px solid rgba(255,255,255,.14); }
+.admin-tab-btn{
+  background:transparent; border:none; border-bottom:2px solid transparent;
+  color:var(--surface-ink-text); opacity:.65; padding:8px 4px; margin-right:14px;
+  font-family:var(--serif); font-size:14.5px; display:flex; align-items:center; gap:6px;
+}
+.admin-tab-btn:hover{ opacity:.9; }
+.admin-tab-btn.active{ opacity:1; border-bottom-color:var(--stamp); }
 
 /* ---------- BARRA FIJA MOBILE + HOJA DESLIZANTE ---------- */
 .mobile-bar{display:none;}
@@ -433,6 +441,8 @@ small.hint, p.hint{display:block; color:var(--ink-faint); font-size:10.5px; line
 .soporte-item.de-cliente{border-left:3px solid var(--rule-strong); padding-left:8px;}
 .soporte-item .sop-fecha{font-size:11px; color:var(--ink-faint); margin-bottom:3px; font-weight:600;}
 .soporte-item .sop-msg{white-space:pre-wrap;}
+.soporte-item.no-leido{border-left-color:var(--stamp);}
+.soporte-item.no-leido .sop-msg{font-weight:700;}
 
 /* ---------- MODAL ---------- */
 .modal-bg{position:fixed; inset:0; background:rgba(10,13,17,.6); display:none; align-items:center; justify-content:center; z-index:60; padding:20px;}
@@ -542,6 +552,7 @@ footer.appfoot{text-align:center; color:var(--ink-faint); font-size:11.5px; padd
 .admin-thread-texto{ white-space:pre-wrap; display:inline-block; padding:6px 9px; border-radius:6px; max-width:85%; text-align:left; }
 .admin-thread-msg.de-cliente .admin-thread-texto{ background:rgba(255,255,255,.08); }
 .admin-thread-msg.de-vos .admin-thread-texto{ background:rgba(111,190,147,.18); }
+.admin-thread-msg.no-leido .admin-thread-texto{ font-weight:700; border:1px solid var(--stamp); }
 .admin-thread-reply{ display:flex; gap:6px; padding:0 12px 12px; }
 .admin-thread-reply input{ flex:1; margin:0; }
 
@@ -637,36 +648,45 @@ button:focus-visible, input:focus-visible, select:focus-visible, .pill:focus-vis
         <button type="button" class="admin-logout-btn" id="adminLogoutBtn">Cerrar sesión</button>
       </div>
 
-      <h3 class="admin-h3">Generar licencia nueva</h3>
-      <div class="row2">
-        <input type="text" id="adminClienteInput" class="gate-input admin-input" placeholder="Nombre del cliente (opcional)">
-        <button type="button" class="gate-btn" id="adminGenerarBtn">+ Generar código</button>
-      </div>
-      <div id="adminNuevoCodigoBox" class="admin-nuevo-codigo" style="display:none;">
-        Código generado: <b id="adminNuevoCodigoTexto" style="font-family:var(--mono);"></b>
-        <button type="button" class="mini-btn" id="adminCopiarCodigoBtn">Copiar</button>
+      <div class="admin-tabs">
+        <button type="button" class="admin-tab-btn active" id="adminTabBtnLicencias" data-tab="licencias">Licencias</button>
+        <button type="button" class="admin-tab-btn" id="adminTabBtnSoporte" data-tab="soporte">
+          Soporte<span id="adminSoporteBadge" class="admin-badge" style="display:none;"></span>
+        </button>
       </div>
 
-      <h3 class="admin-h3" style="margin-top:24px;">Licencias existentes</h3>
-      <input type="text" id="adminBuscarInput" class="gate-input admin-input" placeholder="Buscar por nombre o código…" style="margin-bottom:10px;">
-      <div id="adminListaLicencias"></div>
-
-      <h3 class="admin-h3" style="margin-top:28px; display:flex; align-items:center; gap:8px;">
-        Mensajes de soporte
-        <span id="adminSoporteBadge" class="admin-badge" style="display:none;">0</span>
-        <button type="button" class="mini-btn" id="adminNotifBtn" style="margin-left:auto; font-size:11px;"></button>
-      </h3>
-
-      <div style="margin-bottom:16px; padding:10px; border:1px dashed rgba(255,255,255,.25); border-radius:var(--radius);">
-        <label style="font-size:12px; opacity:.75; display:block; margin-bottom:6px;">📢 Aviso para TODOS los clientes activos (nuevas versiones, avisos, etc.)</label>
-        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
-          <input type="text" id="adminSoporteBroadcastMsg" class="gate-input admin-input" placeholder="Ej: Actualizamos la app a la última versión…" style="flex:1; min-width:160px; margin:0;">
-          <button type="button" class="mini-btn" id="adminSoporteBroadcastBtn">Enviar a todos</button>
-          <span id="adminSoporteBroadcastOk" style="display:none; color:var(--green); font-size:12px;"></span>
+      <div id="adminTabLicencias" class="admin-tab-panel">
+        <h3 class="admin-h3">Generar licencia nueva</h3>
+        <div class="row2">
+          <input type="text" id="adminClienteInput" class="gate-input admin-input" placeholder="Nombre del cliente (opcional)">
+          <button type="button" class="gate-btn" id="adminGenerarBtn">+ Generar código</button>
         </div>
+        <div id="adminNuevoCodigoBox" class="admin-nuevo-codigo" style="display:none;">
+          Código generado: <b id="adminNuevoCodigoTexto" style="font-family:var(--mono);"></b>
+          <button type="button" class="mini-btn" id="adminCopiarCodigoBtn">Copiar</button>
+        </div>
+
+        <h3 class="admin-h3" style="margin-top:24px;">Licencias existentes</h3>
+        <input type="text" id="adminBuscarInput" class="gate-input admin-input" placeholder="Buscar por nombre o código…" style="margin-bottom:10px;">
+        <div id="adminListaLicencias"></div>
       </div>
 
-      <div id="adminSoporteLista"></div>
+      <div id="adminTabSoporte" class="admin-tab-panel" style="display:none;">
+        <div style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+          <button type="button" class="mini-btn" id="adminNotifBtn"></button>
+        </div>
+
+        <div style="margin-bottom:16px; padding:10px; border:1px dashed rgba(255,255,255,.25); border-radius:var(--radius);">
+          <label style="font-size:12px; opacity:.75; display:block; margin-bottom:6px;">📢 Aviso para TODOS los clientes activos (nuevas versiones, avisos, etc.)</label>
+          <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+            <input type="text" id="adminSoporteBroadcastMsg" class="gate-input admin-input" placeholder="Ej: Actualizamos la app a la última versión…" style="flex:1; min-width:160px; margin:0;">
+            <button type="button" class="mini-btn" id="adminSoporteBroadcastBtn">Enviar a todos</button>
+            <span id="adminSoporteBroadcastOk" style="display:none; color:var(--green); font-size:12px;"></span>
+          </div>
+        </div>
+
+        <div id="adminSoporteLista"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -2943,17 +2963,19 @@ function renderSoporteCliente(){
   const wrap = document.getElementById("soporteList");
   if(misSoporteMensajes.length === 0){ wrap.innerHTML = `<p class="empty-hint">Todavía no tenés mensajes con soporte.</p>`; return; }
   wrap.innerHTML = "";
-  const ordenados = [...misSoporteMensajes].sort((a,b)=> (a.fecha||"").localeCompare(b.fecha||""));
+  // Mas nuevos primero, para verlos apenas se abre sin tener que scrollear
+  const ordenados = [...misSoporteMensajes].sort((a,b)=> (b.fecha||"").localeCompare(a.fecha||""));
   ordenados.forEach(m=>{
     const autor = m.autor || "cliente";
+    const noLeido = autor === "admin" && !m.leidoCliente;
     const fecha = new Date(m.fecha).toLocaleDateString("es-AR", { day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit" });
     const row = document.createElement("div");
-    row.className = "soporte-item " + (autor === "admin" ? "de-soporte" : "de-cliente");
+    row.className = "soporte-item " + (autor === "admin" ? "de-soporte" : "de-cliente") + (noLeido ? " no-leido" : "");
     row.innerHTML = `<div class="sop-fecha">${autor === "admin" ? "Soporte" : "Vos"} — ${fecha}</div><div class="sop-msg"></div>`;
     row.querySelector(".sop-msg").textContent = m.mensaje;
     wrap.appendChild(row);
   });
-  wrap.scrollTop = wrap.scrollHeight;
+  wrap.scrollTop = 0;
 
   // Al abrir, marcamos como leídos los mensajes de soporte que todavía no vimos
   misSoporteMensajes
@@ -3544,6 +3566,15 @@ self.addEventListener("fetch", (event) => {
 
     document.getElementById("adminLogoutBtn").addEventListener("click", ()=> signOut(auth));
 
+    document.querySelectorAll(".admin-tab-btn").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        document.querySelectorAll(".admin-tab-btn").forEach(b=> b.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById("adminTabLicencias").style.display = btn.dataset.tab === "licencias" ? "block" : "none";
+        document.getElementById("adminTabSoporte").style.display = btn.dataset.tab === "soporte" ? "block" : "none";
+      });
+    });
+
     function generarCodigoAleatorio(){
       const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // sin caracteres ambiguos (sin O/0, I/1)
       let s = "";
@@ -3788,11 +3819,13 @@ self.addEventListener("fetch", (event) => {
           ((ultimo.autor||"cliente") === "admin" ? "Vos: " : "") + ultimo.mensaje.slice(0, 70);
 
         const msgsWrap = det.querySelector(".admin-thread-msgs");
-        [...mensajes].sort((a, b)=> (a.fecha || "").localeCompare(b.fecha || "")).forEach(m=>{
+        // Mas nuevos primero, para verlos apenas se abre el hilo sin scrollear
+        [...mensajes].sort((a, b)=> (b.fecha || "").localeCompare(a.fecha || "")).forEach(m=>{
           const autor = m.autor || "cliente";
+          const noLeido = autor === "cliente" && !m.leidoAdmin;
           const fecha = new Date(m.fecha).toLocaleDateString("es-AR", { day:"2-digit", month:"2-digit", hour:"2-digit", minute:"2-digit" });
           const bubble = document.createElement("div");
-          bubble.className = "admin-thread-msg " + (autor === "admin" ? "de-vos" : "de-cliente");
+          bubble.className = "admin-thread-msg " + (autor === "admin" ? "de-vos" : "de-cliente") + (noLeido ? " no-leido" : "");
           bubble.innerHTML = `<div class="admin-thread-fecha">${autor === "admin" ? "Vos" : nombreCliente(codigo)} — ${fecha}</div><div class="admin-thread-texto"></div>`;
           bubble.querySelector(".admin-thread-texto").textContent = m.mensaje;
           msgsWrap.appendChild(bubble);
