@@ -601,6 +601,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, .pill:focus-vis
       </div>
 
       <h3 class="admin-h3" style="margin-top:24px;">Licencias existentes</h3>
+      <input type="text" id="adminBuscarInput" class="gate-input admin-input" placeholder="Buscar por nombre o código…" style="margin-bottom:10px;">
       <div id="adminListaLicencias"></div>
     </div>
   </div>
@@ -3417,17 +3418,21 @@ self.addEventListener("fetch", (event) => {
       navigator.clipboard.writeText(txt).catch(()=>{});
     });
 
-    async function cargarLicencias(){
+    let licenciasCache = []; // [{codigo, data}], se recarga desde Firebase; el buscador filtra sobre esto
+
+    function renderListaLicencias(filtro){
       const wrap = document.getElementById("adminListaLicencias");
-      wrap.textContent = "Cargando…";
-      let snap;
-      try{ snap = await getDocs(collection(db, "licencias")); }
-      catch(err){ wrap.textContent = "No se pudo cargar: " + (err.code || err.message); return; }
-      if(snap.empty){ wrap.innerHTML = `<p class="empty-hint">No hay licencias cargadas todavía.</p>`; return; }
+      const f = (filtro || "").trim().toLowerCase();
+      const items = f
+        ? licenciasCache.filter(({codigo, data}) =>
+            codigo.toLowerCase().includes(f) || (data.cliente || "").toLowerCase().includes(f))
+        : licenciasCache;
+
+      if(licenciasCache.length === 0){ wrap.innerHTML = `<p class="empty-hint">No hay licencias cargadas todavía.</p>`; return; }
+      if(items.length === 0){ wrap.innerHTML = `<p class="empty-hint">Ninguna licencia coincide con "${filtro}".</p>`; return; }
+
       wrap.innerHTML = "";
-      snap.forEach(docSnap=>{
-        const d = docSnap.data();
-        const codigo = docSnap.id;
+      items.forEach(({codigo, data: d})=>{
         const usados = Array.isArray(d.dispositivos) ? d.dispositivos.length : 0;
         const max = typeof d.maxDispositivos === "number" ? d.maxDispositivos : 1;
         const row = document.createElement("div");
@@ -3467,6 +3472,20 @@ self.addEventListener("fetch", (event) => {
         };
         wrap.appendChild(row);
       });
+    }
+
+    document.getElementById("adminBuscarInput").addEventListener("input", (e)=>{
+      renderListaLicencias(e.target.value);
+    });
+
+    async function cargarLicencias(){
+      const wrap = document.getElementById("adminListaLicencias");
+      wrap.textContent = "Cargando…";
+      let snap;
+      try{ snap = await getDocs(collection(db, "licencias")); }
+      catch(err){ wrap.textContent = "No se pudo cargar: " + (err.code || err.message); return; }
+      licenciasCache = snap.docs.map(docSnap => ({ codigo: docSnap.id, data: docSnap.data() }));
+      renderListaLicencias(document.getElementById("adminBuscarInput").value);
     }
   }
 })();
