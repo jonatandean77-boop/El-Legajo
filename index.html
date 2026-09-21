@@ -197,6 +197,12 @@ header.top .brand .sub{font-size:12px; color:var(--stamp-dim); font-family:var(-
 .main{padding:22px 20px 120px; min-width:0;}
 .summary{padding:22px 16px; position:sticky; top:73px; align-self:start; min-width:0;}
 .sheet-close{display:none;}
+.admin-logout-btn{
+  display:block; padding:8px 16px;
+  border:1px solid var(--rule-strong); border-radius:20px; background:var(--paper-dim);
+  color:var(--ink-soft); font-size:13px;
+}
+.admin-logout-btn:hover{ border-color:var(--gold); color:var(--gold); }
 
 /* ---------- BARRA FIJA MOBILE + HOJA DESLIZANTE ---------- */
 .mobile-bar{display:none;}
@@ -628,7 +634,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, .pill:focus-vis
     <div id="adminContent" style="display:none; text-align:left;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:8px;">
         <span style="font-size:12.5px; opacity:.7;" id="adminEmailShown"></span>
-        <button type="button" class="sheet-close" id="adminLogoutBtn" style="margin:0;">Cerrar sesión</button>
+        <button type="button" class="admin-logout-btn" id="adminLogoutBtn">Cerrar sesión</button>
       </div>
 
       <h3 class="admin-h3">Generar licencia nueva</h3>
