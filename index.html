@@ -416,6 +416,13 @@ small.hint, p.hint{display:block; color:var(--ink-faint); font-size:10.5px; line
 .saved-item .sname{font-weight:600;}
 .saved-item .sacts button{border:none; background:none; font-size:11px; color:var(--ink-soft); text-decoration:underline; margin-left:6px;}
 
+.modal textarea.soporte-textarea{height:110px; font-family:var(--sans); font-size:13.5px;}
+.soporte-item{padding:10px 0; border-bottom:1px solid var(--paper-dim); font-size:12.5px;}
+.soporte-item .sop-fecha{font-size:11px; color:var(--ink-faint); margin-bottom:3px;}
+.soporte-item .sop-msg{white-space:pre-wrap; margin-bottom:4px;}
+.soporte-item .sop-respuesta{background:var(--green-dim); border-radius:4px; padding:6px 8px; font-size:12px; margin-top:4px;}
+.soporte-item .sop-estado{font-size:11px; font-weight:600; color:var(--ink-soft);}
+
 /* ---------- MODAL ---------- */
 .modal-bg{position:fixed; inset:0; background:rgba(10,13,17,.6); display:none; align-items:center; justify-content:center; z-index:60; padding:20px;}
 .modal-bg.open{display:flex;}
@@ -497,6 +504,21 @@ footer.appfoot{text-align:center; color:var(--ink-faint); font-size:11.5px; padd
   padding:6px 10px; border-radius:var(--radius); font-size:12px;
 }
 .mini-btn:hover{ border-color:var(--gold); color:var(--gold); }
+.admin-badge{
+  background:var(--stamp); color:#fff; font-size:11px; font-weight:700;
+  padding:2px 8px; border-radius:999px; min-width:18px; text-align:center; line-height:1.4;
+}
+.admin-soporte-row{
+  display:flex; flex-direction:column; gap:8px; align-items:stretch;
+  padding:12px; border:1px solid rgba(255,255,255,.14); border-radius:var(--radius);
+  margin-bottom:10px; text-align:left; color:var(--surface-ink-text);
+}
+.admin-soporte-row.no-leido{ border-color:var(--stamp); }
+.admin-soporte-msg{ white-space:pre-wrap; font-size:13.5px; line-height:1.4; }
+.admin-soporte-respuesta{
+  background:rgba(111,190,147,.14); border:1px solid var(--green);
+  border-radius:var(--radius); padding:8px 10px; font-size:13px;
+}
 
 
 /* ---------- TOAST (reemplaza los alert() nativos) ---------- */
@@ -603,6 +625,13 @@ button:focus-visible, input:focus-visible, select:focus-visible, .pill:focus-vis
       <h3 class="admin-h3" style="margin-top:24px;">Licencias existentes</h3>
       <input type="text" id="adminBuscarInput" class="gate-input admin-input" placeholder="Buscar por nombre o código…" style="margin-bottom:10px;">
       <div id="adminListaLicencias"></div>
+
+      <h3 class="admin-h3" style="margin-top:28px; display:flex; align-items:center; gap:8px;">
+        Mensajes de soporte
+        <span id="adminSoporteBadge" class="admin-badge" style="display:none;">0</span>
+        <button type="button" class="mini-btn" id="adminNotifBtn" style="margin-left:auto; font-size:11px;"></button>
+      </h3>
+      <div id="adminSoporteLista"></div>
     </div>
   </div>
 </div>
@@ -624,6 +653,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, .pill:focus-vis
   </div>
   <button class="theme-toggle" id="btnTheme" title="Cambiar tema" aria-label="Cambiar tema claro/oscuro">🌓</button>
   <button class="hdr-btn" id="btnSavedOpen">Presupuestos guardados</button>
+  <button class="hdr-btn" id="btnSoporteOpen">Soporte</button>
 </header>
 
 <div class="app">
@@ -1099,6 +1129,20 @@ button:focus-visible, input:focus-visible, select:focus-visible, .pill:focus-vis
   </div>
 </div>
 
+<div class="modal-bg" id="modalSoporte">
+  <div class="modal">
+    <button class="modal-close" data-close="modalSoporte">&times;</button>
+    <h3>Soporte</h3>
+    <div class="field" style="margin-bottom:10px;">
+      <label for="soporteMensajeInput">Escribí tu consulta o problema</label>
+      <textarea id="soporteMensajeInput" class="soporte-textarea" placeholder="Contanos qué necesitás…"></textarea>
+    </div>
+    <button class="act-btn primary" id="btnEnviarSoporte">Enviar mensaje</button>
+    <h3 style="margin-top:22px; font-size:14px;">Tus mensajes anteriores</h3>
+    <div class="saved-list" id="soporteList"></div>
+  </div>
+</div>
+
 <div class="modal-bg" id="modalJSON">
   <div class="modal">
     <button class="modal-close" data-close="modalJSON">&times;</button>
@@ -1304,6 +1348,7 @@ const SELLOS_PROVINCIAS = {
 const fmt = (n)=> (isFinite(n)?n:0).toLocaleString("es-AR",{style:"currency",currency:"ARS",minimumFractionDigits:2,maximumFractionDigits:2});
 const round2 = (n)=> Math.round((n + Number.EPSILON) * 100) / 100;
 const uid = ()=> Math.random().toString(36).slice(2,9);
+const escapeHtml = (s)=> String(s==null?"":s).replace(/[&<>"']/g, c=>({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
 
 // Acepta números escritos con coma decimal (1,5) y/o punto de miles (150.000,50)
 function parseDecimal(str){
@@ -1326,6 +1371,7 @@ function parseDecimal(str){
 let __sync = null; // { db, codigo, fx }
 function configDocRef(){ return __sync.fx.doc(__sync.db, "licencias", __sync.codigo, "config", "app"); }
 function presupuestosColRef(){ return __sync.fx.collection(__sync.db, "licencias", __sync.codigo, "presupuestos"); }
+function soporteColRef(){ return __sync.fx.collection(__sync.db, "licencias", __sync.codigo, "soporte"); }
 
 function crearEstadoInicial(uvaActual){
   return {
@@ -2822,6 +2868,53 @@ function eliminarPresupuesto(id){
     .catch(err=>{ console.error(err); showToast("⚠ No se pudo eliminar (revisá tu conexión)"); });
 }
 
+/* ---------------------------------------------------------------------
+   17-bis) SOPORTE — el mandatario deja mensajes y ve las respuestas que
+   el admin le fue dejando. Vive en la misma licencia (licencias/{codigo}/soporte).
+   --------------------------------------------------------------------- */
+let misSoporteMensajes = [];
+
+function suscribirSoporte(alCambiar){
+  const q = __sync.fx.query(soporteColRef(), __sync.fx.orderBy("fecha", "desc"));
+  __sync.fx.onSnapshot(q, (snap)=>{
+    misSoporteMensajes = snap.docs.map(d=>({ id: d.id, ...d.data() }));
+    alCambiar();
+  }, (err)=>{ console.error("Error de sincronización de soporte:", err); });
+}
+
+function enviarMensajeSoporte(){
+  const input = document.getElementById("soporteMensajeInput");
+  const texto = input.value.trim();
+  if(!texto) return;
+  const btn = document.getElementById("btnEnviarSoporte");
+  btn.disabled = true;
+  __sync.fx.addDoc(soporteColRef(), {
+    mensaje: texto, fecha: new Date().toISOString(),
+    leido: false, respuesta: "", fechaRespuesta: null
+  })
+    .then(()=>{ input.value = ""; showToast("✓ Mensaje enviado a soporte"); })
+    .catch(err=>{ console.error(err); showToast("⚠ No se pudo enviar (revisá tu conexión)"); })
+    .finally(()=>{ btn.disabled = false; });
+}
+
+function renderSoporteCliente(){
+  const wrap = document.getElementById("soporteList");
+  if(misSoporteMensajes.length === 0){ wrap.innerHTML = `<p class="empty-hint">Todavía no le escribiste a soporte.</p>`; return; }
+  wrap.innerHTML = "";
+  misSoporteMensajes.forEach(m=>{
+    const fecha = new Date(m.fecha).toLocaleDateString("es-AR", { day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit" });
+    const row = document.createElement("div");
+    row.className = "soporte-item";
+    row.innerHTML = `
+      <div class="sop-fecha">${fecha}</div>
+      <div class="sop-msg">${escapeHtml(m.mensaje)}</div>
+      <div class="sop-estado">${m.respuesta ? "Respondido" : "Enviado — esperando respuesta"}</div>
+      ${m.respuesta ? `<div class="sop-respuesta"><b>Respuesta de soporte:</b> ${escapeHtml(m.respuesta)}</div>` : ""}
+    `;
+    wrap.appendChild(row);
+  });
+}
+
 function renderSavedList(){
   const wrap = document.getElementById("savedList");
   const list = presupuestosGuardados;
@@ -2992,6 +3085,8 @@ function wireStaticEvents(){
   document.getElementById("sheetBackdrop").onclick = cerrarHojaResumen;
 
   document.getElementById("btnSavedOpen").onclick = ()=>{ renderSavedList(); document.getElementById("modalSaved").classList.add("open"); };
+  document.getElementById("btnSoporteOpen").onclick = ()=>{ renderSoporteCliente(); document.getElementById("modalSoporte").classList.add("open"); };
+  document.getElementById("btnEnviarSoporte").onclick = enviarMensajeSoporte;
   document.querySelectorAll("[data-close]").forEach(b=>{
     b.onclick = ()=> document.getElementById(b.dataset.close).classList.remove("open");
   });
@@ -3157,6 +3252,10 @@ function __iniciarAppReal(sync){
   suscribirPresupuestos(()=>{
     const modal = document.getElementById("modalSaved");
     if(modal && modal.classList.contains("open")) renderSavedList();
+  });
+  suscribirSoporte(()=>{
+    const modal = document.getElementById("modalSoporte");
+    if(modal && modal.classList.contains("open")) renderSoporteCliente();
   });
 }
 window.__iniciarLegajo = __iniciarAppReal;
@@ -3352,7 +3451,7 @@ self.addEventListener("fetch", (event) => {
   async function iniciarPanelAdmin(fbApp, db){
     const { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } =
       await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js");
-    const { collection, getDocs, doc, setDoc, updateDoc, deleteDoc } =
+    const { collection, collectionGroup, getDocs, doc, setDoc, updateDoc, deleteDoc, query, orderBy, onSnapshot } =
       await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js");
 
     const auth = getAuth(fbApp);
@@ -3363,12 +3462,15 @@ self.addEventListener("fetch", (event) => {
     const loginError = document.getElementById("adminLoginError");
     const content = document.getElementById("adminContent");
 
+    let soporteListenerIniciado = false;
+
     onAuthStateChanged(auth, (user)=>{
       if(user){
         loginForm.style.display = "none";
         content.style.display = "block";
         document.getElementById("adminEmailShown").textContent = user.email;
         cargarLicencias();
+        if(!soporteListenerIniciado){ soporteListenerIniciado = true; iniciarSoporteListener(); }
       } else {
         loginForm.style.display = "flex";
         content.style.display = "none";
@@ -3486,6 +3588,108 @@ self.addEventListener("fetch", (event) => {
       catch(err){ wrap.textContent = "No se pudo cargar: " + (err.code || err.message); return; }
       licenciasCache = snap.docs.map(docSnap => ({ codigo: docSnap.id, data: docSnap.data() }));
       renderListaLicencias(document.getElementById("adminBuscarInput").value);
+      renderSoporte();
+    }
+
+    /* ============================= SOPORTE ============================= */
+    let soporteCache = []; // [{id, codigo, mensaje, fecha, leido, respuesta, fechaRespuesta}]
+    let soportePrimerSnapshot = true;
+    const tituloOriginal = document.title;
+
+    function nombreCliente(codigo){
+      const lic = licenciasCache.find(l => l.codigo === codigo);
+      return (lic && lic.data.cliente) ? lic.data.cliente : codigo;
+    }
+
+    function actualizarBadgeSoporte(){
+      const noLeidos = soporteCache.filter(m => !m.leido).length;
+      const badge = document.getElementById("adminSoporteBadge");
+      if(noLeidos > 0){
+        badge.textContent = String(noLeidos);
+        badge.style.display = "inline-block";
+        document.title = `(${noLeidos}) ${tituloOriginal}`;
+      } else {
+        badge.style.display = "none";
+        document.title = tituloOriginal;
+      }
+    }
+
+    function actualizarBotonNotif(){
+      const btn = document.getElementById("adminNotifBtn");
+      if(!("Notification" in window)){ btn.style.display = "none"; return; }
+      if(Notification.permission === "granted") btn.textContent = "🔔 Notificaciones activadas";
+      else if(Notification.permission === "denied") btn.textContent = "🔕 Notificaciones bloqueadas (activalas en el navegador)";
+      else btn.textContent = "🔔 Activar notificaciones de escritorio";
+    }
+    actualizarBotonNotif();
+    document.getElementById("adminNotifBtn").addEventListener("click", async ()=>{
+      if(!("Notification" in window)) return;
+      if(Notification.permission === "default") await Notification.requestPermission().catch(()=>{});
+      actualizarBotonNotif();
+    });
+
+    function renderSoporte(){
+      const wrap = document.getElementById("adminSoporteLista");
+      if(soporteCache.length === 0){ wrap.innerHTML = `<p class="empty-hint">No hay mensajes de soporte todavía.</p>`; return; }
+      wrap.innerHTML = "";
+      soporteCache.forEach(m=>{
+        const fecha = new Date(m.fecha).toLocaleDateString("es-AR", { day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit" });
+        const row = document.createElement("div");
+        row.className = "admin-soporte-row" + (m.leido ? "" : " no-leido");
+        row.innerHTML = `
+          <div style="display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap;">
+            <div>
+              <b>${nombreCliente(m.codigo)}</b> <span style="font-family:var(--mono); font-size:11px; opacity:.65;">(${m.codigo})</span>
+              <div style="font-size:12px; opacity:.7;">${fecha}</div>
+            </div>
+            ${!m.leido ? `<span class="admin-badge">Nuevo</span>` : ""}
+          </div>
+          <div class="admin-soporte-msg"></div>
+          ${m.respuesta ? `<div class="admin-soporte-respuesta"><b>Tu respuesta:</b> <span></span></div>` : ""}
+          <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+            <input type="text" class="gate-input admin-input" data-in="respuesta" placeholder="Escribir respuesta…" style="flex:1; min-width:160px; margin:0;">
+            <button type="button" class="mini-btn" data-a="responder">Responder</button>
+            <button type="button" class="mini-btn" data-a="leido">${m.leido ? "Marcar no leído" : "Marcar leído"}</button>
+          </div>
+        `;
+        row.querySelector(".admin-soporte-msg").textContent = m.mensaje;
+        if(m.respuesta) row.querySelector(".admin-soporte-respuesta span").textContent = m.respuesta;
+        row.querySelector('[data-in="respuesta"]').value = m.respuesta || "";
+        row.querySelector('[data-a="responder"]').onclick = async ()=>{
+          const texto = row.querySelector('[data-in="respuesta"]').value.trim();
+          if(!texto) return;
+          await updateDoc(doc(db, "licencias", m.codigo, "soporte", m.id), {
+            respuesta: texto, fechaRespuesta: new Date().toISOString(), leido: true
+          });
+        };
+        row.querySelector('[data-a="leido"]').onclick = async ()=>{
+          await updateDoc(doc(db, "licencias", m.codigo, "soporte", m.id), { leido: !m.leido });
+        };
+        wrap.appendChild(row);
+      });
+    }
+
+    function iniciarSoporteListener(){
+      const q = query(collectionGroup(db, "soporte"), orderBy("fecha", "desc"));
+      onSnapshot(q, (snap)=>{
+        soporteCache = snap.docs.map(d=>({ id: d.id, codigo: d.ref.parent.parent.id, ...d.data() }));
+
+        if(!soportePrimerSnapshot && Notification.permission === "granted"){
+          const nuevos = snap.docChanges().filter(c => c.type === "added" && c.doc.data().leido === false);
+          nuevos.forEach(c=>{
+            const codigo = c.doc.ref.parent.parent.id;
+            try{
+              new Notification("Nuevo mensaje de soporte", {
+                body: `${nombreCliente(codigo)}: ${c.doc.data().mensaje.slice(0,120)}`
+              });
+            }catch(e){}
+          });
+        }
+        soportePrimerSnapshot = false;
+
+        renderSoporte();
+        actualizarBadgeSoporte();
+      }, (err)=>{ console.error("Error de sincronización de soporte:", err); });
     }
   }
 })();
