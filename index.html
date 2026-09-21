@@ -509,6 +509,12 @@ footer.appfoot{text-align:center; color:var(--ink-faint); font-size:11.5px; padd
   padding:6px 10px; border-radius:var(--radius); font-size:12px;
 }
 .mini-btn:hover{ border-color:var(--gold); color:var(--gold); }
+.license-historial-details{ flex-basis:100%; margin-top:4px; font-size:12px; }
+.license-historial-details summary{ cursor:pointer; color:var(--gold); list-style:none; opacity:.85; }
+.license-historial-details summary:hover{ opacity:1; }
+.license-historial-details summary::-webkit-details-marker{ display:none; }
+.license-historial-details ul{ margin:6px 0 0; padding-left:18px; opacity:.85; }
+.license-historial-details li{ margin-bottom:3px; }
 .admin-badge{
   background:var(--stamp); color:#fff; font-size:11px; font-weight:700;
   padding:2px 8px; border-radius:999px; min-width:18px; text-align:center; line-height:1.4;
@@ -3488,7 +3494,7 @@ self.addEventListener("fetch", (event) => {
   async function iniciarPanelAdmin(fbApp, db){
     const { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } =
       await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js");
-    const { collection, collectionGroup, getDocs, doc, setDoc, updateDoc, deleteDoc, addDoc, onSnapshot } =
+    const { collection, collectionGroup, getDocs, doc, setDoc, updateDoc, deleteDoc, addDoc, onSnapshot, arrayUnion } =
       await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js");
 
     const auth = getAuth(fbApp);
@@ -3542,9 +3548,11 @@ self.addEventListener("fetch", (event) => {
     document.getElementById("adminGenerarBtn").addEventListener("click", async ()=>{
       const cliente = document.getElementById("adminClienteInput").value.trim();
       const codigo = generarCodigoAleatorio();
+      const ahora = new Date().toISOString();
       await setDoc(doc(db, "licencias", codigo), {
         activo: true, dispositivos: [], maxDispositivos: 1,
-        cliente: cliente || "", creado: new Date().toISOString()
+        cliente: cliente || "", creado: ahora,
+        historial: [{ fecha: ahora, evento: "Licencia creada" }]
       });
       document.getElementById("adminNuevoCodigoTexto").textContent = codigo;
       document.getElementById("adminNuevoCodigoBox").style.display = "block";
@@ -3574,12 +3582,19 @@ self.addEventListener("fetch", (event) => {
       items.forEach(({codigo, data: d})=>{
         const usados = Array.isArray(d.dispositivos) ? d.dispositivos.length : 0;
         const max = typeof d.maxDispositivos === "number" ? d.maxDispositivos : 1;
+        const creadaFecha = d.creado ? new Date(d.creado).toLocaleDateString("es-AR", { day:"2-digit", month:"2-digit", year:"numeric" }) : "";
+        // Licencias creadas antes de tener historial: al menos mostramos el alta
+        const historial = (Array.isArray(d.historial) && d.historial.length > 0)
+          ? d.historial
+          : (d.creado ? [{ fecha: d.creado, evento: "Licencia creada" }] : []);
+        const historialOrdenado = [...historial].sort((a,b)=> (b.fecha||"").localeCompare(a.fecha||""));
+
         const row = document.createElement("div");
         row.className = "admin-license-row";
         row.innerHTML = `
           <div>
             <b style="font-family:var(--mono);">${codigo}</b>${d.cliente ? ` — ${d.cliente}` : ""}
-            <div style="font-size:12px; opacity:.7;">${usados}/${max} dispositivos · ${d.activo === false ? "desactivada" : "activa"}</div>
+            <div style="font-size:12px; opacity:.7;">${usados}/${max} dispositivos · ${d.activo === false ? "desactivada" : "activa"}${creadaFecha ? ` · Creada ${creadaFecha}` : ""}</div>
           </div>
           <div style="display:flex; gap:6px; flex-wrap:wrap;">
             <button type="button" class="mini-btn" data-a="toggle">${d.activo === false ? "Reactivar" : "Desactivar"}</button>
@@ -3587,13 +3602,35 @@ self.addEventListener("fetch", (event) => {
             <button type="button" class="mini-btn" data-a="limite">Cambiar límite</button>
             <button type="button" class="mini-btn" data-a="mensaje">Enviar mensaje</button>
             <button type="button" class="mini-btn" data-a="eliminar" style="border-color:var(--stamp); color:var(--stamp);">Eliminar</button>
-          </div>`;
+          </div>
+          <details class="license-historial-details">
+            <summary>Historial (${historialOrdenado.length})</summary>
+            <ul></ul>
+          </details>`;
+        const listaHistorial = row.querySelector(".license-historial-details ul");
+        if(historialOrdenado.length === 0){
+          listaHistorial.innerHTML = `<li style="opacity:.6;">Sin eventos registrados.</li>`;
+        } else {
+          historialOrdenado.forEach(h=>{
+            const fh = h.fecha ? new Date(h.fecha).toLocaleDateString("es-AR", { day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit" }) : "?";
+            const li = document.createElement("li");
+            li.textContent = `${fh} — ${h.evento || ""}`;
+            listaHistorial.appendChild(li);
+          });
+        }
         row.querySelector('[data-a="toggle"]').onclick = async ()=>{
-          await updateDoc(doc(db,"licencias",codigo), { activo: d.activo === false });
+          const nuevoActivo = d.activo === false;
+          await updateDoc(doc(db,"licencias",codigo), {
+            activo: nuevoActivo,
+            historial: arrayUnion({ fecha: new Date().toISOString(), evento: nuevoActivo ? "Reactivada" : "Desactivada" })
+          });
           cargarLicencias();
         };
         row.querySelector('[data-a="liberar"]').onclick = async ()=>{
-          await updateDoc(doc(db,"licencias",codigo), { dispositivos: [] });
+          await updateDoc(doc(db,"licencias",codigo), {
+            dispositivos: [],
+            historial: arrayUnion({ fecha: new Date().toISOString(), evento: "Dispositivos liberados" })
+          });
           cargarLicencias();
         };
         row.querySelector('[data-a="mensaje"]').onclick = async ()=>{
@@ -3612,7 +3649,10 @@ self.addEventListener("fetch", (event) => {
           if(nuevo === null) return;
           const n = parseInt(nuevo, 10);
           if(!Number.isInteger(n) || n < 1){ alert("Ingresá un número entero de 1 o más."); return; }
-          await updateDoc(doc(db,"licencias",codigo), { maxDispositivos: n });
+          await updateDoc(doc(db,"licencias",codigo), {
+            maxDispositivos: n,
+            historial: arrayUnion({ fecha: new Date().toISOString(), evento: `Límite cambiado de ${max} a ${n} dispositivo(s)` })
+          });
           cargarLicencias();
         };
         wrap.appendChild(row);
