@@ -645,16 +645,6 @@ button:focus-visible, input:focus-visible, select:focus-visible, .pill:focus-vis
         <button type="button" class="mini-btn" id="adminNotifBtn" style="margin-left:auto; font-size:11px;"></button>
       </h3>
 
-      <div style="margin-bottom:12px; padding:10px; border:1px dashed rgba(255,255,255,.25); border-radius:var(--radius);">
-        <label style="font-size:12px; opacity:.75; display:block; margin-bottom:6px;">Escribirle primero a un cliente</label>
-        <select id="adminSoporteDestinatario" class="gate-input admin-input" style="margin-bottom:6px;"></select>
-        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
-          <input type="text" id="adminSoporteNuevoMsg" class="gate-input admin-input" placeholder="Escribir mensaje…" style="flex:1; min-width:160px; margin:0;">
-          <button type="button" class="mini-btn" id="adminSoporteEnviarNuevo">Enviar</button>
-          <span id="adminSoporteEnviadoOk" style="display:none; color:var(--green); font-size:12px;">✓ Enviado</span>
-        </div>
-      </div>
-
       <div style="margin-bottom:16px; padding:10px; border:1px dashed rgba(255,255,255,.25); border-radius:var(--radius);">
         <label style="font-size:12px; opacity:.75; display:block; margin-bottom:6px;">📢 Aviso para TODOS los clientes activos (nuevas versiones, avisos, etc.)</label>
         <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
@@ -3595,6 +3585,7 @@ self.addEventListener("fetch", (event) => {
             <button type="button" class="mini-btn" data-a="toggle">${d.activo === false ? "Reactivar" : "Desactivar"}</button>
             <button type="button" class="mini-btn" data-a="liberar">Liberar dispositivos</button>
             <button type="button" class="mini-btn" data-a="limite">Cambiar límite</button>
+            <button type="button" class="mini-btn" data-a="mensaje">Enviar mensaje</button>
             <button type="button" class="mini-btn" data-a="eliminar" style="border-color:var(--stamp); color:var(--stamp);">Eliminar</button>
           </div>`;
         row.querySelector('[data-a="toggle"]').onclick = async ()=>{
@@ -3604,6 +3595,11 @@ self.addEventListener("fetch", (event) => {
         row.querySelector('[data-a="liberar"]').onclick = async ()=>{
           await updateDoc(doc(db,"licencias",codigo), { dispositivos: [] });
           cargarLicencias();
+        };
+        row.querySelector('[data-a="mensaje"]').onclick = async ()=>{
+          const texto = prompt(`Mensaje para ${d.cliente ? d.cliente + " (" + codigo + ")" : codigo}:`);
+          if(!texto || !texto.trim()) return;
+          await enviarMensajeAdmin(codigo, texto.trim());
         };
         row.querySelector('[data-a="eliminar"]').onclick = async ()=>{
           const ok = confirm(`¿Eliminar la licencia ${codigo}${d.cliente ? " ("+d.cliente+")" : ""} para siempre? Esto no se puede deshacer.`);
@@ -3635,17 +3631,7 @@ self.addEventListener("fetch", (event) => {
       catch(err){ wrap.textContent = "No se pudo cargar: " + (err.code || err.message); return; }
       licenciasCache = snap.docs.map(docSnap => ({ codigo: docSnap.id, data: docSnap.data() }));
       renderListaLicencias(document.getElementById("adminBuscarInput").value);
-      poblarSelectDestinatarios();
       renderSoporte();
-    }
-
-    function poblarSelectDestinatarios(){
-      const sel = document.getElementById("adminSoporteDestinatario");
-      const actual = sel.value;
-      sel.innerHTML = licenciasCache
-        .map(l => `<option value="${l.codigo}">${l.data.cliente ? l.data.cliente + " — " : ""}${l.codigo}</option>`)
-        .join("");
-      if(actual) sel.value = actual;
     }
 
     /* ============================= SOPORTE ============================= */
@@ -3691,18 +3677,6 @@ self.addEventListener("fetch", (event) => {
         leidoAdmin: true, leidoCliente: false
       });
     }
-
-    document.getElementById("adminSoporteEnviarNuevo").addEventListener("click", async ()=>{
-      const codigo = document.getElementById("adminSoporteDestinatario").value;
-      const input = document.getElementById("adminSoporteNuevoMsg");
-      const texto = input.value.trim();
-      if(!codigo || !texto) return;
-      await enviarMensajeAdmin(codigo, texto);
-      input.value = "";
-      const ok = document.getElementById("adminSoporteEnviadoOk");
-      ok.style.display = "inline";
-      setTimeout(()=> ok.style.display = "none", 2500);
-    });
 
     document.getElementById("adminSoporteBroadcastBtn").addEventListener("click", async ()=>{
       const input = document.getElementById("adminSoporteBroadcastMsg");
