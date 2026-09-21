@@ -3451,7 +3451,7 @@ self.addEventListener("fetch", (event) => {
   async function iniciarPanelAdmin(fbApp, db){
     const { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } =
       await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js");
-    const { collection, collectionGroup, getDocs, doc, setDoc, updateDoc, deleteDoc, query, orderBy, onSnapshot } =
+    const { collection, collectionGroup, getDocs, doc, setDoc, updateDoc, deleteDoc, onSnapshot } =
       await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js");
 
     const auth = getAuth(fbApp);
@@ -3670,9 +3670,14 @@ self.addEventListener("fetch", (event) => {
     }
 
     function iniciarSoporteListener(){
-      const q = query(collectionGroup(db, "soporte"), orderBy("fecha", "desc"));
-      onSnapshot(q, (snap)=>{
-        soporteCache = snap.docs.map(d=>({ id: d.id, codigo: d.ref.parent.parent.id, ...d.data() }));
+      // Ojo: esto es una "collection group query" (junta el soporte de TODAS las
+      // licencias). Con orderBy(), Firestore exige crear un índice manual para
+      // ese tipo de consulta — para no depender de eso, pedimos todo sin ordenar
+      // y ordenamos acá en JS por fecha, descendente.
+      onSnapshot(collectionGroup(db, "soporte"), (snap)=>{
+        soporteCache = snap.docs
+          .map(d=>({ id: d.id, codigo: d.ref.parent.parent.id, ...d.data() }))
+          .sort((a, b)=> (b.fecha || "").localeCompare(a.fecha || ""));
 
         if(!soportePrimerSnapshot && Notification.permission === "granted"){
           const nuevos = snap.docChanges().filter(c => c.type === "added" && c.doc.data().leido === false);
