@@ -169,8 +169,13 @@ header.top .brand .sub{font-size:12px; color:var(--stamp-dim); font-family:var(-
 .uva-box input:focus{outline:none; border-color:var(--stamp);}
 .uva-box .mrpa-out{font-family:var(--mono); font-size:12px; color:rgba(243,238,226,.75);}
 .hdr-btn{
+  position:relative;
   background:transparent; border:1px solid rgba(255,255,255,.25); color:var(--surface-ink-text);
   padding:7px 12px; font-size:13px; border-radius:var(--radius); flex-shrink:0; white-space:nowrap;
+}
+.hdr-dot{
+  display:none; position:absolute; top:-3px; right:-3px; width:11px; height:11px;
+  background:var(--stamp); border-radius:50%; border:2px solid var(--paper-dim);
 }
 .hdr-btn:hover{border-color:var(--stamp-dim); color:var(--stamp-dim);}
 .theme-toggle{
@@ -417,11 +422,11 @@ small.hint, p.hint{display:block; color:var(--ink-faint); font-size:10.5px; line
 .saved-item .sacts button{border:none; background:none; font-size:11px; color:var(--ink-soft); text-decoration:underline; margin-left:6px;}
 
 .modal textarea.soporte-textarea{height:110px; font-family:var(--sans); font-size:13.5px;}
-.soporte-item{padding:10px 0; border-bottom:1px solid var(--paper-dim); font-size:12.5px;}
-.soporte-item .sop-fecha{font-size:11px; color:var(--ink-faint); margin-bottom:3px;}
-.soporte-item .sop-msg{white-space:pre-wrap; margin-bottom:4px;}
-.soporte-item .sop-respuesta{background:var(--green-dim); border-radius:4px; padding:6px 8px; font-size:12px; margin-top:4px;}
-.soporte-item .sop-estado{font-size:11px; font-weight:600; color:var(--ink-soft);}
+.soporte-item{padding:8px 0; border-bottom:1px solid var(--paper-dim); font-size:12.5px;}
+.soporte-item.de-soporte{border-left:3px solid var(--gold); padding-left:8px;}
+.soporte-item.de-cliente{border-left:3px solid var(--rule-strong); padding-left:8px;}
+.soporte-item .sop-fecha{font-size:11px; color:var(--ink-faint); margin-bottom:3px; font-weight:600;}
+.soporte-item .sop-msg{white-space:pre-wrap;}
 
 /* ---------- MODAL ---------- */
 .modal-bg{position:fixed; inset:0; background:rgba(10,13,17,.6); display:none; align-items:center; justify-content:center; z-index:60; padding:20px;}
@@ -508,17 +513,25 @@ footer.appfoot{text-align:center; color:var(--ink-faint); font-size:11.5px; padd
   background:var(--stamp); color:#fff; font-size:11px; font-weight:700;
   padding:2px 8px; border-radius:999px; min-width:18px; text-align:center; line-height:1.4;
 }
-.admin-soporte-row{
-  display:flex; flex-direction:column; gap:8px; align-items:stretch;
-  padding:12px; border:1px solid rgba(255,255,255,.14); border-radius:var(--radius);
+.admin-soporte-thread{
+  border:1px solid rgba(255,255,255,.14); border-radius:var(--radius);
   margin-bottom:10px; text-align:left; color:var(--surface-ink-text);
 }
-.admin-soporte-row.no-leido{ border-color:var(--stamp); }
-.admin-soporte-msg{ white-space:pre-wrap; font-size:13.5px; line-height:1.4; }
-.admin-soporte-respuesta{
-  background:rgba(111,190,147,.14); border:1px solid var(--green);
-  border-radius:var(--radius); padding:8px 10px; font-size:13px;
+.admin-soporte-thread summary{
+  display:flex; justify-content:space-between; align-items:center; gap:8px;
+  padding:10px 12px; cursor:pointer; list-style:none;
 }
+.admin-soporte-thread summary::-webkit-details-marker{ display:none; }
+.admin-soporte-thread[open] summary{ border-bottom:1px solid rgba(255,255,255,.14); }
+.admin-thread-msgs{ max-height:260px; overflow:auto; padding:10px 12px; display:flex; flex-direction:column; gap:8px; }
+.admin-thread-msg{ font-size:13px; }
+.admin-thread-msg.de-vos{ text-align:right; }
+.admin-thread-fecha{ font-size:10.5px; opacity:.6; margin-bottom:2px; }
+.admin-thread-texto{ white-space:pre-wrap; display:inline-block; padding:6px 9px; border-radius:6px; max-width:85%; text-align:left; }
+.admin-thread-msg.de-cliente .admin-thread-texto{ background:rgba(255,255,255,.08); }
+.admin-thread-msg.de-vos .admin-thread-texto{ background:rgba(111,190,147,.18); }
+.admin-thread-reply{ display:flex; gap:6px; padding:0 12px 12px; }
+.admin-thread-reply input{ flex:1; margin:0; }
 
 
 /* ---------- TOAST (reemplaza los alert() nativos) ---------- */
@@ -631,6 +644,26 @@ button:focus-visible, input:focus-visible, select:focus-visible, .pill:focus-vis
         <span id="adminSoporteBadge" class="admin-badge" style="display:none;">0</span>
         <button type="button" class="mini-btn" id="adminNotifBtn" style="margin-left:auto; font-size:11px;"></button>
       </h3>
+
+      <div style="margin-bottom:12px; padding:10px; border:1px dashed rgba(255,255,255,.25); border-radius:var(--radius);">
+        <label style="font-size:12px; opacity:.75; display:block; margin-bottom:6px;">Escribirle primero a un cliente</label>
+        <select id="adminSoporteDestinatario" class="gate-input admin-input" style="margin-bottom:6px;"></select>
+        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+          <input type="text" id="adminSoporteNuevoMsg" class="gate-input admin-input" placeholder="Escribir mensaje…" style="flex:1; min-width:160px; margin:0;">
+          <button type="button" class="mini-btn" id="adminSoporteEnviarNuevo">Enviar</button>
+          <span id="adminSoporteEnviadoOk" style="display:none; color:var(--green); font-size:12px;">✓ Enviado</span>
+        </div>
+      </div>
+
+      <div style="margin-bottom:16px; padding:10px; border:1px dashed rgba(255,255,255,.25); border-radius:var(--radius);">
+        <label style="font-size:12px; opacity:.75; display:block; margin-bottom:6px;">📢 Aviso para TODOS los clientes activos (nuevas versiones, avisos, etc.)</label>
+        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+          <input type="text" id="adminSoporteBroadcastMsg" class="gate-input admin-input" placeholder="Ej: Actualizamos la app a la última versión…" style="flex:1; min-width:160px; margin:0;">
+          <button type="button" class="mini-btn" id="adminSoporteBroadcastBtn">Enviar a todos</button>
+          <span id="adminSoporteBroadcastOk" style="display:none; color:var(--green); font-size:12px;"></span>
+        </div>
+      </div>
+
       <div id="adminSoporteLista"></div>
     </div>
   </div>
@@ -653,7 +686,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, .pill:focus-vis
   </div>
   <button class="theme-toggle" id="btnTheme" title="Cambiar tema" aria-label="Cambiar tema claro/oscuro">🌓</button>
   <button class="hdr-btn" id="btnSavedOpen">Presupuestos guardados</button>
-  <button class="hdr-btn" id="btnSoporteOpen">Soporte</button>
+  <button class="hdr-btn" id="btnSoporteOpen">Soporte<span class="hdr-dot" id="soporteDot"></span></button>
 </header>
 
 <div class="app">
@@ -2889,30 +2922,43 @@ function enviarMensajeSoporte(){
   const btn = document.getElementById("btnEnviarSoporte");
   btn.disabled = true;
   __sync.fx.addDoc(soporteColRef(), {
-    mensaje: texto, fecha: new Date().toISOString(),
-    leido: false, respuesta: "", fechaRespuesta: null
+    autor: "cliente", mensaje: texto, fecha: new Date().toISOString(),
+    leidoAdmin: false, leidoCliente: true
   })
     .then(()=>{ input.value = ""; showToast("✓ Mensaje enviado a soporte"); })
     .catch(err=>{ console.error(err); showToast("⚠ No se pudo enviar (revisá tu conexión)"); })
     .finally(()=>{ btn.disabled = false; });
 }
 
+function actualizarDotSoporte(){
+  const dot = document.getElementById("soporteDot");
+  if(!dot) return;
+  const hayNoLeidos = misSoporteMensajes.some(m=> (m.autor||"cliente") === "admin" && !m.leidoCliente);
+  dot.style.display = hayNoLeidos ? "block" : "none";
+}
+
 function renderSoporteCliente(){
   const wrap = document.getElementById("soporteList");
-  if(misSoporteMensajes.length === 0){ wrap.innerHTML = `<p class="empty-hint">Todavía no le escribiste a soporte.</p>`; return; }
+  if(misSoporteMensajes.length === 0){ wrap.innerHTML = `<p class="empty-hint">Todavía no tenés mensajes con soporte.</p>`; return; }
   wrap.innerHTML = "";
-  misSoporteMensajes.forEach(m=>{
+  const ordenados = [...misSoporteMensajes].sort((a,b)=> (a.fecha||"").localeCompare(b.fecha||""));
+  ordenados.forEach(m=>{
+    const autor = m.autor || "cliente";
     const fecha = new Date(m.fecha).toLocaleDateString("es-AR", { day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit" });
     const row = document.createElement("div");
-    row.className = "soporte-item";
-    row.innerHTML = `
-      <div class="sop-fecha">${fecha}</div>
-      <div class="sop-msg">${escapeHtml(m.mensaje)}</div>
-      <div class="sop-estado">${m.respuesta ? "Respondido" : "Enviado — esperando respuesta"}</div>
-      ${m.respuesta ? `<div class="sop-respuesta"><b>Respuesta de soporte:</b> ${escapeHtml(m.respuesta)}</div>` : ""}
-    `;
+    row.className = "soporte-item " + (autor === "admin" ? "de-soporte" : "de-cliente");
+    row.innerHTML = `<div class="sop-fecha">${autor === "admin" ? "Soporte" : "Vos"} — ${fecha}</div><div class="sop-msg"></div>`;
+    row.querySelector(".sop-msg").textContent = m.mensaje;
     wrap.appendChild(row);
   });
+  wrap.scrollTop = wrap.scrollHeight;
+
+  // Al abrir, marcamos como leídos los mensajes de soporte que todavía no vimos
+  misSoporteMensajes
+    .filter(m=> (m.autor||"cliente") === "admin" && !m.leidoCliente)
+    .forEach(m=>{
+      __sync.fx.updateDoc(__sync.fx.doc(__sync.db, "licencias", __sync.codigo, "soporte", m.id), { leidoCliente: true }).catch(()=>{});
+    });
 }
 
 function renderSavedList(){
@@ -3254,6 +3300,7 @@ function __iniciarAppReal(sync){
     if(modal && modal.classList.contains("open")) renderSavedList();
   });
   suscribirSoporte(()=>{
+    actualizarDotSoporte();
     const modal = document.getElementById("modalSoporte");
     if(modal && modal.classList.contains("open")) renderSoporteCliente();
   });
@@ -3451,7 +3498,7 @@ self.addEventListener("fetch", (event) => {
   async function iniciarPanelAdmin(fbApp, db){
     const { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } =
       await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js");
-    const { collection, collectionGroup, getDocs, doc, setDoc, updateDoc, deleteDoc, onSnapshot } =
+    const { collection, collectionGroup, getDocs, doc, setDoc, updateDoc, deleteDoc, addDoc, onSnapshot } =
       await import("https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js");
 
     const auth = getAuth(fbApp);
@@ -3588,11 +3635,21 @@ self.addEventListener("fetch", (event) => {
       catch(err){ wrap.textContent = "No se pudo cargar: " + (err.code || err.message); return; }
       licenciasCache = snap.docs.map(docSnap => ({ codigo: docSnap.id, data: docSnap.data() }));
       renderListaLicencias(document.getElementById("adminBuscarInput").value);
+      poblarSelectDestinatarios();
       renderSoporte();
     }
 
+    function poblarSelectDestinatarios(){
+      const sel = document.getElementById("adminSoporteDestinatario");
+      const actual = sel.value;
+      sel.innerHTML = licenciasCache
+        .map(l => `<option value="${l.codigo}">${l.data.cliente ? l.data.cliente + " — " : ""}${l.codigo}</option>`)
+        .join("");
+      if(actual) sel.value = actual;
+    }
+
     /* ============================= SOPORTE ============================= */
-    let soporteCache = []; // [{id, codigo, mensaje, fecha, leido, respuesta, fechaRespuesta}]
+    let soporteCache = []; // [{id, codigo, autor, mensaje, fecha, leidoAdmin, leidoCliente}]
     let soportePrimerSnapshot = true;
     const tituloOriginal = document.title;
 
@@ -3602,7 +3659,7 @@ self.addEventListener("fetch", (event) => {
     }
 
     function actualizarBadgeSoporte(){
-      const noLeidos = soporteCache.filter(m => !m.leido).length;
+      const noLeidos = soporteCache.filter(m => (m.autor||"cliente") === "cliente" && !m.leidoAdmin).length;
       const badge = document.getElementById("adminSoporteBadge");
       if(noLeidos > 0){
         badge.textContent = String(noLeidos);
@@ -3628,44 +3685,115 @@ self.addEventListener("fetch", (event) => {
       actualizarBotonNotif();
     });
 
+    async function enviarMensajeAdmin(codigo, texto){
+      await addDoc(collection(db, "licencias", codigo, "soporte"), {
+        autor: "admin", mensaje: texto, fecha: new Date().toISOString(),
+        leidoAdmin: true, leidoCliente: false
+      });
+    }
+
+    document.getElementById("adminSoporteEnviarNuevo").addEventListener("click", async ()=>{
+      const codigo = document.getElementById("adminSoporteDestinatario").value;
+      const input = document.getElementById("adminSoporteNuevoMsg");
+      const texto = input.value.trim();
+      if(!codigo || !texto) return;
+      await enviarMensajeAdmin(codigo, texto);
+      input.value = "";
+      const ok = document.getElementById("adminSoporteEnviadoOk");
+      ok.style.display = "inline";
+      setTimeout(()=> ok.style.display = "none", 2500);
+    });
+
+    document.getElementById("adminSoporteBroadcastBtn").addEventListener("click", async ()=>{
+      const input = document.getElementById("adminSoporteBroadcastMsg");
+      const texto = input.value.trim();
+      if(!texto) return;
+      const activas = licenciasCache.filter(l => l.data.activo !== false);
+      if(activas.length === 0){ alert("No hay licencias activas para avisar."); return; }
+      const confirmar = confirm(`¿Enviar este aviso a las ${activas.length} licencias activas?`);
+      if(!confirmar) return;
+      const btn = document.getElementById("adminSoporteBroadcastBtn");
+      btn.disabled = true;
+      try{
+        await Promise.all(activas.map(l => enviarMensajeAdmin(l.codigo, texto)));
+        input.value = "";
+        const ok = document.getElementById("adminSoporteBroadcastOk");
+        ok.textContent = `✓ Enviado a ${activas.length} clientes`;
+        ok.style.display = "inline";
+        setTimeout(()=> ok.style.display = "none", 4000);
+      }catch(err){
+        alert("No se pudo enviar a todos: " + (err.code || err.message));
+      }
+      btn.disabled = false;
+    });
+
+    function agruparSoportePorCodigo(lista){
+      const map = new Map();
+      lista.forEach(m=>{
+        if(!map.has(m.codigo)) map.set(m.codigo, []);
+        map.get(m.codigo).push(m);
+      });
+      return map;
+    }
+
     function renderSoporte(){
       const wrap = document.getElementById("adminSoporteLista");
       if(soporteCache.length === 0){ wrap.innerHTML = `<p class="empty-hint">No hay mensajes de soporte todavía.</p>`; return; }
+
+      // soporteCache ya viene ordenado desc por fecha (ver iniciarSoporteListener)
+      const grupos = agruparSoportePorCodigo(soporteCache);
+      const hilos = [...grupos.entries()].sort((a, b)=> (b[1][0].fecha || "").localeCompare(a[1][0].fecha || ""));
+
       wrap.innerHTML = "";
-      soporteCache.forEach(m=>{
-        const fecha = new Date(m.fecha).toLocaleDateString("es-AR", { day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit" });
-        const row = document.createElement("div");
-        row.className = "admin-soporte-row" + (m.leido ? "" : " no-leido");
-        row.innerHTML = `
-          <div style="display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap;">
-            <div>
-              <b>${nombreCliente(m.codigo)}</b> <span style="font-family:var(--mono); font-size:11px; opacity:.65;">(${m.codigo})</span>
-              <div style="font-size:12px; opacity:.7;">${fecha}</div>
-            </div>
-            ${!m.leido ? `<span class="admin-badge">Nuevo</span>` : ""}
-          </div>
-          <div class="admin-soporte-msg"></div>
-          ${m.respuesta ? `<div class="admin-soporte-respuesta"><b>Tu respuesta:</b> <span></span></div>` : ""}
-          <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
-            <input type="text" class="gate-input admin-input" data-in="respuesta" placeholder="Escribir respuesta…" style="flex:1; min-width:160px; margin:0;">
-            <button type="button" class="mini-btn" data-a="responder">Responder</button>
-            <button type="button" class="mini-btn" data-a="leido">${m.leido ? "Marcar no leído" : "Marcar leído"}</button>
+      hilos.forEach(([codigo, mensajes])=>{
+        const noLeidos = mensajes.filter(m => (m.autor||"cliente") === "cliente" && !m.leidoAdmin).length;
+        const ultimo = mensajes[0];
+        const det = document.createElement("details");
+        det.className = "admin-soporte-thread";
+        det.innerHTML = `
+          <summary>
+            <span>
+              <b>${nombreCliente(codigo)}</b> <span style="font-family:var(--mono); font-size:11px; opacity:.65;">(${codigo})</span>
+              <div class="admin-thread-preview" style="font-size:12px; opacity:.7;"></div>
+            </span>
+            ${noLeidos > 0 ? `<span class="admin-badge">${noLeidos}</span>` : ""}
+          </summary>
+          <div class="admin-thread-msgs"></div>
+          <div class="admin-thread-reply">
+            <input type="text" class="gate-input admin-input" data-in="nuevo" placeholder="Escribir mensaje…">
+            <button type="button" class="mini-btn" data-a="enviar">Enviar</button>
           </div>
         `;
-        row.querySelector(".admin-soporte-msg").textContent = m.mensaje;
-        if(m.respuesta) row.querySelector(".admin-soporte-respuesta span").textContent = m.respuesta;
-        row.querySelector('[data-in="respuesta"]').value = m.respuesta || "";
-        row.querySelector('[data-a="responder"]').onclick = async ()=>{
-          const texto = row.querySelector('[data-in="respuesta"]').value.trim();
+        det.querySelector(".admin-thread-preview").textContent =
+          ((ultimo.autor||"cliente") === "admin" ? "Vos: " : "") + ultimo.mensaje.slice(0, 70);
+
+        const msgsWrap = det.querySelector(".admin-thread-msgs");
+        [...mensajes].sort((a, b)=> (a.fecha || "").localeCompare(b.fecha || "")).forEach(m=>{
+          const autor = m.autor || "cliente";
+          const fecha = new Date(m.fecha).toLocaleDateString("es-AR", { day:"2-digit", month:"2-digit", hour:"2-digit", minute:"2-digit" });
+          const bubble = document.createElement("div");
+          bubble.className = "admin-thread-msg " + (autor === "admin" ? "de-vos" : "de-cliente");
+          bubble.innerHTML = `<div class="admin-thread-fecha">${autor === "admin" ? "Vos" : nombreCliente(codigo)} — ${fecha}</div><div class="admin-thread-texto"></div>`;
+          bubble.querySelector(".admin-thread-texto").textContent = m.mensaje;
+          msgsWrap.appendChild(bubble);
+        });
+
+        det.addEventListener("toggle", ()=>{
+          if(!det.open) return;
+          mensajes
+            .filter(m => (m.autor||"cliente") === "cliente" && !m.leidoAdmin)
+            .forEach(m=> updateDoc(doc(db, "licencias", codigo, "soporte", m.id), { leidoAdmin: true }));
+        });
+
+        det.querySelector('[data-a="enviar"]').onclick = async ()=>{
+          const input = det.querySelector('[data-in="nuevo"]');
+          const texto = input.value.trim();
           if(!texto) return;
-          await updateDoc(doc(db, "licencias", m.codigo, "soporte", m.id), {
-            respuesta: texto, fechaRespuesta: new Date().toISOString(), leido: true
-          });
+          await enviarMensajeAdmin(codigo, texto);
+          input.value = "";
         };
-        row.querySelector('[data-a="leido"]').onclick = async ()=>{
-          await updateDoc(doc(db, "licencias", m.codigo, "soporte", m.id), { leido: !m.leido });
-        };
-        wrap.appendChild(row);
+
+        wrap.appendChild(det);
       });
     }
 
@@ -3680,7 +3808,9 @@ self.addEventListener("fetch", (event) => {
           .sort((a, b)=> (b.fecha || "").localeCompare(a.fecha || ""));
 
         if(!soportePrimerSnapshot && Notification.permission === "granted"){
-          const nuevos = snap.docChanges().filter(c => c.type === "added" && c.doc.data().leido === false);
+          const nuevos = snap.docChanges().filter(c =>
+            c.type === "added" && (c.doc.data().autor||"cliente") === "cliente" && c.doc.data().leidoAdmin === false
+          );
           nuevos.forEach(c=>{
             const codigo = c.doc.ref.parent.parent.id;
             try{
