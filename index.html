@@ -2468,6 +2468,10 @@ function renderFormulariosConfigList(){
   if(formulariosConfig.length===0){ wrap.innerHTML = `<p class="empty-hint">Sin formularios en el catálogo.</p>`; return; }
   wrap.innerHTML = "";
   formulariosConfig.forEach(f=>{
+    const idFijo = f.id; // clave estable — NO capturar el objeto "f" directamente:
+    // formulariosConfig se reemplaza entero cada vez que llega una confirmación
+    // de Firestore (incluso mientras el usuario está tipeando), así que "f" puede
+    // quedar apuntando a un objeto que ya no pertenece al array vigente.
     const row = document.createElement("div");
     row.className = "config-row";
     row.innerHTML = `
@@ -2476,12 +2480,13 @@ function renderFormulariosConfigList(){
       <button class="del-x" type="button" style="margin-left:4px;">&times;</button>`;
     const input = row.querySelector("input");
     input.oninput = ()=>{
-      f.precio = parseDecimal(input.value);
+      const item = formulariosConfig.find(x=>x.id===idFijo);
+      if(item) item.precio = parseDecimal(input.value);
       saveFormulariosConfig();
       renderSTAdicionalSelect();
     };
     row.querySelector(".del-x").onclick = ()=>{
-      formulariosConfig = formulariosConfig.filter(x=>x.id!==f.id);
+      formulariosConfig = formulariosConfig.filter(x=>x.id!==idFijo);
       saveFormulariosConfig();
       renderSTAdicionalSelect();
       renderFormulariosConfigList();
