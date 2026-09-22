@@ -2815,7 +2815,7 @@ function buildTextoResumen(){
 /* ---------------------------------------------------------------------
    16-B) EXPORTAR PDF PROFESIONAL (para el cliente — solo total, sin desglose)
    --------------------------------------------------------------------- */
-function generarPDFPresupuesto(){
+async function generarPDFPresupuesto(){
   if(!window.jspdf || !window.jspdf.jsPDF){
     showToast("⚠ No se pudo cargar el generador de PDF");
     return;
@@ -2885,7 +2885,28 @@ function generarPDFPresupuesto(){
   doc.text("Presupuesto estimado, sujeto a confirmación de datos registrales y valuación fiscal vigente.", 18, 280);
 
   const nombreArchivo = `presupuesto_${(state.cliente||"cliente").replace(/\s+/g,"_")}.pdf`;
-  doc.save(nombreArchivo);
+  const blob = doc.output("blob");
+
+  // En celular, si el navegador lo permite, ofrecemos el selector nativo para
+  // mandarlo directo por WhatsApp, mail, Instagram o lo que tenga instalado
+  // el mandatario — en vez de solo descargarlo en silencio.
+  let compartido = false;
+  try{
+    const archivo = new File([blob], nombreArchivo, { type: "application/pdf" });
+    if(navigator.canShare && navigator.canShare({ files: [archivo] })){
+      await navigator.share({ files: [archivo], title: "Presupuesto", text: `Presupuesto — ${sub.label}` });
+      compartido = true;
+    }
+  }catch(err){
+    // El usuario cerró el selector sin elegir nada: respetamos esa decisión,
+    // no forzamos la descarga como si nada.
+    if(err && err.name === "AbortError") compartido = true;
+  }
+
+  if(!compartido){
+    doc.save(nombreArchivo);
+    showToast('✓ PDF descargado — buscalo en la carpeta "Descargas" de tu celular o PC');
+  }
 }
 
 /* ---------------------------------------------------------------------
